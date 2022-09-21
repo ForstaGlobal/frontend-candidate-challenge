@@ -1,3 +1,5 @@
+# Coding Challenge for Frontend Developers
+
 ## ASSIGNMENT DESCRIPTION
 
 Please use the React framework to solve this assignment or alternatively pure javascript if you don't know React.
