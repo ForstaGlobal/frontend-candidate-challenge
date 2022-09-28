@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { ToDoHeader } from "../../components/to-do-header/to-do-header.component";
 import { ToDoList } from "../../components/to-do-list/to-do-list.component";
 import { ItemListModel } from "../../model/item-list.model";
 import { v4 as uuidv4 } from 'uuid';
 import { ItemListActions } from "../../components/to-do-list/to-do-item-list/to-do-item-list.component";
+import { ThreeWaySwitch } from "../../components/three-way-switch/three-way-switch.component";
+
+export type ThreeWayToggleType = 'all' | 'done' | 'not done';
 
 export const ToDoView: React.FC = () => {
 
     const [array_list, setArrayList] = useState<ItemListModel[]>([]);
+    const [three_way_toggle, setThreeWayToggle] = useState<ThreeWayToggleType>('all');
 
     const handleNewItem = (item_value: string) => {
         if (item_value.trim() !== '') {
@@ -34,9 +38,33 @@ export const ToDoView: React.FC = () => {
         }
     }
 
+    const handleToggleChange = (val: ThreeWayToggleType) => {
+        setThreeWayToggle(val);
+    }
+
+    const handleToggledArrayList = useCallback(
+        () => {
+            if (three_way_toggle === 'done') {
+                return array_list.filter(item => item.done === true);
+            }
+            else if (three_way_toggle === 'not done') {
+                return array_list.filter(item => item.done === false);
+            } else {
+                return array_list
+            }
+        }, [three_way_toggle, array_list]
+    )
+
     return (
-        <div style={{ padding: '20px', height:'100%',width:'100%' }}>
-            <div style={{padding:'0px 20px',width:'100%',height:'100%', backgroundColor: 'white', borderRadius: '10px', boxShadow: 'rgba(0, 0, 0, 0.18) 0px 2px 4px'}}>
+        <div style={{ padding: '20px', height: '100%', width: '100%' }}>
+            <div style={{ position: 'relative', padding: '0px 20px', width: '100%', height: '100%', backgroundColor: 'white', borderRadius: '10px', boxShadow: 'rgba(0, 0, 0, 0.18) 0px 2px 4px' }}>
+                <div style={{ position: 'absolute', top: '30px', right: '20px' }}>
+                    <ThreeWaySwitch
+                        values={['all', 'done', 'not done']}
+                        selected={three_way_toggle}
+                        onToggleChange={handleToggleChange}
+                    />
+                </div>
                 <ToDoHeader
                     onInsert={handleNewItem}
                 />
@@ -45,7 +73,7 @@ export const ToDoView: React.FC = () => {
                         <span>no item in the list...</span>
                         :
                         <ToDoList
-                            array_list={array_list}
+                            array_list={handleToggledArrayList()}
                             onActions={handleItemActions}
                         />
                 }
