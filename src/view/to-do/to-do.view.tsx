@@ -8,7 +8,6 @@ import { ItemListActions } from "../../components/to-do-list/to-do-item-list/to-
 export const ToDoView: React.FC = () => {
 
     const [array_list, setArrayList] = useState<ItemListModel[]>([]);
-    const [item_list, setItemList] = useState<ItemListModel | undefined>(undefined);
 
     const handleNewItem = (item_value: string) => {
         if (item_value.trim() !== '') {
@@ -20,7 +19,8 @@ export const ToDoView: React.FC = () => {
         let new_array = [...array_list];
         switch (action) {
             case 'Update':
-                setItemList(item);
+                new_array = new_array.map(obj => obj.id === item.id ? item : obj);
+                setArrayList(new_array);
                 break;
             case 'Delete':
                 setArrayList(new_array.filter(obj => obj.id !== item.id));

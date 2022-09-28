@@ -14,7 +14,6 @@ export const ToDoItemList: React.FC<ToDoItemListType> = ({ item_list, onActions 
     const [value, setValue] = useState<string | undefined>(undefined);
 
     const handleUpdate = () => {
-        //() => onActions(item_list, 'Update')
         setValue(item_list.value);
     }
 
@@ -23,6 +22,13 @@ export const ToDoItemList: React.FC<ToDoItemListType> = ({ item_list, onActions 
     }
     const handleFaTimesClick = () => {
         setValue(undefined);
+    }
+
+    const handleSaveUpdate = () => {
+        if (typeof value !== 'undefined') {
+            onActions({ ...item_list, value: value }, 'Update');
+            setValue(undefined);
+        }
     }
 
     return (
@@ -38,15 +44,30 @@ export const ToDoItemList: React.FC<ToDoItemListType> = ({ item_list, onActions 
                         </span>
                         :
                         <ItemListInputContainer>
-                            <ItemListInput value={value} autoFocus onChange={handleItemListValueChange} />
-                            <StyledFaTimes onClick={handleFaTimesClick}/>
-                            <StyledFaCheck />
+                            <ItemListInput
+                                value={value}
+                                autoFocus
+                                onChange={handleItemListValueChange}
+                                onFocus={(e) => { e.target.select() }}
+                            />
+                            <StyledFaTimes
+                                onClick={handleFaTimesClick}
+                            />
+                            <StyledFaCheck
+                                onClick={handleSaveUpdate}
+                            />
                         </ItemListInputContainer>
                 }
             </TaskContainer>
             <ActionsCotainer>
-                {typeof value === 'undefined' && <StyledFaCheckCircle onClick={() => onActions(item_list, 'Done')} />}
-                {(!item_list.done && typeof value === 'undefined') && <StyledFaPencilAlt onClick={handleUpdate} />}
+                {
+                    typeof value === 'undefined' &&
+                    <StyledFaCheckCircle onClick={() => onActions(item_list, 'Done')} />
+                }
+                {
+                    (!item_list.done && typeof value === 'undefined') &&
+                    <StyledFaPencilAlt onClick={handleUpdate} />
+                }
                 <StyledFaTrashAlt onClick={() => onActions(item_list, 'Delete')} />
             </ActionsCotainer>
         </ItemListCotainer>
