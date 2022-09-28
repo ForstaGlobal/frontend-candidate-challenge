@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FaCheckCircle, FaPencilAlt, FaTrashAlt, FaCheck, FaTimes } from 'react-icons/fa';
+import { FaCheckCircle, FaPencilAlt, FaTrashAlt, FaCheck, FaTimes, FaRegCircle } from 'react-icons/fa';
 
 export const ItemListCotainer = styled.div`
     display: flex;
@@ -26,6 +26,9 @@ export const ActionsCotainer = styled.div`
 
 export const StyledFaCheckCircle = styled(FaCheckCircle)`
     color: #FF00FF;
+    font-size: 20px;
+`
+export const StyledFaRegCircle = styled(FaRegCircle)`
     font-size: 20px;
 `
 export const StyledFaPencilAlt = styled(FaPencilAlt)`
@@ -56,6 +59,12 @@ export const TaskContainer = styled.div`
     font-weight: 600;
     overflow: hidden;
     width: 100%;
+    display: flex;
+
+    span{
+        display: inline-flex;
+        align-items: center;
+    }
 `
 
 export const ItemListInput = styled.input`

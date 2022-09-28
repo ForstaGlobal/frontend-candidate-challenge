@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ItemListModel } from "../../../model/item-list.model";
-import { ActionsCotainer, ItemListCotainer, ItemListInput, ItemListInputContainer, StyledFaCheck, StyledFaCheckCircle, StyledFaPencilAlt, StyledFaTimes, StyledFaTrashAlt, TaskContainer } from "./to-do-item-list.styles";
+import { ActionsCotainer, ItemListCotainer, ItemListInput, ItemListInputContainer, StyledFaCheck, StyledFaCheckCircle, StyledFaPencilAlt, StyledFaRegCircle, StyledFaTimes, StyledFaTrashAlt, TaskContainer } from "./to-do-item-list.styles";
 
 export type ItemListActions = "Done" | "Update" | "Delete";
 
@@ -33,6 +33,14 @@ export const ToDoItemList: React.FC<ToDoItemListType> = ({ item_list, onActions 
 
     return (
         <ItemListCotainer>
+            <ActionsCotainer>
+                {
+                    item_list.done ?
+                        <StyledFaCheckCircle onClick={() => onActions(item_list, 'Done')} />
+                        :
+                        <StyledFaRegCircle onClick={() => onActions(item_list, 'Done')} />
+                }
+            </ActionsCotainer>
             <TaskContainer style={{ textDecoration: item_list.done ? 'line-through' : '' }}>
                 {
                     typeof value === 'undefined' ?
@@ -60,10 +68,6 @@ export const ToDoItemList: React.FC<ToDoItemListType> = ({ item_list, onActions 
                 }
             </TaskContainer>
             <ActionsCotainer>
-                {
-                    typeof value === 'undefined' &&
-                    <StyledFaCheckCircle onClick={() => onActions(item_list, 'Done')} />
-                }
                 {
                     (!item_list.done && typeof value === 'undefined') &&
                     <StyledFaPencilAlt onClick={handleUpdate} />
