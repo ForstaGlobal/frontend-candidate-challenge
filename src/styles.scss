@@ -1,6 +1,10 @@
 body {
   background-color: #e7eaec;
   font-family: sans-serif;
+
+  &.modal-active {
+    overflow: hidden;
+  }
 }
 
 

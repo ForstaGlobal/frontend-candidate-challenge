@@ -30,7 +30,7 @@ export const InputComponent: React.FC<InputProps> = ({ label, type, id, classNam
             {
                 label &&
                 <InputLabel
-                    shrink={value!.length > 0? true:false} >
+                    shrink={value && value.length > 0? true:false} >
                     {label}
                 </InputLabel>
             }

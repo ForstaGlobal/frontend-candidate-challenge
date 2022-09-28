@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { FaCheckCircle, FaPencilAlt, FaTrashAlt, FaCheck, FaTimes, FaRegCircle } from 'react-icons/fa';
+import { FaCheckCircle, FaPencilAlt, FaTrashAlt, FaRegCircle } from 'react-icons/fa';
+import { InputComponent } from '../../input/input.component';
 
 export const ItemListCotainer = styled.div`
     display: flex;
@@ -45,14 +46,6 @@ export const StyledFaTrashAlt = styled(FaTrashAlt)`
         color: #b5fa4e;
     }
 `
-export const StyledFaCheck = styled(FaCheck)`
-    color: #1bcc00;
-    font-size: 20px;
-`
-export const StyledFaTimes = styled(FaTimes)`
-    color: #b60000;
-    font-size: 20px;
-`
 
 export const TaskContainer = styled.div`
     font-size: large;
@@ -67,25 +60,24 @@ export const TaskContainer = styled.div`
     }
 `
 
-export const ItemListInput = styled.input`
-    border: 0px solid black;
-    font-size: large;
-    font-weight: 600;
-    border-bottom: 1px solid #FF00FF;
-    width: calc(100% - 70px);
-    &:focus{
-        outline: none;
-        border: 0px solid black;
-        border-bottom: 1px solid #FF00FF;
-    }
+export const ItemListInput = styled(InputComponent)`
+    width: 100%;
 `
 
-export const ItemListInputContainer = styled.div`
+export const EditModalContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+`
+
+export const ButtonsContainer = styled.div`
     display: flex;
     flex-direction: row;
-
-    svg{
-        margin: 5px;
-        cursor: pointer;
-    }
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    padding: 0px 50px;
+    bottom: 50px;
+    right: 0px;
 `
