@@ -5,6 +5,7 @@ import { ItemListModel } from "../../model/item-list.model";
 import { v4 as uuidv4 } from 'uuid';
 import { ItemListActions } from "../../components/to-do-list/to-do-item-list/to-do-item-list.component";
 import { ThreeWaySwitch } from "../../components/three-way-switch/three-way-switch.component";
+import { ThreeWaySwitchContainer, ToDoCotainer, ToDoCotainerShadow } from "./to-do.styles";
 
 export type ThreeWayToggleType = 'all' | 'done' | 'not done';
 
@@ -56,15 +57,15 @@ export const ToDoView: React.FC = () => {
     )
 
     return (
-        <div style={{ padding: '20px', height: '100%', width: '100%' }}>
-            <div style={{ position: 'relative', padding: '0px 20px', width: '100%', height: '100%', backgroundColor: 'white', borderRadius: '10px', boxShadow: 'rgba(0, 0, 0, 0.18) 0px 2px 4px' }}>
-                <div style={{ position: 'absolute', top: '30px', right: '20px' }}>
+        <ToDoCotainer>
+            <ToDoCotainerShadow>
+                <ThreeWaySwitchContainer>
                     <ThreeWaySwitch
                         values={['all', 'done', 'not done']}
                         selected={three_way_toggle}
                         onToggleChange={handleToggleChange}
                     />
-                </div>
+                </ThreeWaySwitchContainer>
                 <ToDoHeader
                     onInsert={handleNewItem}
                 />
@@ -77,7 +78,7 @@ export const ToDoView: React.FC = () => {
                             onActions={handleItemActions}
                         />
                 }
-            </div>
-        </div>
+            </ToDoCotainerShadow>
+        </ToDoCotainer>
     );
 }
