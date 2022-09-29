@@ -91,7 +91,7 @@ describe("to-do-view", () => {
 
 
     it('should render no item in not-done area because there is only one of them in the to do list but it is done', () => {
-        const { debug } = render(<ToDoView />);
+        render(<ToDoView />);
         const ToDoViewElement = screen.getByTestId('to-do-view-container');
         expect(ToDoViewElement).toBeInTheDocument();
 
@@ -165,7 +165,7 @@ describe("to-do-view", () => {
 
 
     it('should update the item in the list', () => {
-        const { debug } = render(<ToDoView />);
+        render(<ToDoView />);
         const ToDoViewElement = screen.getByTestId('to-do-view-container');
         expect(ToDoViewElement).toBeInTheDocument();
 
