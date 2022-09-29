@@ -21,4 +21,14 @@ export const ThreeWaySwitchContainer = styled.div`
     position: absolute;
     top: 30px;
     right: 20px;
+
+    @media only screen and (max-width: 800px) {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        top: 10px;
+        margin-bottom: 10px;
+        right: auto;
+    }
 `

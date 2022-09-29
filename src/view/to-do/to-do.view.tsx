@@ -57,7 +57,7 @@ export const ToDoView: React.FC = () => {
     )
 
     return (
-        <ToDoCotainer>
+        <ToDoCotainer data-testid='to-do-view-container'>
             <ToDoCotainerShadow>
                 <ThreeWaySwitchContainer>
                     <ThreeWaySwitch

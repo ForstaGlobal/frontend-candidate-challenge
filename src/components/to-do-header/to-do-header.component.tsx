@@ -30,7 +30,7 @@ export const ToDoHeader: React.FC<ToDoHeaderType> = ({ onInsert }) => {
     }
 
     return (
-        <HeaderCotainer>
+        <HeaderCotainer data-testid='header'>
             <AnimatedLetters
                 strArray={to_do_title}
                 idx={15}

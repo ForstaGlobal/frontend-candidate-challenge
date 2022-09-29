@@ -23,7 +23,7 @@ export const ModalComponent: React.FC<ModalComponentType> = ({ modal_class, chil
     );
 
     return (
-        <div id="modal-container" className={modal_class}>
+        <div id="modal-container" className={modal_class} data-testid="modal-container">
             <div className="modal-background">
                 <div className="modal">
                     {children}

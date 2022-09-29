@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ItemListModel } from "../../../model/item-list.model";
 import { ModalClassTypes, ModalComponent } from "../../modal/modal.component";
 import { ItemListEditModal } from "./item-list-edit-modal-content/edit-modal-content.component";
@@ -36,28 +36,22 @@ export const ToDoItemList: React.FC<ToDoItemListType> = ({ item_list, onActions 
         }
     }
 
-    useEffect(
-        () => {
-            console.log(modal_class)
-        }, [modal_class]
-    )
-
     return (
-        <ItemListCotainer>
+        <ItemListCotainer data-testid="item-list-container">
             <ModalComponent modal_class={modal_class} >
-                <ItemListEditModal 
-                value={value} 
-                onModalUpdate={handleUpdateModal} 
-                onChangeValue={handleItemListValueChange} 
-                onSaveUpdate={handleSaveUpdate} 
+                <ItemListEditModal
+                    value={value}
+                    onModalUpdate={handleUpdateModal}
+                    onChangeValue={handleItemListValueChange}
+                    onSaveUpdate={handleSaveUpdate}
                 />
             </ModalComponent>
             <ActionsCotainer>
                 {
                     item_list.done ?
-                        <StyledFaCheckCircle onClick={() => onActions(item_list, 'Done')} />
+                        <StyledFaCheckCircle data-testid='item-list-container-done' onClick={() => onActions(item_list, 'Done')} />
                         :
-                        <StyledFaRegCircle onClick={() => onActions(item_list, 'Done')} />
+                        <StyledFaRegCircle data-testid='item-list-container-not-done' onClick={() => onActions(item_list, 'Done')} />
                 }
             </ActionsCotainer>
             <TaskContainer style={{ textDecoration: item_list.done ? 'line-through' : '' }}>
@@ -71,9 +65,12 @@ export const ToDoItemList: React.FC<ToDoItemListType> = ({ item_list, onActions 
             <ActionsCotainer>
                 {
                     !item_list.done &&
-                    <StyledFaPencilAlt onClick={() => handleUpdateModal('modal-sketch')} />
+                    <StyledFaPencilAlt data-testid="edit-svg-item-list" onClick={() => handleUpdateModal('modal-sketch')} />
                 }
-                <StyledFaTrashAlt onClick={() => onActions(item_list, 'Delete')} />
+                <StyledFaTrashAlt
+                    data-testid="delete-svg-item-list"
+                    onClick={() => onActions(item_list, 'Delete')}
+                />
             </ActionsCotainer>
         </ItemListCotainer>
     )

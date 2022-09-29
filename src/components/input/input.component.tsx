@@ -18,6 +18,7 @@ export const InputComponent: React.FC<InputProps> = ({ label, type, id, classNam
     return(
         <Group>
             <Input
+                data-testid='input-component'
                 className={ className}
                 type={type}
                 value={value}
