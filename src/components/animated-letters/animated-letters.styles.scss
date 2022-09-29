@@ -1,0 +1,36 @@
+@import 'animate.css';
+
+.text-animate-container {
+    font-size: 56px;
+    text-align: center;
+    margin: 10px 0px;
+
+    .text-animate {
+        display: inline-block;
+        opacity: 0;
+        animation: bounceIn;
+        animation-duration: 1s;
+        animation-delay: 1s;
+        animation-fill-mode: forwards;
+        min-width: 10px;
+    }
+
+    .text-animate-hover {
+        min-width: 10px;
+        display: inline-block;
+        animation-fill-mode: both;
+        animation-duration: 1s;
+        animation: rubberBand 1s;
+
+        &:hover {
+            animation: none;
+            color: #FF00FF;
+        }
+    }
+
+    @for $i from 1 through 100 {
+        .text-animate._#{$i} {
+            animation-delay: #{calc($i / 12)}s;
+        }
+    }
+}
