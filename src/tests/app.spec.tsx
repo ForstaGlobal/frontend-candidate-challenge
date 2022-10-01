@@ -13,9 +13,12 @@ describe("TodoApp", () => {
   it("renders initial items", () => {
     render(<App />);
 
-    expect(screen.getByText("Buy milk")).toBeDefined();
+    expect(screen.getByText("Add Input Element")).toBeDefined();
     screen.getByTestId("todo0");
+    expect(screen.getByText("Add Add Button")).toBeDefined();
+    screen.getByTestId("todo1");
+    expect(screen.getByText("Get a Coffee")).toBeDefined();
+    screen.getByTestId("todo2");
 
-    // TODO: Verify second todo
   });
 });
