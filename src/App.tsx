@@ -6,8 +6,9 @@ import "./styles.scss";
 
 export default function App() {
   const [todos] = useState([
-    { text: "Buy milk", done: true },
-    { text: "Buy bread", done: false },
+    { text: "Add Input Element", done: true },
+    { text: "Add Add Button", done: false },
+    { text: "Get a Coffee", done: true },
   ]);
 
   return (
