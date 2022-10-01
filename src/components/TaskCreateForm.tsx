@@ -5,9 +5,10 @@ import { Task } from '../models/task';
 export const TaskCreateForm: React.FC<{ onFormSubmit: (task: Task) => void }> = ({ onFormSubmit }) => {
 
   const [taskDescription, setTaskDescription] = useState<string>("");
+
   // Whenever we add a new task, save it
   const onSubmit = (e: React.FormEvent): void => {
-    // Prevent form submission
+    // Prevent html form submission
     e.preventDefault();
 
     // No need to do anything if no description provided
@@ -27,6 +28,7 @@ export const TaskCreateForm: React.FC<{ onFormSubmit: (task: Task) => void }> = 
     <form className="tasks__form" onSubmit={(e) => onSubmit(e)}>
       <input
         className="tasks__form_field"
+        data-testid="task_create_input"
         value={taskDescription}
         placeholder="Something you'd like to plan?"
         onChange={(e) => setTaskDescription(e.target.value)}

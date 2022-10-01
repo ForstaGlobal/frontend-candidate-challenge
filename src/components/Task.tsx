@@ -26,21 +26,21 @@ export const Task: React.FC<TaskComponentProps> = ({ task, stateToggled, deleted
       {
         task.editing
           ? <form className="task__form" onSubmit={(e) => onFormSubmit(e)}>
-            <input className="task__form_field" value={taskDescription} onChange={(e) => setTaskDescription(e.target.value)} type="text" name="task" id="task" />
-            <button className="task__form_btn pointer" type="submit">
+            <input className="task__form_field" value={taskDescription} onChange={(e) => setTaskDescription(e.target.value)} data-testid="edit_input" type="text" name="task" id="task" />
+            <button className="task__form_btn pointer" data-testid="edit_submit" type="submit">
               <IconContext.Provider value={{ className: "icon icon-end color-green" }}>
                 <BsSave2 />
               </IconContext.Provider>
             </button>
           </form>
           : <li className={`task ${task.done ? 'faded' : ''}`} key={task.id}>
-            <div onClick={() => deleted(task.id)} className="flex pointer">
+            <div onClick={() => deleted(task.id)} className="flex pointer" data-testid="delete_action">
               <IconContext.Provider value={{ className: "icon color-red" }}>
                 <BsReverseBackspaceReverse />
               </IconContext.Provider>
             </div>
-            <div onClick={() => editingToggled(task.id)} className={`task__description ${task.done ? 'striked' : ''}`} >{task.description}</div>
-            <div onClick={() => stateToggled(task.id)} className={`flex pushed-right pointer`}>
+            <div onClick={() => editingToggled(task.id)} className={`task__description ${task.done ? 'striked' : ''}`} data-testid="editing_toggler">{task.description}</div>
+            <div onClick={() => stateToggled(task.id)} className={`flex pushed-right pointer`} data-testid="state_toggler">
               <IconContext.Provider value={{ className: `icon icon-end color-${task.done ? 'green' : 'grey'}` }}>
                 {task.done ? <BsCheck2Square /> : <BsSquare />}
               </IconContext.Provider>
