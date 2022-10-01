@@ -143,6 +143,47 @@ figure {
   gap: 0.2em;
   justify-content: flex-start;
   align-items: center;
+
+  &__form {
+    width: 80%;
+    position: relative;
+    margin: 0 auto;
+    padding-right: 26px;
+
+    &_field {
+      background: #fff;
+      color: $color;
+      font: inherit;
+      box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+      border: 0;
+      border-radius: 8px;
+      outline: 0;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-left: 8px;
+      padding-right: $icon-width + 26px;
+      width: calc(100% - #{$icon-width} - 12px);
+    }
+    &_btn {
+      display: block;
+      position: absolute;
+      top: 50%;
+      right: 0px;
+      left: calc(100% - #{$icon-width});
+      height: $icon-height;
+      padding: 0;
+      transform: translate(-50%, -50%);
+      border: 0;
+      outline: 0;
+      transition: all 200ms ease-in;
+      background: transparent;
+
+      & .icon-end {
+        padding: 0;
+      }
+
+    }
+  }
 }
 
 // Helpers
