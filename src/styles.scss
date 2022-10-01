@@ -3,7 +3,13 @@
 // variables
 $background: #f5f6fa;
 $color: #80939c;
-
+$field-width: 360px;
+$btn-padding-large: 22px;
+$btn-padding-small: 18px;
+$btn-width: $field-width / 3;
+$button-bg-color: #7f8ff4;
+$button-text-color: #fff;
+$box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
 
 // Let's have some basics to be ok for most devices
 body {
@@ -46,4 +52,64 @@ figure {
   height: 56px;
   margin: 0;
   width: 240px;
+}
+
+.tasks {
+  margin: 0em 0.5em;
+
+  &__form {
+    position: relative;
+    margin: 0 auto;
+    padding-right: $btn-width + $btn-padding-small;
+    max-width: 40ch;
+
+    &_field {
+      width: 95%;
+      background: #fff;
+      color: $color;
+      font: inherit;
+      box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+      border: 0;
+      border-radius: 8px;
+      outline: 0;
+      padding-top: $btn-padding-large;
+      padding-bottom: $btn-padding-large;
+      padding-left: $btn-padding-small;
+      padding-right: $btn-width - 2 * $btn-padding-small;
+
+      &::placeholder {
+        opacity: 0.4;
+      }
+    }
+    &_btn {
+      display: inline-block;
+      background: transparent;
+      font: inherit;
+      border: 0;
+      outline: 0;
+      transition: all 200ms ease-in;
+      background: $button-bg-color;
+      color: $button-text-color;
+      box-shadow: $box-shadow;
+      border-radius: 4px;
+      padding: $btn-padding-large / 2 $btn-padding-large;
+      margin-left: -$btn-width + $btn-padding-large;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translate(0%, -50%);
+      width: $btn-width;
+
+      &:active {
+        background: $button-bg-color;
+        box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
+      }
+
+      &:hover {
+        background: darken($button-bg-color, 4%);
+      }
+    }
+  }
+
+  &__list {}
 }
