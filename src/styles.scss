@@ -10,6 +10,7 @@ $btn-width: $field-width / 3;
 $button-bg-color: #7f8ff4;
 $button-text-color: #fff;
 $box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+$list-bg-color: #e9e9e9;
 
 // Let's have some basics to be ok for most devices
 body {
@@ -111,5 +112,33 @@ figure {
     }
   }
 
-  &__list {}
+  &__list {
+    padding: 2em;
+    margin: 3em 0em;
+    background-color: $list-bg-color;
+    border-radius: 8px;
+    &-empty {
+      text-align: center;
+    }
+  }
+}
+
+.task {
+  background-color: lighten($list-bg-color, 10%);
+  border-radius: 4px;
+  padding: 0.5em;
+  box-shadow: $box-shadow;
+  list-style: none;
+  text-align: left;
+  margin: 1em 0em;
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  gap: 0.2em;
+  justify-content: flex-start;
+  align-items: center;
+
+  &__description {
+  }
 }
