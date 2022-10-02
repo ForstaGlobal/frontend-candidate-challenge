@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, KeyboardEvent } from "react";
 import { TodoList } from "./components/TodoList";
 
 import "./styles.scss";
@@ -44,6 +44,7 @@ export const App = () => {
     editingID("");
     setNew("");
     toggleEdit(0);
+    toggleDone(false)
     updateState();
   }
   const handleAdd = (e: any) => {
@@ -66,7 +67,12 @@ export const App = () => {
     firstRuntoggle(false);
     setData([...initial]);
   }
-
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleAdd(e);
+    }
+    // do stuff
+ };
   const handleDone = (item: any) => {
     var index = todos.indexOf(item);
     const id = todos.filter((e, i) => i == index );
@@ -81,10 +87,17 @@ export const App = () => {
       return newState;
     });
   }
+  const handleCancel = () => {
+    editingID("")
+    setNew("")
+    toggleEdit(0)
+    toggleDone(false)
+  }
   const handleDel = (item: any) => {
     editingID("")
     setNew("")
     toggleEdit(0)
+    toggleDone(false)
     var index = todos.indexOf(item);
     const newState = setData(todos => {
       return todos.filter((item, i) => i !== index)
@@ -105,9 +118,10 @@ export const App = () => {
       <div className="container w-100 md:max-w-[60%] max-w-auto m-auto dark:bg-zinc-800 bg-zinc-200 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl text-center">
       <span className="text-zinc-900 dark:text-white font-bold text-lg w-[100%] block text-start" >New Todo:</span>
         <div className="w-[100%] md:flex md:flex-column">
-          <input type="text" value={taskstr} className="w-[100%] md:mr-3 dark:bg-zinc-600 rounded text-zinc-900 dark:text-white border-[1px] border-zinc-300 dark:border-zinc-500 block my-3 px-3 py-3" placeholder="New Todo" onChange={handleChange}/>
+          <input type="text" data-testid="newtodoinput" onKeyDown={handleKeyPress} id="newtodo" value={taskstr} className="w-[100%] md:mr-3 dark:bg-zinc-600 rounded text-zinc-900 dark:text-white border-[1px] border-zinc-300 dark:border-zinc-500 block my-3 px-3 py-3" placeholder="New Todo" onChange={handleChange}/>
           <button id="addBtn" className="md:min-w-[auto] min-w-[100%] rounded bg-fuchsia-700 text-white font-bold hover:bg-fuchsia-900 my-3 m-0 block px-5 py-3" onClick={handleAdd} >+</button>
-          <button id="saveBtn" className="hidden md:min-w-[auto] min-w-[100%] rounded bg-blue-700 text-white font-bold hover:bg-blue-900 my-3 m-0 block px-5 py-3" onClick={handleSave} >Save</button>
+          <button id="saveBtn" className="hidden md:min-w-[auto] min-w-[100%] rounded bg-blue-700 text-white font-bold hover:bg-blue-900 my-3 m-0 block px-5 py-3 mr-2" onClick={handleSave} >Save</button>
+          <button id="cancelBtn" className="hidden md:min-w-[auto] min-w-[100%] rounded bg-orange-700 text-white font-bold hover:bg-orange-900 my-3 m-0 block px-5 py-3" onClick={handleCancel} >Cancel</button>
         </div>
         <hr className="my-8 w-[60%] mx-auto dark:border-zinc-600 border-zinc-400" />
         <span className="text-zinc-900 dark:text-white font-bold text-lg w-[100%] block text-start" data-testid="todostitle" onClick={handleEdit}>Current Todos ({todos.length}):</span>
@@ -119,12 +133,15 @@ export const App = () => {
 function toggleEdit(onoff=0) {
   const addBtn = document.getElementById("addBtn") as HTMLInputElement | null;
   const saveBtn = document.getElementById("saveBtn") as HTMLInputElement | null;
+  const cancelBtn = document.getElementById("cancelBtn") as HTMLInputElement | null;
   if ( onoff == 1 ) {
       addBtn?.classList.add("hidden")
       saveBtn?.classList.remove("hidden")
+      cancelBtn?.classList.remove("hidden")
   } else {
     addBtn?.classList.remove("hidden")
     saveBtn?.classList.add("hidden")
+    cancelBtn?.classList.add("hidden")
   }
 }
 function updateToggles(todos: any) {
@@ -138,6 +155,10 @@ function updateToggles(todos: any) {
       }
     }
   })
+  const input = document.getElementById('newtodo') as HTMLInputElement | null;
+  if (input != null) {
+    input.focus();
+  }
 }
 
 function toggleDark() {
