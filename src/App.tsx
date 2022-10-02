@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TodoList } from "./components/TodoList";
 
 import "./styles.scss";
@@ -7,26 +7,24 @@ export const App = () => {
   const [ taskstr, setNew ] = useState<string>("");
   const [ editid, editingID ] = useState<Object>();
   const [ editDone, toggleDone ] = useState<boolean>();
+  const [ firstrun = true, firstRuntoggle ] = useState<boolean>();
+
+  const [todos, setData] = useState<{ text: string, done: boolean }[]>( [],);
   const updateState = () => {
     setData(todos => {
       const newState = todos.map(item => {
         if (item === editid) {
           var task = Object({text: taskstr, done: editDone });
           return task;
-        }
+          }
         return item;
       });
       return newState;
     });
   };
-
-/*  const [todos, setData] = useState([
-    { text: "Add Input Element", done: true },
-    { text: "Add Add Button", done: false },
-    { text: "Get a Coffee", done: true },
-  ],
-  );*/
-  const [todos, setData] = useState<{ text: string, done: boolean }[]> ( [],);
+  useEffect(() => {
+    updateToggles(todos);
+ }, [todos]);
 
   const updateTodos = (val: string, valState=false) => {
     setData(prevState => [...prevState, {text: val, done: valState}, ]);
@@ -54,6 +52,21 @@ export const App = () => {
     setNew('');
     updateTodos(taskstr, editDone)
   }
+  const [initial] = useState([
+    { text: "Fix Dependencies Versions", done: true },
+    { text: "Add Tailwind CSS", done: true },
+    { text: "Add All Elements", done: true },
+    { text: "Create Required Functions", done: true },
+    { text: "Create All Tests", done: false },
+    { text: "Fix All Types", done: false },
+    { text: "Commit All Changes and request Pull", done: false },
+  ],
+  );
+  if (firstrun) {
+    firstRuntoggle(false);
+    setData([...initial]);
+  }
+
   const handleDone = (item: any) => {
     var index = todos.indexOf(item);
     const id = todos.filter((e, i) => i == index );
@@ -73,9 +86,9 @@ export const App = () => {
     setNew("")
     toggleEdit(0)
     var index = todos.indexOf(item);
-    setData(todos => {
-        return todos.filter((item, i) => i !== index)
-      })
+    const newState = setData(todos => {
+      return todos.filter((item, i) => i !== index)
+    })
   }
   return (
     <div id="theapp" className="todoListApp">
@@ -113,8 +126,22 @@ function toggleEdit(onoff=0) {
     addBtn?.classList.remove("hidden")
     saveBtn?.classList.add("hidden")
   }
-
 }
+function updateToggles(todos: any) {
+  todos.forEach( (item: any, i: number) => {
+    const toggle = document.getElementById('check-'+i) as HTMLInputElement | null;
+    if (toggle != null ) {
+      if (item.done == false) {
+        toggle.checked = false
+//        console.log(i, "this one is false")
+      } else {
+        toggle.checked = true
+//        console.log(i, "this one is true")
+      }
+    }
+  })
+}
+
 function toggleDark() {
   const toggle = document.getElementById("dark-toggle") as HTMLInputElement | null;
   const theapp = document.getElementById("theapp") as HTMLElement | null;
