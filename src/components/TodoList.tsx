@@ -19,7 +19,7 @@ export const TodoList = (props: TodoListProps ) => {
         <div className="overflow-auto sm:inline-block md:p-3 md:m-3 m-auto md:min-w-[82px] md:w-[82px] w-[100%]">
           <label className="inline-flex relative items-center cursor-pointer">
             <input type="checkbox" onClick={() => props.handleDone(item)} id={`check-${i}`} data-testid={`check-${i}`} defaultChecked={item.done} className="sr-only peer"/>
-            <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-2 peer-focus:ring-zinc-300 dark:peer-focus:ring-zinc-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-zinc-600"></div>
+            <div className="w-11 h-6 bg-zinc-200 dark:bg-zinc-200 rounded-full peer peer-focus:ring-2 peer-focus:ring-zinc-300 dark:peer-focus:ring-zinc-200 dark:bg-zinc-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-zinc-500 dark:peer-checked:bg-zinc-800"></div>
           </label>
         </div>
 
