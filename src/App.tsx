@@ -57,9 +57,9 @@ export const App = () => {
     { text: "Add Tailwind CSS", done: true },
     { text: "Add All Elements", done: true },
     { text: "Create Required Functions", done: true },
-    { text: "Create All Tests", done: false },
+    { text: "Create All Tests", done: true },
     { text: "Fix All Types", done: false },
-    { text: "Commit All Changes and request Pull", done: false },
+    { text: "Commit All Changes and request Pull", done: true },
   ],
   );
   if (firstrun) {
@@ -133,10 +133,8 @@ function updateToggles(todos: any) {
     if (toggle != null ) {
       if (item.done == false) {
         toggle.checked = false
-//        console.log(i, "this one is false")
       } else {
         toggle.checked = true
-//        console.log(i, "this one is true")
       }
     }
   })
