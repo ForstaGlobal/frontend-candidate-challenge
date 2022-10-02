@@ -69,7 +69,11 @@ export const App = () => {
   }
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      handleAdd(e);
+      if ( editid == "" ) {
+        handleAdd(e);
+      } else {
+        handleSave();
+      }
     }
     // do stuff
  };
