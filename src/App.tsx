@@ -128,7 +128,7 @@ export const App = () => {
           <button id="cancelBtn" className="hidden md:min-w-[auto] min-w-[100%] rounded bg-orange-700 text-white font-bold hover:bg-orange-900 my-3 m-0 block px-5 py-3" onClick={handleCancel} >Cancel</button>
         </div>
         <hr className="my-8 w-[60%] mx-auto dark:border-zinc-600 border-zinc-400" />
-        <span className="text-zinc-900 dark:text-white font-bold text-lg w-[100%] block text-start" data-testid="todostitle" onClick={handleEdit}>Current Todos ({todos.length}):</span>
+        <span className="text-zinc-900 dark:text-white font-bold text-lg w-[100%] block text-start" data-testid="todostitle" onClick={handleEdit}>Current Todo{todos.length!=1 ? "s" : ""} ({todos.length}):</span>
         <TodoList todos={todos} handleEdit={handleEdit} handleAdd={handleAdd} handleDel={handleDel} handleDone={handleDone}/>
       </div>
     </div>
