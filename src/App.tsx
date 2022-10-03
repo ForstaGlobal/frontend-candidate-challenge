@@ -9,7 +9,7 @@ export const App = () => {
   const [ editid, editingID ] = useState<Object>();
   const [ editDone, toggleDone ] = useState<boolean>();
   const [ firstrun = true, firstRuntoggle ] = useState<boolean>();
-  const [ filterTodos, ftodos ] = useState<number>(1);
+  const [ filterTodos, ftodos ] = useState<number>(0);
 
   const [todos, setData] = useState<{ text: string, done: boolean }[]>( [],);
   const [ filtered, setFilter ] = useState<any>();

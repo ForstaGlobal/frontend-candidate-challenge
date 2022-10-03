@@ -21,6 +21,9 @@ describe("TodoApp", () => {
     expect(screen.getByText("+")).toBeDefined();
     expect(screen.getByText("Save")).toBeDefined();
     expect(screen.getByText("Cancel")).toBeDefined();
+    expect(screen.getByText("All")).toBeDefined();
+    expect(screen.getByText("Done")).toBeDefined();
+    expect(screen.getByText("Pending")).toBeDefined();
     screen.getByTestId("todo0");
     expect(screen.getByText("Fix Dependencies Versions")).toBeDefined();
     screen.getByTestId("todoelem1");
