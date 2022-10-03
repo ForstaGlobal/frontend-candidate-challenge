@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 
 interface TodoListProps {
@@ -9,7 +9,6 @@ interface TodoListProps {
   handleDone: Function;
 };
 export const TodoList = (props: TodoListProps ) => {
-
   return (
     <ul>
       {props.todos.map((item, i) => (

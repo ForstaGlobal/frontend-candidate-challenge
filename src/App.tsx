@@ -4,12 +4,15 @@ import { TodoList } from "./components/TodoList";
 import "./styles.scss";
 
 export const App = () => {
+
   const [ taskstr, setNew ] = useState<string>("");
   const [ editid, editingID ] = useState<Object>();
   const [ editDone, toggleDone ] = useState<boolean>();
   const [ firstrun = true, firstRuntoggle ] = useState<boolean>();
+  const [ filterTodos, ftodos ] = useState<number>(1);
 
   const [todos, setData] = useState<{ text: string, done: boolean }[]>( [],);
+  const [ filtered, setFilter ] = useState<any>();
   const updateState = () => {
     setData(todos => {
       const newState = todos.map(item => {
@@ -23,9 +26,26 @@ export const App = () => {
     });
   };
   useEffect(() => {
-    updateToggles(todos);
- }, [todos]);
+    updateToggles(filtered);
+  }, [filtered]);
+  useEffect(() => {
+    filterIt(filterTodos);
+  }, [todos]);
 
+  const changeFilter = (i: number ) => {
+    ftodos(i);
+    filterIt(i)
+  }
+  const filterIt = (i: number) => {
+    console.log(i);
+    if (i == 0) {
+      setFilter([...todos])
+    } else if (i == 1) {
+      setFilter(todos.filter(item => item.done == true));
+    } else if (i == 2) {
+      setFilter(todos.filter(item => item.done == false));
+    }
+  }
   const updateTodos = (val: string, valState=false) => {
     setData(prevState => [...prevState, {text: val, done: valState}, ]);
   };
@@ -66,6 +86,7 @@ export const App = () => {
   if (firstrun) {
     firstRuntoggle(false);
     setData([...initial]);
+    setFilter([...initial]);
   }
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -75,7 +96,6 @@ export const App = () => {
         handleSave();
       }
     }
-    // do stuff
  };
   const handleDone = (item: any) => {
     var index = todos.indexOf(item);
@@ -128,8 +148,15 @@ export const App = () => {
           <button id="cancelBtn" className="hidden md:min-w-[auto] min-w-[100%] rounded bg-orange-700 text-white font-bold hover:bg-orange-900 my-3 m-0 block px-5 py-3" onClick={handleCancel} >Cancel</button>
         </div>
         <hr className="my-8 w-[60%] mx-auto dark:border-zinc-600 border-zinc-400" />
-        <span className="text-zinc-900 dark:text-white font-bold text-lg w-[100%] block text-start" data-testid="todostitle" onClick={handleEdit}>Current Todo{todos.length!=1 ? "s" : ""} ({todos.length}):</span>
-        <TodoList todos={todos} handleEdit={handleEdit} handleAdd={handleAdd} handleDel={handleDel} handleDone={handleDone}/>
+        <div className="md:flex text-left md:text-center">
+          <span className="md:w-[50%] w-[100%] text-zinc-900 dark:text-white font-bold text-lg w-[100%] text-start my-auto" data-testid="todostitle" onClick={handleEdit}>Total ToDo{todos.length!=1 ? "'s" : ""} ({todos.length}):</span>
+          <div className="md:w-[50%] w-[100%] md:text-right mt-8 dark:text-white"><label>Filter by status: </label>
+            <button id="FilterAll" className={`${ filterTodos != 0? "bg-zinc-400" : "bg-amber-500"} md:min-w-[auto] min-w-[100%] rounded-t md:rounded-l md:rounded-tr-none text-white font-bold hover:bg-amber-700 mt-3 m-0 px-2 py-2 mr-0`} onClick={() => changeFilter(0)}>All</button>
+            <button id="FilterAll" className={`${ filterTodos != 1? "bg-zinc-400" : "bg-amber-500"} md:min-w-[auto] min-w-[100%] text-white font-bold hover:bg-amber-700 m-0 px-2 py-2 mr-0`} onClick={() => changeFilter(1)}>Done</button>
+            <button id="FilterAll" className={`${ filterTodos != 2? "bg-zinc-400" : "bg-amber-500"} md:min-w-[auto] min-w-[100%] rounded-b md:rounded-r md:rounded-bl-none text-white font-bold hover:bg-amber-700 mb-3 m-0 px-2 py-2 mr-0`} onClick={() => changeFilter(2)}>Pending</button>
+          </div>
+        </div>
+        <TodoList todos={filtered} handleEdit={handleEdit} handleAdd={handleAdd} handleDel={handleDel} handleDone={handleDone}/>
       </div>
     </div>
   );
@@ -148,8 +175,8 @@ function toggleEdit(onoff=0) {
     cancelBtn?.classList.add("hidden")
   }
 }
-function updateToggles(todos: any) {
-  todos.forEach( (item: any, i: number) => {
+function updateToggles(items: any[]) {
+  items.forEach( (item: any, i: number) => {
     const toggle = document.getElementById('check-'+i) as HTMLInputElement | null;
     if (toggle != null ) {
       if (item.done == false) {
