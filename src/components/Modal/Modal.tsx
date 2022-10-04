@@ -47,26 +47,32 @@ export const Modal = ({
   }
 
   function submit() {
-    if (chore === "" && notEditing) {
-      notify();
-      return;
-    }
-
-    if (!notEditing) {
-      if (localItem.text === "") {
+    try {
+      if (chore === "" && notEditing) {
         notify();
         return;
       }
-    }
 
-    if (todos.find((todo) => todo.text === currentItem.text)) {
-      const oldTodos = todos.filter((todo) => todo.text !== currentItem.text);
-      setTodos([...oldTodos, localItem]);
+      if (!notEditing) {
+        if (localItem.text === "") {
+          notify();
+          return;
+        }
+      }
+
+      if (todos.find((todo) => todo.text === currentItem.text)) {
+        const oldTodos = todos.filter((todo) => todo.text !== currentItem.text);
+        setTodos([...oldTodos, localItem]);
+        setShow(false);
+        return;
+      }
+      setTodos([...todos, { text: chore, done }]);
       setShow(false);
-      return;
+      setCurrentItem({});
+      setLocalItem({});
+    } catch (error) {
+      console.log(error);
     }
-    setTodos([...todos, { text: chore, done }]);
-    setShow(false);
   }
 
   const notEditing = Object.keys(currentItem).length === 0;
@@ -114,7 +120,12 @@ export const Modal = ({
                   onRadioChange(event.target.value);
                 }}
               >
-                <RadiolInput data-testid="radiolInput" type="radio" value={0} checked={done === false} />
+                <RadiolInput
+                  data-testid="radiolInput"
+                  type="radio"
+                  value={0}
+                  checked={done === false}
+                />
                 To do{" "}
                 <RadiolInput type="radio" value={1} checked={done === true} />
                 Done
@@ -159,7 +170,7 @@ export const Modal = ({
             Confirm
           </ModalButton>
           <ModalButton
-          data-testid="cancelButton"
+            data-testid="cancelButton"
             onClick={() => {
               setShow(false);
               setCurrentItem({});
