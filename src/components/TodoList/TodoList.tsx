@@ -7,9 +7,9 @@ import { Container, ListTitle, ListContainer, ListButton, ListInfo } from "./sty
 
 type TodoListProps = {
   todos: any[];
-  setTodos: any;
-  show: any;
-  setShow: any;
+  setTodos: (arg0: any[]) => void;
+  show: boolean;
+  setShow: (arg0: boolean) => void;
 };
 
 interface ActionsProps {
@@ -90,7 +90,7 @@ export const TodoList = ({ todos, setTodos, show, setShow }: TodoListProps) => {
                     setShow(true);
                   }}
                   onDelete={() => {
-                    return setTodos(todos.filter((todo: any) => todo !== item));
+                    return setTodos(todos.filter((todo: object) => todo !== item));
 
                   }}
                 />
@@ -115,7 +115,7 @@ export const TodoList = ({ todos, setTodos, show, setShow }: TodoListProps) => {
                     setShow(true);
                   }}
                   onDelete={() => {
-                    return setTodos(todos.filter((todo: any) => todo !== item));
+                    return setTodos(todos.filter((todo: object) => todo !== item));
                   }}
                 />
               </li>

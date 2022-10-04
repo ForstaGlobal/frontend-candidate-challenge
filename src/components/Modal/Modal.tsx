@@ -16,11 +16,11 @@ import {
 
 type TodoProps = {
   todos: any[];
-  setTodos: any;
-  show: any;
-  setShow: any;
+  setTodos: (arg0: any[]) => void;
+  show: boolean;
+  setShow: (arg0: boolean) => void;
   currentItem?: any;
-  setCurrentItem?: any;
+  setCurrentItem: any;
 };
 
 export const Modal = ({
@@ -71,7 +71,7 @@ export const Modal = ({
 
   const notEditing = Object.keys(currentItem).length === 0;
 
-  function handleEditingLocalItem(item: any, property: any) {
+  function handleEditingLocalItem(item: string, property: string) {
     if (property === "done") {
       return setLocalItem(
         item === "0"

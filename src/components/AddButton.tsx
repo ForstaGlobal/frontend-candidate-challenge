@@ -1,7 +1,7 @@
 import React from "react";
 
 type Props = {
-  setShow: any;
+  setShow: (arg0: boolean) => void;
 };
 
 export const AddButton = ({ setShow }: Props) => {
