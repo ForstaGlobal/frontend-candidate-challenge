@@ -15,12 +15,12 @@ body {
   border: 1px solid #d9d9d9;
   width: 165px;
 }
-.todoListApp button {
-  padding: 5px;
+.todoListApp .footer button {
+  padding: 10px;
   font-size: 16px;
   margin: 5px;
   margin-right: 5px;
-  background-color: #00a8f0;
+  background-color: #ff3aff;
   color: #FFF;
   border: none;
 }
@@ -28,9 +28,19 @@ body {
   cursor: pointer;
 }
 .todoListApp .todoList {
+  margin-right: 10vw;
   list-style: none;
   padding-left: 0;
   width: 250px;
+} 
+
+.todoListApp .addButton {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display:block;
+  border-radius: 10px;
+  color: #333;
+  background-color: rgba(255,255,255,.5);
 } 
 .todoListApp .todoList li {
   color: #333;
@@ -39,7 +49,11 @@ body {
   margin-bottom: 10px;
   border-radius: 2px;
   list-style: none;
+  display: flex;
+  justify-content: space-between;
 }
 ul.todoList {
   padding: 0;
+  display: flex;
+  flex-direction: column-reverse; 
 }
