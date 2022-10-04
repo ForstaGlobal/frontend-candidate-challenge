@@ -6,7 +6,7 @@ type Props = {
 
 export const AddButton = ({ setShow }: Props) => {
   return (
-    <button className="addButton" onClick={() => setShow(true)}>
+    <button data-testid="addButton" className="addButton" onClick={() => setShow(true)}>
       <h3>Add new chore</h3>
     </button>
   );

@@ -84,6 +84,7 @@ export const Modal = ({
 
   return (
     <StyledModal
+      data-testid="modal"
       onClick={() => {
         setShow(false);
         setCurrentItem({});
@@ -104,6 +105,7 @@ export const Modal = ({
           {notEditing ? (
             <InputsContainer>
               <ModalInput
+                data-testid="modalInput"
                 onChange={(event: any) => setChore(event.target.value)}
                 placeholder="Add item"
               ></ModalInput>
@@ -112,7 +114,7 @@ export const Modal = ({
                   onRadioChange(event.target.value);
                 }}
               >
-                <RadiolInput type="radio" value={0} checked={done === false} />
+                <RadiolInput data-testid="radiolInput" type="radio" value={0} checked={done === false} />
                 To do{" "}
                 <RadiolInput type="radio" value={1} checked={done === true} />
                 Done
@@ -143,13 +145,13 @@ export const Modal = ({
                   checked={localItem.done === true}
                 />
                 Done
-                
               </div>
             </InputsContainer>
           )}
         </ModalBody>
         <ModalFooter className="footer">
           <ModalButton
+            data-testid="confirmButton"
             onClick={() => {
               submit();
             }}
@@ -157,6 +159,7 @@ export const Modal = ({
             Confirm
           </ModalButton>
           <ModalButton
+          data-testid="cancelButton"
             onClick={() => {
               setShow(false);
               setCurrentItem({});

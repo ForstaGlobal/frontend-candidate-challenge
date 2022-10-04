@@ -57,6 +57,7 @@ export const ModalInput = styled.input`
 
 export const RadiolInput = styled.input`
   color: #333;
+  cursor: pointer;
 `;
 
 export const InputsContainer = styled.div`

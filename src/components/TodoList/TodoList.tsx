@@ -3,7 +3,13 @@ import React, { useState } from "react";
 import { AddButton } from "../AddButton";
 import { Modal } from "../Modal/Modal";
 
-import { Container, ListTitle, ListContainer, ListButton, ListInfo } from "./styles";
+import {
+  Container,
+  ListTitle,
+  ListContainer,
+  ListButton,
+  ListInfo,
+} from "./styles";
 
 type TodoListProps = {
   todos: any[];
@@ -23,10 +29,9 @@ export const TodoList = ({ todos, setTodos, show, setShow }: TodoListProps) => {
   const undoneTodos = todos.filter((item) => item.done === false);
 
   function Actions(props: ActionsProps) {
-
     return (
-      <div>
-        <ListButton onClick={props.onEdit}>
+      <div data-testid="buttonsWrapper">
+        <ListButton data-testid="editButton" onClick={props.onEdit}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             style={{ width: 20, height: 20 }}
@@ -43,7 +48,7 @@ export const TodoList = ({ todos, setTodos, show, setShow }: TodoListProps) => {
             />
           </svg>
         </ListButton>
-        <ListButton onClick={props.onDelete}>
+        <ListButton data-testid="deleteButton" onClick={props.onDelete}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             style={{ width: 20, height: 20 }}
@@ -79,52 +84,52 @@ export const TodoList = ({ todos, setTodos, show, setShow }: TodoListProps) => {
         <ListContainer>
           <ListTitle>To do</ListTitle>
           <ul className="todoList">
-            {
-            undoneTodos.length ?
-            (undoneTodos.map((item, i) => (
-              <li key={i}>
-                <span data-testid={`todo${i}`}>{item.text}</span>
-                <Actions
-                  onEdit={() => {
-                    setCurrentItem(item);
-                    setShow(true);
-                  }}
-                  onDelete={() => {
-                    return setTodos(todos.filter((todo: object) => todo !== item));
-
-                  }}
-                />
-              </li>
-            ))) : 
-            <ListInfo> Add a chore!</ListInfo>
-            }
+            {undoneTodos.length ? (
+              undoneTodos.map((item, i) => (
+                <li key={i}>
+                  <span data-testid={`todo${i}`}>{item.text}</span>
+                  <Actions
+                    onEdit={() => {
+                      setCurrentItem(item);
+                      setShow(true);
+                    }}
+                    onDelete={() => {
+                      return setTodos(
+                        todos.filter((todo: object) => todo !== item)
+                      );
+                    }}
+                  />
+                </li>
+              ))
+            ) : (
+              <ListInfo> Add a chore!</ListInfo>
+            )}
           </ul>
         </ListContainer>
 
         <ListContainer>
           <ListTitle>Done</ListTitle>
           <ul className="todoList">
-            {
-            doneTodos.length ?
-            doneTodos.map((item, i) => (
-              <li key={i}>
-                <span data-testid={`todo${i}`}>{item.text}</span>
-                <Actions
-                  onEdit={() => {
-                    setCurrentItem(item);
-                    setShow(true);
-                  }}
-                  onDelete={() => {
-                    return setTodos(todos.filter((todo: object) => todo !== item));
-                  }}
-                />
-              </li>
-            ))
-            :
-
-            <ListInfo> All done!</ListInfo>
-            
-            }
+            {doneTodos.length ? (
+              doneTodos.map((item, i) => (
+                <li key={i}>
+                  <span data-testid={`todo${i}`}>{item.text}</span>
+                  <Actions
+                    onEdit={() => {
+                      setCurrentItem(item);
+                      setShow(true);
+                    }}
+                    onDelete={() => {
+                      return setTodos(
+                        todos.filter((todo: object) => todo !== item)
+                      );
+                    }}
+                  />
+                </li>
+              ))
+            ) : (
+              <ListInfo> All done!</ListInfo>
+            )}
           </ul>
         </ListContainer>
       </Container>
