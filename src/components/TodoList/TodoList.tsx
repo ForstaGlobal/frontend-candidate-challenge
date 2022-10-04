@@ -77,7 +77,7 @@ export const TodoList = ({ todos, setTodos, show, setShow }: TodoListProps) => {
       ></Modal>
       <Container>
         <ListContainer>
-          <ListTitle>Not done</ListTitle>
+          <ListTitle>To do</ListTitle>
           <ul className="todoList">
             {
             undoneTodos.length ?
@@ -96,7 +96,7 @@ export const TodoList = ({ todos, setTodos, show, setShow }: TodoListProps) => {
                 />
               </li>
             ))) : 
-            <ListInfo> Add not done items</ListInfo>
+            <ListInfo> Add a chore!</ListInfo>
             }
           </ul>
         </ListContainer>
@@ -122,7 +122,7 @@ export const TodoList = ({ todos, setTodos, show, setShow }: TodoListProps) => {
             ))
             :
 
-            <ListInfo> No done items</ListInfo>
+            <ListInfo> All done!</ListInfo>
             
             }
           </ul>

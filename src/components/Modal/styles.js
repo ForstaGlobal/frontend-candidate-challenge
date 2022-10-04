@@ -27,7 +27,7 @@ export const ModalFooter = styled.div`
   padding: 10px;
 `;
 
-export const ModalTitle = styled.h4`
+export const ModalTitle = styled.h3`
   margin: 0;
 `;
 

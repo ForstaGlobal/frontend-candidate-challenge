@@ -7,7 +7,7 @@ type Props = {
 export const AddButton = ({ setShow }: Props) => {
   return (
     <button className="addButton" onClick={() => setShow(true)}>
-      Add item
+      <h3>Add new chore</h3>
     </button>
   );
 };

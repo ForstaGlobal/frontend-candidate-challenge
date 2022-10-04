@@ -63,7 +63,7 @@ export const Modal = ({
       const oldTodos = todos.filter((todo) => todo.text !== currentItem.text);
       setTodos([...oldTodos, localItem]);
       setShow(false);
-      return
+      return;
     }
     setTodos([...todos, { text: chore, done }]);
     setShow(false);
@@ -112,10 +112,10 @@ export const Modal = ({
                   onRadioChange(event.target.value);
                 }}
               >
-                <RadiolInput type="radio" value={1} checked={done === true} />{" "}
-                Done
                 <RadiolInput type="radio" value={0} checked={done === false} />
-                Not done
+                To do{" "}
+                <RadiolInput type="radio" value={1} checked={done === true} />
+                Done
               </div>
             </InputsContainer>
           ) : (
@@ -133,16 +133,17 @@ export const Modal = ({
               >
                 <RadiolInput
                   type="radio"
+                  value={0}
+                  checked={localItem.done === false}
+                />
+                To do{""}
+                <RadiolInput
+                  type="radio"
                   value={1}
                   checked={localItem.done === true}
                 />
                 Done
-                <RadiolInput
-                  type="radio"
-                  value={0}
-                  checked={localItem.done === false}
-                />
-                Not done
+                
               </div>
             </InputsContainer>
           )}
