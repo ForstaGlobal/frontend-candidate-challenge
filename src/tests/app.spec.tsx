@@ -18,4 +18,6 @@ describe("TodoApp", () => {
 
     // TODO: Verify second todo
   });
+  
+  // TODO: Test app functionality: Create, edit, delete, mark as done.
 });
