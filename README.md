@@ -26,3 +26,8 @@ You can add/remove/upgrade any project dependency as you deem appropriate.
 3. Create a pull request targeting this repo.
 
 If you have any doubts about the fork + pull request workflow you can refer to [this guide](https://reflectoring.io/github-fork-and-pull/).
+
+## DEADLINE
+You can take all the time you need (but please not more than 2 weeks).
+
+Submit your PR when you are proud of your code :-)
