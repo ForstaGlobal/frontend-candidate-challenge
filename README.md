@@ -4,7 +4,7 @@
 
 Please use the React framework to solve this assignment or alternatively pure javascript if you don't know React.
 
-You can add/remove/upgrade any project dependency as you deem appropriate.
+You can add/remove/upgrade any project dependency and change/remove any part of the project as you deem appropriate.
 
 #### SPECIFICATION
 
