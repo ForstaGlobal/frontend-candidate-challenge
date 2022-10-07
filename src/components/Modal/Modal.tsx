@@ -1,26 +1,66 @@
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 import {
-  StyledModal,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalTitle,
+  InputsContainer,
   ModalBody,
   ModalButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
   ModalInput,
+  ModalTitle,
   RadiolInput,
-  InputsContainer,
+  StyledModal,
 } from "./styles";
 
 type TodoProps = {
-  todos: any[];
-  setTodos: (arg0: any[]) => void;
+  todos: Todo[];
+  setTodos: Dispatch<SetStateAction<Todo[]>>;
   show: boolean;
-  setShow: (arg0: boolean) => void;
-  currentItem?: any;
-  setCurrentItem: any;
+  setShow: Dispatch<SetStateAction<boolean>>;
+  currentItem?: Todo | undefined;
+  setCurrentItem: Dispatch<SetStateAction<Todo | undefined>>;
+};
+
+const Inputs = ({
+  value,
+  done,
+  onInputChange,
+  onRadioChange,
+}: {
+  value?: string;
+  done?: boolean;
+  onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onRadioChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}) => {
+  return (
+    <InputsContainer>
+      <ModalInput
+        data-testid="modalInput"
+        onChange={onInputChange}
+        placeholder="Add item"
+        value={value}
+      ></ModalInput>
+      <div>
+        <RadiolInput
+          onChange={onRadioChange}
+          data-testid="radiolInput"
+          type="radio"
+          value={0}
+          checked={done === false}
+        />
+        To do{" "}
+        <RadiolInput
+          type="radio"
+          value={1}
+          checked={done === true}
+          onChange={onRadioChange}
+        />
+        Done
+      </div>
+    </InputsContainer>
+  );
 };
 
 export const Modal = ({
@@ -33,17 +73,19 @@ export const Modal = ({
 }: TodoProps) => {
   const [chore, setChore] = useState("");
   const [done, setDone] = useState(false);
-  const [localItem, setLocalItem] = useState(currentItem);
+  const [localItem, setLocalItem] = useState<Todo | undefined>(currentItem);
 
   useEffect(() => {
     setLocalItem(currentItem);
   }, [currentItem]);
 
+  const notEditing = currentItem === undefined;
+
   if (!show) return null;
   const notify = () => toast.error("You must add a chore.");
 
   function onRadioChange(value: string) {
-    setDone(value === "0" ? false : true);
+    setDone(value !== "0");
   }
 
   function submit() {
@@ -54,38 +96,45 @@ export const Modal = ({
       }
 
       if (!notEditing) {
-        if (localItem.text === "") {
+        if (localItem?.text === "") {
           notify();
           return;
         }
       }
 
-      if (todos.find((todo) => todo.text === currentItem.text)) {
-        const oldTodos = todos.filter((todo) => todo.text !== currentItem.text);
-        setTodos([...oldTodos, localItem]);
+      if (
+        todos.find((todo) => todo.id === currentItem?.id) &&
+        localItem &&
+        currentItem
+      ) {
+        const oldTodos = todos.filter((todo) => todo?.id !== currentItem?.id);
+        setTodos([...oldTodos, { ...localItem, id: currentItem.id }]);
+        setCurrentItem(undefined);
+        setLocalItem(undefined);
         setShow(false);
         return;
       }
-      setTodos([...todos, { text: chore, done }]);
+      setTodos([...todos, { text: chore, done, id: todos.length }]);
       setShow(false);
-      setCurrentItem({});
-      setLocalItem({});
+      setCurrentItem(undefined);
+      setLocalItem(undefined);
     } catch (error) {
       console.log(error);
     }
   }
 
-  const notEditing = Object.keys(currentItem).length === 0;
-
   function handleEditingLocalItem(item: string, property: string) {
-    if (property === "done") {
-      return setLocalItem(
-        item === "0"
-          ? { ...localItem, [property]: false }
-          : { ...localItem, [property]: true }
-      );
+    if (localItem) {
+      if (property === "done") {
+        setLocalItem(
+          item === "0"
+            ? { ...localItem, [property]: false }
+            : { ...localItem, [property]: true }
+        );
+        return;
+      }
+      setLocalItem({ ...localItem, [property]: item });
     }
-    return setLocalItem({ ...localItem, [property]: item });
   }
 
   return (
@@ -93,12 +142,12 @@ export const Modal = ({
       data-testid="modal"
       onClick={() => {
         setShow(false);
-        setCurrentItem({});
-        setLocalItem({});
+        setCurrentItem(undefined);
+        setLocalItem(undefined);
       }}
     >
       <ModalContent
-        onClick={(e: any) => {
+        onClick={(e: React.ChangeEvent<HTMLDivElement>) => {
           e.stopPropagation();
         }}
       >
@@ -109,55 +158,22 @@ export const Modal = ({
         </ModalHeader>
         <ModalBody>
           {notEditing ? (
-            <InputsContainer>
-              <ModalInput
-                data-testid="modalInput"
-                onChange={(event: any) => setChore(event.target.value)}
-                placeholder="Add item"
-              ></ModalInput>
-              <div
-                onChange={(event: any) => {
-                  onRadioChange(event.target.value);
-                }}
-              >
-                <RadiolInput
-                  data-testid="radiolInput"
-                  type="radio"
-                  value={0}
-                  checked={done === false}
-                />
-                To do{" "}
-                <RadiolInput type="radio" value={1} checked={done === true} />
-                Done
-              </div>
-            </InputsContainer>
+            <Inputs
+              onRadioChange={(event) => onRadioChange(event.target.value)}
+              done={done}
+              onInputChange={(event) => setChore(event.target.value)}
+            ></Inputs>
           ) : (
-            <InputsContainer>
-              <ModalInput
-                onChange={(event: any) =>
-                  handleEditingLocalItem(event.target.value, "text")
-                }
-                value={localItem.text}
-              ></ModalInput>
-              <div
-                onChange={(event: any) => {
-                  handleEditingLocalItem(event.target.value, "done");
-                }}
-              >
-                <RadiolInput
-                  type="radio"
-                  value={0}
-                  checked={localItem.done === false}
-                />
-                To do{""}
-                <RadiolInput
-                  type="radio"
-                  value={1}
-                  checked={localItem.done === true}
-                />
-                Done
-              </div>
-            </InputsContainer>
+            <Inputs
+              onRadioChange={(event) =>
+                handleEditingLocalItem(event.target.value, "done")
+              }
+              onInputChange={(event) =>
+                handleEditingLocalItem(event.target.value, "text")
+              }
+              value={localItem?.text}
+              done={localItem?.done}
+            ></Inputs>
           )}
         </ModalBody>
         <ModalFooter className="footer">
@@ -173,8 +189,8 @@ export const Modal = ({
             data-testid="cancelButton"
             onClick={() => {
               setShow(false);
-              setCurrentItem({});
-              setLocalItem({});
+              setCurrentItem(undefined);
+              setLocalItem(undefined);
             }}
           >
             Cancel

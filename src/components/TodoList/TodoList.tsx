@@ -1,21 +1,13 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 
 import { AddButton } from "../AddButton";
 import { Modal } from "../Modal/Modal";
 
-import {
-  Container,
-  ListTitle,
-  ListContainer,
-  ListButton,
-  ListInfo,
-} from "./styles";
+import { Container, ListTitle, ListContainer, ListButton } from "./styles";
 
 type TodoListProps = {
-  todos: any[];
-  setTodos: (arg0: any[]) => void;
   show: boolean;
-  setShow: (arg0: boolean) => void;
+  setShow: Dispatch<SetStateAction<boolean>>;
 };
 
 interface ActionsProps {
@@ -23,8 +15,13 @@ interface ActionsProps {
   onDelete: () => void;
 }
 
-export const TodoList = ({ todos, setTodos, show, setShow }: TodoListProps) => {
-  const [currentItem, setCurrentItem] = useState({});
+export const TodoList = ({ show, setShow }: TodoListProps) => {
+  const [todos, setTodos] = useState<Todo[]>([
+    { text: "Buy milk", done: true, id: 0 },
+    { text: "Buy bread", done: false, id: 1 },
+  ]);
+
+  const [currentItem, setCurrentItem] = useState<Todo | undefined>(undefined);
   const doneTodos = todos.filter((item) => item.done === true);
   const undoneTodos = todos.filter((item) => item.done === false);
 
@@ -69,6 +66,39 @@ export const TodoList = ({ todos, setTodos, show, setShow }: TodoListProps) => {
     );
   }
 
+  const ListComponent = ({
+    label,
+    items,
+  }: {
+    label: string;
+    items: Todo[];
+  }) => {
+    return (
+      <ListContainer>
+        <ListTitle>{label}</ListTitle>
+        <ol className="todoList">
+          {!!items.length &&
+            items.map((item: Todo, i: number) => (
+              <li key={i}>
+                <span data-testid={`todo${i}`}>{item.text}</span>
+                <Actions
+                  onEdit={() => {
+                    setCurrentItem(item);
+                    setShow(true);
+                  }}
+                  onDelete={() => {
+                    return setTodos(
+                      todos.filter((todo) => todo.id !== item.id)
+                    );
+                  }}
+                />
+              </li>
+            ))}
+        </ol>
+      </ListContainer>
+    );
+  };
+
   return (
     <>
       <AddButton setShow={setShow}></AddButton>
@@ -81,57 +111,8 @@ export const TodoList = ({ todos, setTodos, show, setShow }: TodoListProps) => {
         setCurrentItem={setCurrentItem}
       ></Modal>
       <Container>
-        <ListContainer>
-          <ListTitle>To do</ListTitle>
-          <ul className="todoList">
-            {undoneTodos.length ? (
-              undoneTodos.map((item, i) => (
-                <li key={i}>
-                  <span data-testid={`todo${i}`}>{item.text}</span>
-                  <Actions
-                    onEdit={() => {
-                      setCurrentItem(item);
-                      setShow(true);
-                    }}
-                    onDelete={() => {
-                      return setTodos(
-                        todos.filter((todo: object) => todo !== item)
-                      );
-                    }}
-                  />
-                </li>
-              ))
-            ) : (
-              <ListInfo> Add a chore!</ListInfo>
-            )}
-          </ul>
-        </ListContainer>
-
-        <ListContainer>
-          <ListTitle>Done</ListTitle>
-          <ul className="todoList">
-            {doneTodos.length ? (
-              doneTodos.map((item, i) => (
-                <li key={i}>
-                  <span data-testid={`todo${i}`}>{item.text}</span>
-                  <Actions
-                    onEdit={() => {
-                      setCurrentItem(item);
-                      setShow(true);
-                    }}
-                    onDelete={() => {
-                      return setTodos(
-                        todos.filter((todo: object) => todo !== item)
-                      );
-                    }}
-                  />
-                </li>
-              ))
-            ) : (
-              <ListInfo> All done!</ListInfo>
-            )}
-          </ul>
-        </ListContainer>
+        <ListComponent label="To do" items={undoneTodos}></ListComponent>
+        <ListComponent label="Done" items={doneTodos}></ListComponent>
       </Container>
     </>
   );
