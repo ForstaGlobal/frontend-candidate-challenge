@@ -16,10 +16,10 @@ export const Tasks: React.FC = () => {
     setTasks(tasks.filter(t => t.id !== id));
   }
   const onUpdated = (id: number, updatedTask: TaskModel): void => {
-    setTasks([...tasks.map(t => ({ ...(t.id === id ? updatedTask : t) }))]);
+    setTasks(tasks.map(t => ({ ...(t.id === id ? updatedTask : t) })));
   }
   const editingToggled = (id: number): void => {
-    setTasks([...tasks.map(t => ({ ...t, editing: t.id === id ? !t.editing : t.editing }))]);
+    setTasks(tasks.map(t => ({ ...t, editing: t.id === id ? !t.editing : t.editing })));
   }
   const onStateToggled = (id: number): void => {
     // return new objects, immutability and all...

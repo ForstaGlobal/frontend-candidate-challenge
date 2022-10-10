@@ -19,7 +19,7 @@ describe('Task', () => {
   };
 
   it('should render', () => {
-    const taskContainer = render(<Task {...props}/>);
+    const taskContainer = render(<Task {...props} />);
 
     expect(taskContainer).not.toBeUndefined();
     expect(screen.getByText("test task")).toBeDefined();
@@ -27,7 +27,7 @@ describe('Task', () => {
 
   it('should trigger passed deleted prop on delete', async () => {
     const user = userEvent.setup();
-    render(<Task {...props}/>);
+    render(<Task {...props} />);
 
     await user.click(screen.getByTestId("delete_action"));
     expect(props.deleted).toHaveBeenCalledWith(123);
@@ -35,13 +35,13 @@ describe('Task', () => {
 
   it('should trigger passed editingToggled & updated props ', async () => {
     const user = userEvent.setup();
-    const { rerender } = render(<Task {...props}/>);
+    const { rerender } = render(<Task {...props} />);
 
     await user.click(screen.getByTestId("editing_toggler"));
     expect(props.editingToggled).toHaveBeenCalledWith(123);
 
     // This does not follow Testing Library guidelines by intention
-    rerender(<Task {...props} task={{...props.task, editing: true}} />);
+    rerender(<Task {...props} task={{ ...props.task, editing: true }} />);
 
     const input = screen.getByTestId("edit_input");
     await user.click(input);
