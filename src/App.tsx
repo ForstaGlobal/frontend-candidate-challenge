@@ -1,19 +1,15 @@
-import React, { useState } from "react";
+import { Header, Tasks } from './components/index';
 
-import { TodoList } from "./components/TodoList";
+import React from 'react';
 
-import "./styles.scss";
-
-export default function App() {
-  const [todos] = useState([
-    { text: "Buy milk", done: true },
-    { text: "Buy bread", done: false },
-  ]);
+const App: React.FC = () => {
 
   return (
-    <div className="todoListApp">
-      <div className="forsta-logo" />
-      <TodoList todos={todos} />
+    <div className="App">
+      <Header />
+      <Tasks />
     </div>
   );
 }
+
+export default App;

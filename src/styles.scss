@@ -1,45 +1,235 @@
+@import "https://fonts.googleapis.com/css?family=Roboto:300,400,500";
+
+// variables
+$background: #f5f6fa;
+$color: #80939c;
+$field-width: 360px;
+$btn-padding-large: 22px;
+$btn-padding-small: 18px;
+$btn-width: $field-width / 3;
+$button-bg-color: #7f8ff4;
+$button-text-color: #fff;
+$box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+$list-bg-color: #e9e9e9;
+$color-unchecked: #b2b3b1;
+$color-checked: #78b13f;
+$icon-height: 24px;
+$icon-width: 24px;
+$icon-thickness: 4px;
+
+// Let's have some basics to be ok for most devices
 body {
-  padding: 25px;
-  background-color: #e7eaec;
+  margin: 0 auto;
+  max-width: 50em;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  line-height: 1.5;
+  padding: 4em 1em;
+  color: $color;
+  background-color: $background;
+}
+h2 {
+  margin-top: 0px;
+  padding-top: 0px;
+}
+h1 {
+  margin-top: 0.25em;
+  padding-top: 0.25em;
+}
+h1,
+h2,
+strong {
+  color: #423a3a;
+}
+p,
+ul,
+ol {
+  margin: 0.5em 0;
+  padding: 0;
   font-family: sans-serif;
 }
+
+figure {
+  margin: 0px;
+}
 .forsta-logo {
-  background: no-repeat url(data:image/png;base64,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);
+  background: no-repeat
+    url(data:image/png;base64,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);
   background-size: 240px 48px;
-  height: 74px;
+  height: 56px;
   margin: 0;
+  width: 240px;
 }
-.todoListApp .addTodo input {
-  padding: 5px;
-  font-size: 16px;
-  border: 1px solid #d9d9d9;
-  width: 165px;
+
+.tasks {
+  margin: 0em 0.5em;
+
+  &__form {
+    position: relative;
+    margin: 0 auto;
+    padding-right: $btn-width + $btn-padding-small;
+    max-width: 40ch;
+
+    &_field {
+      width: 95%;
+      background: #fff;
+      color: $color;
+      font: inherit;
+      box-shadow: $box-shadow;
+      border: 0;
+      border-radius: 8px;
+      outline: 0;
+      padding-top: $btn-padding-large;
+      padding-bottom: $btn-padding-large;
+      padding-left: $btn-padding-small;
+      padding-right: $btn-width - 2 * $btn-padding-small;
+
+      &::placeholder {
+        opacity: 0.4;
+      }
+    }
+    &_btn {
+      display: inline-block;
+      background: transparent;
+      font: inherit;
+      border: 0;
+      outline: 0;
+      transition: all 200ms ease-in;
+      background: $button-bg-color;
+      color: $button-text-color;
+      box-shadow: $box-shadow;
+      border-radius: 4px;
+      padding: $btn-padding-large / 2 $btn-padding-large;
+      margin-left: -$btn-width + $btn-padding-large;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translate(0%, -50%);
+      width: $btn-width;
+
+      &:active {
+        background: $button-bg-color;
+        box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
+      }
+
+      &:hover {
+        background: darken($button-bg-color, 4%);
+      }
+    }
+  }
+
+  &__list {
+    padding: 2em;
+    margin: 3em 0em;
+    background-color: $list-bg-color;
+    border-radius: 8px;
+    &-empty {
+      text-align: center;
+    }
+  }
 }
-.todoListApp button {
-  padding: 5px;
-  font-size: 16px;
-  margin: 5px;
-  margin-right: 5px;
-  background-color: #00a8f0;
-  color: #FFF;
-  border: none;
-}
-.todoListApp button:hover {
-  cursor: pointer;
-}
-.todoListApp .todoList {
+
+.task {
+  background-color: lighten($list-bg-color, 10%);
+  border-radius: 4px;
+  padding: 0.5em;
+  box-shadow: $box-shadow;
   list-style: none;
-  padding-left: 0;
-  width: 250px;
-} 
-.todoListApp .todoList li {
-  color: #333;
-  background-color: rgba(255,255,255,.5);
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 2px;
-  list-style: none;
+  text-align: left;
+  margin: 1em 0em;
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  gap: 0.2em;
+  justify-content: flex-start;
+  align-items: center;
+
+  &__form {
+    width: 80%;
+    position: relative;
+    margin: 0 auto;
+    padding-right: 26px;
+
+    &_field {
+      background: #fff;
+      color: $color;
+      font: inherit;
+      box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+      border: 0;
+      border-radius: 8px;
+      outline: 0;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-left: 8px;
+      padding-right: $icon-width + 26px;
+      width: calc(100% - #{$icon-width} - 12px);
+    }
+    &_btn {
+      display: block;
+      position: absolute;
+      top: 50%;
+      right: 0px;
+      left: calc(100% - #{$icon-width});
+      height: $icon-height;
+      padding: 0;
+      transform: translate(-50%, -50%);
+      border: 0;
+      outline: 0;
+      transition: all 200ms ease-in;
+      background: transparent;
+
+      & .icon-end {
+        padding: 0;
+      }
+
+    }
+  }
 }
-ul.todoList {
-  padding: 0;
+
+// Helpers
+.uppercase {
+  text-transform: uppercase;
+}
+.pointer {
+  &:hover {
+    cursor: pointer;
+  }
+}
+.pushed {
+  &-right {
+    margin-left: auto;
+  }
+}
+.striked {
+  text-decoration: line-through;
+}
+.faded {
+  opacity: 0.4;
+}
+.color {
+  &-red {
+    color: #d34141;
+  }
+  &-green {
+    color: $color-checked;
+  }
+  &-grey {
+    color: $color-unchecked;
+  }
+}
+.icon {
+  width: $icon-width;
+  height: $icon-height;
+  margin: 0;
+  padding-right: 0.2em;
+  border-right: 2px solid $list-bg-color;
+
+  &-end {
+    border-right: none;
+    padding-right: 0em;
+    padding-left: 0.2em;
+  }
+}
+.flex {
+  display: flex;
 }
