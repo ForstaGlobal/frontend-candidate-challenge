@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import ShowAddtodoForm from './components/showAddtodoForm/ShowAddtodoForm'
 
-import { TodoList } from './components/TodoList'
+import { TodoList } from './components/todoList/TodoList'
 import Dialog from './components/dialog/Dialog'
 
 import './styles.scss'
 import { Todo } from './types'
-import { addTodo, generateTodoFromText } from './utils'
+import { addTodo, deleteTodo, generateTodoFromText, toggleDone } from './utils'
 import NewTodoForm from './components/newTodoForm/NewTodoForm'
 
 export default function App () {
@@ -21,11 +21,22 @@ export default function App () {
 
   const showForm = () => setFormDialogShown(true)
 
+  const onToggleDone = (id: string) => {
+    setTodos((todos) => toggleDone(todos, id))
+  }
+  const onDelete = (id: string) => {
+    setTodos((todos) => deleteTodo(todos, id))
+  }
+
   return (
     <div className='todoListApp'>
       <div className='forsta-logo' />
       <ShowAddtodoForm onClick={showForm} />
-      <TodoList todos={todos} />
+      <TodoList
+        todos={todos}
+        onToggleDone={onToggleDone}
+        onDelete={onDelete}
+      />
       <Dialog
         isOpen={formDialogShown}
         handleClose={() => setFormDialogShown(false)}
