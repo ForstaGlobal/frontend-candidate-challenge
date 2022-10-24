@@ -1,46 +1,33 @@
-# Getting Started with Create React App
+# Coding Challenge for Frontend Developers
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## ASSIGNMENT DESCRIPTION
 
-## Available Scripts
+Please use the React framework to solve this assignment or alternatively pure javascript if you don't know React.
 
-In the project directory, you can run:
+You can add/remove/upgrade any project dependency and change/remove any part of the project as you deem appropriate.
 
-### `npm start`
+#### SPECIFICATION
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Create a todo list app where the user can create/edit/delete tasks.
+- The user should also be able to toggle tasks as "done" vs. "not done".
+- When a task is deleted, it should be removed from the list.
+- New tasks should be added to the top of the list.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+#### OTHER REQUIREMENTS
 
-### `npm test`
+- All functionality should be tested. For the testing you should use [React testing library](https://testing-library.com/).
+- We value clean, readable, concise code.
+- The project is set up to use TypeScript. Please make sure your code has good types. If you don't know TypeScript, you are not required to write types.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## HOW TO SUBMIT YOUR CODE
 
-### `npm run build`
+1. Fork this repo.
+2. Push your code changes to your fork.
+3. Create a pull request targeting this repo.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+If you have any doubts about the fork + pull request workflow you can refer to [this guide](https://reflectoring.io/github-fork-and-pull/).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## DEADLINE
+You can take all the time you need (but please not more than 2 weeks).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Submit your PR when you are proud of your code :-)
