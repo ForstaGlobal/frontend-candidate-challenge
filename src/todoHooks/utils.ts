@@ -1,4 +1,4 @@
-import { Todo } from './types'
+import { Todo } from '../types'
 const uniqid = require('uniqid');
 
 export function addTodo (todos: Todo[], todo: Todo, position = 'START'): Todo[] {

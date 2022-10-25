@@ -47,7 +47,9 @@
     ]
   },
   "devDependencies": {
+    "@types/chai": "^4.3.3",
     "@types/moment": "^2.13.0",
+    "chai": "^4.3.6",
     "node-sass": "^7.0.3"
   }
 }
