@@ -26,11 +26,9 @@ const StyledTodoItem = styled(
   }
 })
 
-
 const DoneIcon = styled(CheckCircleOutlineIcon)(() => ({
   color: 'green',
 }))
-
 
 const NotDoneIcon = styled(RadioButtonUncheckedIcon)(() => ({
 }))
@@ -65,7 +63,7 @@ const TodoItem = (props: Props) => {
       <TodoActions
         isHidden={isHovered}
       >
-        <Delete />
+        <Delete onClick={() => onDelete(id)} data-testid={`todo_item_${id}_delete`}/>
       </TodoActions>
     </StyledTodoItem>
   )

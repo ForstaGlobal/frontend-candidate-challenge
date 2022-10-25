@@ -24,6 +24,7 @@ export default function App () {
   const onToggleDone = (id: string) => {
     setTodos((todos) => toggleDone(todos, id))
   }
+  
   const onDelete = (id: string) => {
     setTodos((todos) => deleteTodo(todos, id))
   }

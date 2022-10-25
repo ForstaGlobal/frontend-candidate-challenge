@@ -47,4 +47,28 @@ describe('TodoList', () => {
     expect(screen.getByTestId(`todo_item_${fakeTodos[0].id}_done_yes`)).toBeInTheDocument()
     expect(screen.queryByTestId(`todo_item_${fakeTodos[0].id}_done_no`)).not.toBeInTheDocument()
   })
+
+  it('can delete TodoItem', () => {
+    const onToggleDone = jest.fn()
+    const onDelete = jest.fn()
+
+    const { rerender } = render(<TodoList
+      todos={fakeTodos}
+      onDelete={onDelete}
+      onToggleDone={onToggleDone}
+    />)
+
+    expect(screen.getByTestId(`todo_item_${fakeTodos[0].id}_delete`)).toBeInTheDocument()
+    userEvent.click(screen.getByTestId(`todo_item_${fakeTodos[0].id}_delete`))
+    expect(onDelete).toBeCalledTimes(1)
+
+    rerender(
+      <TodoList
+      todos={fakeTodos.slice(1)}
+      onDelete={onDelete}
+      onToggleDone={onToggleDone}
+    />)
+
+    expect(screen.queryByTestId(`todo_item_${fakeTodos[0].id}`)).not.toBeInTheDocument()
+  })
 })
