@@ -4,7 +4,7 @@ import TodoItem from '../todoItem/TodoItem'
 import { ListProps } from './types'
 
 export const TodoList = (props: ListProps) => {
-  const { todos, onToggleDone, onDelete } = props
+  const { todos, onToggleDone, onDelete, onTodoUpdate } = props
 
   return (
     <ul className='todoList'>
@@ -14,6 +14,7 @@ export const TodoList = (props: ListProps) => {
             todo={todo}
             onToggleDone={onToggleDone}
             onDelete={onDelete}
+            onTodoUpdate={onTodoUpdate}
           />
         </li>
       ))}

@@ -15,11 +15,13 @@ describe('TodoItem', () => {
     }
     const onToggleDone = jest.fn()
     const onDelete = jest.fn()
+    const onTodoUpdate = jest.fn()
 
     render(<TodoItem
       todo={todo}
       onDelete={onDelete}
       onToggleDone={onToggleDone}
+      onTodoUpdate={onTodoUpdate}
     />)
     expect(screen.getByTestId(`todo_item_${todo.id}`)).toBeInTheDocument()
   })
@@ -33,11 +35,13 @@ describe('TodoItem', () => {
     }
     const onToggleDone = jest.fn()
     const onDelete = jest.fn()
+    const onTodoUpdate = jest.fn()
 
     const { rerender } = render(<TodoItem
       todo={todo}
       onDelete={onDelete}
       onToggleDone={onToggleDone}
+      onTodoUpdate={onTodoUpdate}
     />)
 
     expect(screen.getByTestId(`todo_item_${todo.id}_done_no`)).toBeInTheDocument()
@@ -46,10 +50,11 @@ describe('TodoItem', () => {
 
     rerender(
       <TodoItem
-      todo={{...todo, done: !todo.done}}
-      onDelete={onDelete}
-      onToggleDone={onToggleDone}
-    />)
+        todo={{ ...todo, done: !todo.done }}
+        onDelete={onDelete}
+        onToggleDone={onToggleDone}
+        onTodoUpdate={onTodoUpdate}
+      />)
 
     expect(screen.getByTestId(`todo_item_${todo.id}_done_yes`)).toBeInTheDocument()
     expect(screen.queryByTestId(`todo_item_${todo.id}_done_no`)).not.toBeInTheDocument()

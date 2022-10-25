@@ -8,29 +8,33 @@ describe('TodoList', () => {
   it('renders Todo list component', () => {
     const onToggleDone = jest.fn()
     const onDelete = jest.fn()
+    const onTodoUpdate = jest.fn()
 
     render(<TodoList
       todos={fakeTodos}
       onDelete={onDelete}
       onToggleDone={onToggleDone}
+      onTodoUpdate={onTodoUpdate}
     />)
     expect(screen.getByTestId(`todo_item_${fakeTodos[0].id}`)).toBeInTheDocument()
     expect(screen.getByTestId(`todo_item_${fakeTodos[1].id}`)).toBeInTheDocument()
     expect(screen.getByTestId(`todo_item_${fakeTodos[2].id}`)).toBeInTheDocument()
 
-    expect(screen.getByText(fakeTodos[0].text)).toBeInTheDocument()
-    expect(screen.getByText(fakeTodos[1].text)).toBeInTheDocument()
-    expect(screen.getByText(fakeTodos[2].text)).toBeInTheDocument()
+    expect(screen.getByDisplayValue(fakeTodos[0].text)).toBeInTheDocument()
+    expect(screen.getByDisplayValue(fakeTodos[1].text)).toBeInTheDocument()
+    expect(screen.getByDisplayValue(fakeTodos[2].text)).toBeInTheDocument()
   })
 
   it('can check TodoItem as completed', () => {
     const onToggleDone = jest.fn()
     const onDelete = jest.fn()
+    const onTodoUpdate = jest.fn()
 
     const { rerender } = render(<TodoList
       todos={fakeTodos}
       onDelete={onDelete}
       onToggleDone={onToggleDone}
+      onTodoUpdate={onTodoUpdate}
     />)
 
     expect(screen.getByTestId(`todo_item_${fakeTodos[0].id}_done_no`)).toBeInTheDocument()
@@ -42,6 +46,7 @@ describe('TodoList', () => {
         todos={[{...fakeTodos[0], done: !fakeTodos[0].done}].concat(fakeTodos.slice(1))}
         onDelete={onDelete}
         onToggleDone={onToggleDone}
+        onTodoUpdate={onTodoUpdate}
       />)
 
     expect(screen.getByTestId(`todo_item_${fakeTodos[0].id}_done_yes`)).toBeInTheDocument()
@@ -51,11 +56,13 @@ describe('TodoList', () => {
   it('can delete TodoItem', () => {
     const onToggleDone = jest.fn()
     const onDelete = jest.fn()
+    const onTodoUpdate = jest.fn()
 
     const { rerender } = render(<TodoList
       todos={fakeTodos}
       onDelete={onDelete}
       onToggleDone={onToggleDone}
+      onTodoUpdate={onTodoUpdate}
     />)
 
     expect(screen.getByTestId(`todo_item_${fakeTodos[0].id}_delete`)).toBeInTheDocument()
@@ -67,6 +74,7 @@ describe('TodoList', () => {
       todos={fakeTodos.slice(1)}
       onDelete={onDelete}
       onToggleDone={onToggleDone}
+      onTodoUpdate={onTodoUpdate}
     />)
 
     expect(screen.queryByTestId(`todo_item_${fakeTodos[0].id}`)).not.toBeInTheDocument()
