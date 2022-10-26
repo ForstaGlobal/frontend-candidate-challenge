@@ -14,7 +14,7 @@ const ShowAddtodoForm = (props: Props) => {
     };
   });
 
-  return <StyledAddBtn onClick={onClick}>{text}</StyledAddBtn>;
+  return <StyledAddBtn onClick={onClick} data-testid='open-new-todo-form'>{text}</StyledAddBtn>;
 }
 
 export default ShowAddtodoForm

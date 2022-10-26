@@ -63,7 +63,7 @@ const TodoItem = (props: Props) => {
   }
 
   const saveTextUpdate = () => {
-    onTodoUpdate(id, {...props.todo, text: updatableText})
+    onTodoUpdate(id, { ...props.todo, text: updatableText })
   }
 
   return (
@@ -81,9 +81,13 @@ const TodoItem = (props: Props) => {
         onBlur={saveTextUpdate}
         variant='standard'
         InputProps={{ disableUnderline: true, }}
-        inputProps={{ style: { textAlign: 'center' } }}
+        inputProps={{
+          style: { textAlign: 'center' },
+          'data-testid': `todo_item_${id}_input`,
+        }}
         key={`todo__${id}_input`}
         disabled={done}
+
       />
       <TodoActions
         isHidden={isHovered}

@@ -8,7 +8,7 @@ export const TodoList = (props: ListProps) => {
 
   return (
     <ul className='todoList'>
-      {todos.map((todo: Todo, i) => (
+      {todos.map((todo: Todo) => (
         <li key={todo.id}>
           <TodoItem
             todo={todo}

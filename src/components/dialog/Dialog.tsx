@@ -1,4 +1,5 @@
-import { Box, Modal } from '@mui/material'
+import { Box, Grid, Modal } from '@mui/material'
+import CircleIcon from '@mui/icons-material/Circle';
 import React from 'react'
 
 import { Props } from './types'
@@ -10,9 +11,14 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  border: '4px solid darkviolet',
   boxShadow: 24,
-  p: 4
+  p: 4,
+  padding: '7px',
+}
+const closeIconStyle = {
+  color: 'red',
+  width: '15px',
 }
 
 const Dialog = (props: Props) => {
@@ -27,6 +33,10 @@ const Dialog = (props: Props) => {
       aria-describedby='modal-modal-description'
     >
       <Box sx={style}>
+        <Box
+          onClick={handleClose}>
+          <CircleIcon style={closeIconStyle} data-testid='close-dialog-icon'/>
+        </Box>
         {children}
       </Box>
     </Modal>

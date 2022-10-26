@@ -6,7 +6,10 @@ const StyledTodoInput = styled(
   TextField,
   {}
 )(() => {
-  return {};
+  return {
+    width: '75%',
+    margin: 'auto',
+  };
 });
 
 const FormGrid = styled(
