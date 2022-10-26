@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import ShowAddtodoForm from './components/showAddtodoForm/ShowAddtodoForm'
 
 import { TodoList } from './components/todoList/TodoList'
@@ -10,6 +10,24 @@ import { getInitialTodos } from './getInitialTodos'
 import { Box, Grid, styled } from '@mui/material'
 import { useTodos } from './todoHooks/todosHook'
 import React from 'react'
+
+const TodoSection = styled(Grid)(({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '250px',
+  maxHeight: '80vh',
+  boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+  position: 'relative',
+}))
+
+const TodoListHead = styled(Box)(() => ({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  position: 'sticky',
+  paddingBottom: '10px',
+  top: 0,
+  backgroundColor: 'rgb(232, 234, 236)',
+}))
 
 export default function App () {
   const [formDialogShown, setFormDialogShown] = useState<boolean>(false)
@@ -24,23 +42,6 @@ export default function App () {
 
   const showForm = () => setFormDialogShown(true)
 
-  const TodoSection = styled(Grid)(({
-    display: 'flex',
-    flexDirection: 'column',
-    width: '250px',
-    maxHeight: '80vh',
-    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
-    position: 'relative',
-  }))
-
-  const TodoListHead = styled(Box)(() => ({
-    display: 'flex',
-    justifyContent: 'flex-end',
-    position: 'sticky',
-    paddingBottom: '10px',
-    top: 0,
-    backgroundColor: 'rgb(232, 234, 236)',
-  }))
   return (
     <div className='todoListApp'>
       <div className='forsta-logo' />

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { memo, useEffect, useMemo, useState } from 'react'
 import { Delete } from '@mui/icons-material'
 import { Box, styled, TextField } from '@mui/material'
 import { Props } from './types'
@@ -33,6 +33,15 @@ const DoneIcon = styled(CheckCircleOutlineIcon)(() => ({
 const NotDoneIcon = styled(RadioButtonUncheckedIcon)(() => ({
 }))
 
+const TodoText = styled(TextField, {
+  shouldForwardProp: (prop) => prop !== 'done' && prop !== 'textAlign'
+})((props: Pick<Todo, 'done'>) => ({
+  textDecoration: props.done ? 'line-through' : 'none',
+  '&:before': {
+    borderBottom: 'none',
+  },
+}))
+
 const TodoItem = (props: Props) => {
 
   const [isHovered, setIsHovered] = useState<boolean>(false)
@@ -42,15 +51,6 @@ const TodoItem = (props: Props) => {
     id,
     done,
   }, onDelete, onToggleDone, onTodoUpdate } = props
-
-  const TodoText = useMemo(() => styled(TextField, {
-    shouldForwardProp: (prop) => prop !== 'done' && prop !== 'textAlign'
-  })((props: Pick<Todo, 'done'>) => ({
-    textDecoration: props.done ? 'line-through' : 'none',
-    '&:before': {
-      borderBottom: 'none',
-    },
-  })), [])
 
   const [updatableText, setUpdatebleText] = useState<string>('')
 
