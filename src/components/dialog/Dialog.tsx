@@ -2,6 +2,7 @@ import { Box, Modal } from '@mui/material'
 import CircleIcon from '@mui/icons-material/Circle'
 
 import { Props } from './types'
+import React from 'react'
 
 const style = {
   position: 'absolute' as 'absolute',

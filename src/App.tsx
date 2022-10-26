@@ -9,6 +9,7 @@ import NewTodoForm from './components/newTodoForm/NewTodoForm'
 import { getInitialTodos } from './getInitialTodos'
 import { Box, Grid, styled } from '@mui/material'
 import { useTodos } from './todoHooks/todosHook'
+import React from 'react'
 
 export default function App () {
   const [formDialogShown, setFormDialogShown] = useState<boolean>(false)
