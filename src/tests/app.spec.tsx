@@ -5,7 +5,8 @@ import '@testing-library/jest-dom/extend-expect'
 import userEvent from '@testing-library/user-event'
 import { getInitialTodos } from '../getInitialTodos'
 import { Todo } from '../types'
-  
+import React from 'react'
+
 // Test app functionality: Create, edit, delete, mark as done.
 describe('TodoApp', () => {
   const todos: Todo[] = getInitialTodos()
