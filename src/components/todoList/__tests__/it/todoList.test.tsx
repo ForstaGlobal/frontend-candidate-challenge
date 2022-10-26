@@ -2,9 +2,12 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event';
 import { TodoList } from '../../TodoList'
-import { fakeTodos } from '../fakeTodos'
+import {getInitialTodos} from '../../../../getInitialTodos'
+import { Todo } from '../../../../types';
 
 describe('TodoList', () => {
+  const fakeTodos: Todo[] = getInitialTodos()
+
   it('renders Todo list component', () => {
     const onToggleDone = jest.fn()
     const onDelete = jest.fn()
@@ -37,20 +40,20 @@ describe('TodoList', () => {
       onTodoUpdate={onTodoUpdate}
     />)
 
-    expect(screen.getByTestId(`todo_item_${fakeTodos[0].id}_done_no`)).toBeInTheDocument()
-    userEvent.click(screen.getByTestId(`todo_item_${fakeTodos[0].id}_done`))
+    expect(screen.getByTestId(`todo_item_${fakeTodos[3].id}_done_no`)).toBeInTheDocument()
+    userEvent.click(screen.getByTestId(`todo_item_${fakeTodos[3].id}_done`))
     expect(onToggleDone).toBeCalledTimes(1)
     
     rerender(
       <TodoList
-        todos={[{...fakeTodos[0], done: !fakeTodos[0].done}].concat(fakeTodos.slice(1))}
+        todos={fakeTodos.map((todo: Todo) => todo.id === fakeTodos[3].id ? {...todo, done: !todo.done} : todo)}
         onDelete={onDelete}
         onToggleDone={onToggleDone}
         onTodoUpdate={onTodoUpdate}
       />)
 
-    expect(screen.getByTestId(`todo_item_${fakeTodos[0].id}_done_yes`)).toBeInTheDocument()
-    expect(screen.queryByTestId(`todo_item_${fakeTodos[0].id}_done_no`)).not.toBeInTheDocument()
+    expect(screen.getByTestId(`todo_item_${fakeTodos[3].id}_done_yes`)).toBeInTheDocument()
+    expect(screen.queryByTestId(`todo_item_${fakeTodos[3].id}_done_no`)).not.toBeInTheDocument()
   })
 
   it('can delete TodoItem', () => {
