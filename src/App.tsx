@@ -7,7 +7,7 @@ import Dialog from './components/dialog/Dialog'
 import './styles.scss'
 import NewTodoForm from './components/newTodoForm/NewTodoForm'
 import { getInitialTodos } from './getInitialTodos'
-import { Grid, styled } from '@mui/material'
+import { Box, Grid, styled } from '@mui/material'
 import { useTodos } from './todoHooks/todosHook'
 
 export default function App () {
@@ -27,13 +27,26 @@ export default function App () {
     display: 'flex',
     flexDirection: 'column',
     width: '250px',
+    maxHeight: '80vh',
+    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+    position: 'relative',
   }))
 
+  const TodoListHead = styled(Box)(() => ({
+    display: 'flex',
+    justifyContent: 'flex-end',
+    position: 'sticky',
+    paddingBottom: '10px',
+    top: 0,
+    backgroundColor: 'rgb(232, 234, 236)',
+  }))
   return (
     <div className='todoListApp'>
       <div className='forsta-logo' />
       <TodoSection>
-        <ShowAddtodoForm onClick={showForm} />
+        <TodoListHead>
+          <ShowAddtodoForm onClick={showForm} />
+        </TodoListHead>
         <TodoList
           todos={todos}
           onToggleDone={onToggleDone}
