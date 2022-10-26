@@ -1,6 +1,5 @@
-import { Box, Grid, Modal } from '@mui/material'
-import CircleIcon from '@mui/icons-material/Circle';
-import React from 'react'
+import { Box, Modal } from '@mui/material'
+import CircleIcon from '@mui/icons-material/Circle'
 
 import { Props } from './types'
 
@@ -33,14 +32,14 @@ const Dialog = (props: Props) => {
       aria-describedby='modal-modal-description'
     >
       <Box sx={style}>
-        <Box
-          onClick={handleClose}>
-          <CircleIcon style={closeIconStyle} data-testid='close-dialog-icon'/>
+        <Box>
+          <CircleIcon onClick={handleClose}
+            style={closeIconStyle} data-testid='close-dialog-icon' />
         </Box>
         {children}
       </Box>
     </Modal>
-  );
-};
+  )
+}
 
 export default Dialog

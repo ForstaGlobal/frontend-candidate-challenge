@@ -1,5 +1,5 @@
 export interface Props {
-  handleClose: (event: React.MouseEvent<HTMLElement>) => void
+  handleClose: (e: React.MouseEvent<Element, MouseEvent>) => void
   children: JSX.Element
   isOpen: boolean
 }

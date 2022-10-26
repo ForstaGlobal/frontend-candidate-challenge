@@ -10,7 +10,7 @@ const ShowAddtodoForm = (props: Props) => {
 
   const StyledAddBtn = styled(AddBoxIcon)(() => {
     return {
-      cursor: 'pointer'
+      cursor: 'pointer',
     };
   });
 
