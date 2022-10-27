@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Todo } from '../types'
 import { addTodo, deleteTodo, generateTodoFromText, toggleDone } from './utils'
 
-export function useTodos (initialTodos: Todo[]= []) {
+export function useTodos (initialTodos: Todo[] = []) {
+  
   const [todos, setTodos] = useState<Todo[]>(initialTodos)
 
   const onTodoAdd = (todoText: string) => setTodos((todos) => addTodo(todos, generateTodoFromText(todoText), 'START'))

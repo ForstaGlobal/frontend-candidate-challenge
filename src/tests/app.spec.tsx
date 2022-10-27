@@ -9,7 +9,9 @@ import React from 'react'
 
 // Test app functionality: Create, edit, delete, mark as done.
 describe('TodoApp', () => {
-  const todos: Todo[] = getInitialTodos()
+  let todos: Todo[] = []
+
+  beforeEach(() => todos = getInitialTodos())
 
   it('renders app', () => {
     const view = render(<App />)
@@ -26,7 +28,7 @@ describe('TodoApp', () => {
     render(<App />)
     userEvent.click(screen.getByTestId('open-new-todo-form'))
 
-    expect(screen.getByTestId('new-todo-form-submit')).toBeDefined()
+    expect(screen.getByTestId('new-todo-form-submit')).toBeInTheDocument()
     expect(screen.getByTestId('new-todo-form')).toBeDefined()
     expect(screen.getByTestId('new-todo-form-submit')).toBeDisabled()
 
