@@ -10,6 +10,7 @@ import { getInitialTodos } from './getInitialTodos'
 import { Box, Grid, styled } from '@mui/material'
 import { useTodos } from './todoHooks/todosHook'
 import React from 'react'
+import UndoRedo from './components/undoRedo/UndoRedo'
 
 const TodoSection = styled(Grid)(({
   display: 'flex',
@@ -22,7 +23,7 @@ const TodoSection = styled(Grid)(({
 
 const TodoListHead = styled(Box)(() => ({
   display: 'flex',
-  justifyContent: 'flex-end',
+  justifyContent: 'space-between',
   position: 'sticky',
   paddingBottom: '10px',
   top: 0,
@@ -37,7 +38,11 @@ export default function App () {
     onTodoAdd,
     onToggleDone,
     onTodoUpdate,
-    onDelete
+    onDelete,
+    undo,
+    redo,
+    canUndo,
+    canRedo,
   } = useTodos(getInitialTodos())
 
   const showForm = () => setFormDialogShown(true)
@@ -47,6 +52,12 @@ export default function App () {
       <div className='forsta-logo' />
       <TodoSection>
         <TodoListHead>
+          <UndoRedo
+            canUndo={canUndo}
+            undo={undo}
+            canRedo={canRedo}
+            redo={redo}
+          />
           <ShowAddtodoForm onClick={showForm} />
         </TodoListHead>
         <TodoList
