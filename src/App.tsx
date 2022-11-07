@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import { ROUTES } from "./core/navigation/routes.enum";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HomePage } from "./modules/home/pages/HomePage";
+import { TodosPage } from "./modules/todos/pages/TodosPage";
+import { Provider } from "react-redux";
+import store from "./core/state/configureStore";
 
-import { TodoList } from "./components/TodoList";
-
-import "./styles.scss";
-
-export default function App() {
-  const [todos] = useState([
-    { text: "Buy milk", done: true },
-    { text: "Buy bread", done: false },
-  ]);
-
+function App() {
   return (
-    <div className="todoListApp">
-      <div className="forsta-logo" />
-      <TodoList todos={todos} />
-    </div>
+    <>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path={ROUTES.HOME} element={<HomePage />} />
+            <Route path={ROUTES.TODOS} element={<TodosPage />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    </>
   );
 }
+
+export default App;

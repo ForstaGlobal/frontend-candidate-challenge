@@ -1,12 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import "./index.css";
 import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import {
+  CssBaseline,
+  StyledEngineProvider,
+  ThemeProvider,
+} from "@mui/material";
+import { theme } from "./core/styles/mui/theme";
 
-const rootElement = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </StyledEngineProvider>
   </React.StrictMode>,
-  rootElement
+  document.getElementById("root")
 );
+
+reportWebVitals();
