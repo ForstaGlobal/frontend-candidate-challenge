@@ -1,25 +1,25 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
 import store from "../core/state/configureStore";
-import { AddNewItemForm } from "../modules/todos/components/AddNewItemForm";
+import { TodoItemForm } from "../modules/todos/components/TodoItemForm";
 
 const mockedSetEditTask = jest.fn();
 
-const MockAddNewItemForm = () => {
+const MockTodoItemForm = () => {
   return (
     <Provider store={store}>
-      <AddNewItemForm editTask="" setEditTask={mockedSetEditTask} id="1a" />
+      <TodoItemForm editTask="" setEditTask={mockedSetEditTask} id="1a" />
     </Provider>
   );
 };
 
 describe("AddNewItemForm", () => {
   it("Add new item form renders without crashing", () => {
-    render(<MockAddNewItemForm />);
+    render(<MockTodoItemForm />);
   });
 
   it("should render input element", async () => {
-    render(<MockAddNewItemForm />);
+    render(<MockTodoItemForm />);
     const inputElement = screen.getByPlaceholderText(
       /Write your new item/i
     ) as HTMLInputElement;
@@ -27,7 +27,7 @@ describe("AddNewItemForm", () => {
   });
 
   it("should be able to type in the input element", async () => {
-    render(<MockAddNewItemForm />);
+    render(<MockTodoItemForm />);
     const inputElement = screen.getByPlaceholderText(
       /Write your new item/i
     ) as HTMLInputElement;
@@ -38,13 +38,13 @@ describe("AddNewItemForm", () => {
   });
 
   it("should return add when the edit task is empty", async () => {
-    render(<MockAddNewItemForm />);
+    render(<MockTodoItemForm />);
     const buttonElement = screen.getByTestId("submitButton");
     expect(buttonElement.textContent).toBe("Add");
   });
 
   it("should return edit when the edit task is not empty", async () => {
-    render(<MockAddNewItemForm />);
+    render(<MockTodoItemForm />);
     const buttonElement = screen.getByTestId("submitButton");
     expect(buttonElement.textContent).not.toBe("Edit");
   });

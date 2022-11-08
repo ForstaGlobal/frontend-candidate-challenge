@@ -13,6 +13,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { makeStyles } from "@mui/styles";
 import { FC } from "react";
+import { ItemProps } from "../pages/TodosPage";
 
 // This component is used to show detailed information about one to do item,
 // to check if one item is done or not, to update or delete the item.
@@ -32,28 +33,24 @@ interface TodoItemProps {
   value: number;
   setEditTask: (task: string) => void;
   setEditId: (id: string) => void;
-  itemId: string;
-  itemTask: string;
-  itemStatus: boolean;
-  labelId: string;
+  item: ItemProps;
+  editId?: string;
 }
 
 export const TodoItem: FC<TodoItemProps> = ({
   value,
   setEditId,
   setEditTask,
-  itemId,
-  itemTask,
-  itemStatus,
-  labelId,
+  item,
+  editId,
 }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { id, task, completed } = item;
 
   return (
     <ListItem
       data-testid={`item ${value}`}
-      key={value}
       secondaryAction={
         <Box display="flex">
           <IconButton
@@ -61,8 +58,8 @@ export const TodoItem: FC<TodoItemProps> = ({
             data-testid="editButton"
             disableRipple
             onClick={() => {
-              setEditTask(itemTask);
-              setEditId(itemId);
+              setEditTask(task);
+              setEditId(id);
             }}
             className={classes.black}
           >
@@ -72,10 +69,11 @@ export const TodoItem: FC<TodoItemProps> = ({
             edge="end"
             disableRipple
             onClick={() => {
-              dispatch(deleteTodo(itemId));
+              dispatch(deleteTodo(id));
             }}
             className={classes.red}
             data-testid="deleteButton"
+            disabled={editId === id}
           >
             <DeleteIcon />
           </IconButton>
@@ -87,20 +85,15 @@ export const TodoItem: FC<TodoItemProps> = ({
         <ListItemIcon>
           <Checkbox
             edge="start"
-            checked={itemStatus}
+            checked={completed}
             tabIndex={-1}
             disableRipple
-            inputProps={{ "aria-labelledby": labelId }}
             onClick={() => {
-              dispatch(updateStatus({ _id: itemId, status: itemStatus }));
+              dispatch(updateStatus({ id, completed }));
             }}
           />
         </ListItemIcon>
-        <ListItemText
-          className={classes.black}
-          id={labelId}
-          primary={itemTask}
-        />
+        <ListItemText className={classes.black} primary={task} />
       </ListItemButton>
     </ListItem>
   );

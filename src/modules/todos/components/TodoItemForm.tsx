@@ -18,25 +18,27 @@ import { FC, useEffect, useMemo } from "react";
 // For default values, useMemo and useEffect hooks are used,
 // according to the length of the editTask updating or adding action will be triggered
 
-const addNewItemSchema = yup.object().shape({
+const todoItemSchema = yup.object().shape({
   task: yup.string().required("This field is required!"),
 });
 
-interface AddNewItemFormProps {
+interface TodoItemFormProps {
   editTask: string;
   setEditTask: (task: string) => void;
   id: string;
+  setEditId?: (id: string) => void;
 }
 
 interface SubmitDataProps {
   task: string;
-  _id: string;
+  id: string;
 }
 
-export const AddNewItemForm: FC<AddNewItemFormProps> = ({
+export const TodoItemForm: FC<TodoItemFormProps> = ({
   editTask,
   setEditTask,
   id,
+  setEditId,
 }) => {
   const dispatch = useDispatch();
   const {
@@ -46,11 +48,11 @@ export const AddNewItemForm: FC<AddNewItemFormProps> = ({
     control,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(addNewItemSchema),
+    resolver: yupResolver(todoItemSchema),
     defaultValues: useMemo(() => {
       return {
         task: editTask,
-        _id: id,
+        id,
       };
     }, [editTask, id]),
   });
@@ -60,6 +62,7 @@ export const AddNewItemForm: FC<AddNewItemFormProps> = ({
       dispatch(addNewTodo(data.task));
     } else {
       dispatch(updateTodo(data));
+      setEditId && setEditId("");
     }
     reset();
     setEditTask("");
@@ -68,7 +71,7 @@ export const AddNewItemForm: FC<AddNewItemFormProps> = ({
   useEffect(() => {
     reset({
       task: editTask,
-      _id: id,
+      id,
     });
   }, [editTask, reset, id]);
 

@@ -1,52 +1,61 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
+import { ItemProps } from "../pages/TodosPage";
 
 interface UpdateTodo {
   task: string;
-  _id: string;
+  id: string;
 }
 
 interface UpdateStatus {
-  _id: string;
-  status: boolean;
+  id: string;
+  completed: boolean;
+}
+
+const initialState = {
+  allTodos: [
+    {
+      id: "1",
+      task: "Use your time...",
+      completed: false,
+    },
+    { id: "2", task: "Never give up...", completed: false },
+  ],
+};
+
+export interface InitialState {
+  allTodos: Array<ItemProps>;
 }
 
 const todosPageSlice = createSlice({
   name: "todos",
-  initialState: {
-    allTodos: [
-      {
-        _id: 1,
-        task: "Use your time...",
-        status: false,
-      },
-      { _id: 2, task: "Never give up...", status: false },
-    ],
-  },
+  initialState,
   reducers: {
-    addNewTodo(state: any, action: PayloadAction<string>) {
+    addNewTodo(state: InitialState, action: PayloadAction<string>) {
       const uniqueId = uuidv4();
       return {
         ...state,
         allTodos: [
+          { id: uniqueId, task: action.payload, completed: false },
           ...state.allTodos,
-          { _id: uniqueId, task: action.payload, status: false },
         ],
       };
     },
-    deleteTodo(state: any, action: PayloadAction<string>) {
+    deleteTodo(state: InitialState, action: PayloadAction<string>) {
       return {
         ...state,
         allTodos: [
-          ...state.allTodos.filter((todo: any) => todo._id !== action.payload),
+          ...state.allTodos.filter(
+            (todo: ItemProps) => todo.id !== action.payload
+          ),
         ],
       };
     },
-    updateTodo(state: any, action: PayloadAction<UpdateTodo>) {
+    updateTodo(state: InitialState, action: PayloadAction<UpdateTodo>) {
       return {
         ...state,
-        allTodos: state.allTodos.map((todo: any) => {
-          if (todo._id !== action.payload._id) {
+        allTodos: state.allTodos.map((todo: ItemProps) => {
+          if (todo.id !== action.payload.id) {
             return todo;
           }
           return {
@@ -56,16 +65,16 @@ const todosPageSlice = createSlice({
         }),
       };
     },
-    updateStatus(state: any, action: PayloadAction<UpdateStatus>) {
+    updateStatus(state: InitialState, action: PayloadAction<UpdateStatus>) {
       return {
         ...state,
-        allTodos: state.allTodos.map((todo: any) => {
-          if (todo._id !== action.payload._id) {
+        allTodos: state.allTodos.map((todo: ItemProps) => {
+          if (todo.id !== action.payload.id) {
             return todo;
           }
           return {
             ...todo,
-            status: !action.payload.status,
+            completed: !action.payload.completed,
           };
         }),
       };
