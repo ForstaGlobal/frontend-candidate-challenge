@@ -1,16 +1,15 @@
-import React from "react";
+import React from 'react';
+import {TodoItem} from './TodoItem';
+import {useSelector} from 'react-redux';
+import {IAllStates} from '../models/IAllStates';
 
-type TodoListProps = {
-  todos: any[];
-};
-export const TodoList = ({ todos }: TodoListProps) => {
+export const TodoList = () => {
+  const tasks = useSelector((state: IAllStates) => state.todos);
   return (
-    <ul className="todoList">
-      {todos.map((item, i) => (
-        <li key={i}>
-          <span data-testid={`todo${i}`}>{item.text}</span>
-        </li>
-      ))}
-    </ul>
+      <ul className="todoList">
+        {tasks?.map((item) => (
+            <TodoItem key={item.id} todoItem={item}/>
+        ))}
+      </ul>
   );
 };
