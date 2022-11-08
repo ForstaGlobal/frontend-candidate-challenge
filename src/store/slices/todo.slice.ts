@@ -11,9 +11,12 @@ export const todoSlice = createSlice({
             state.unshift(action.payload);
             return state;
         },
-    },
+        removeTodos: (state: ITask[], action) => {
+            return state.filter((item) => item.id !== action.payload);
+        },
 });
 
 export const {
     addTodos,
+    removeTodos,
 } = todoSlice.actions;
