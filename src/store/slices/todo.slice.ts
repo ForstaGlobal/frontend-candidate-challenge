@@ -7,5 +7,13 @@ export const todoSlice = createSlice({
     name: 'todos',
     initialState,
     reducers: {
+        addTodos: (state: ITask[], action) => {
+            state.unshift(action.payload);
+            return state;
+        },
     },
 });
+
+export const {
+    addTodos,
+} = todoSlice.actions;
