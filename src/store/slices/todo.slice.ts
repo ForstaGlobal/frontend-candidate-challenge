@@ -14,9 +14,22 @@ export const todoSlice = createSlice({
         removeTodos: (state: ITask[], action) => {
             return state.filter((item) => item.id !== action.payload);
         },
+        completeTodos: (state: ITask[], action) => {
+            return state.map((todo) => {
+                if (todo.id === action.payload) {
+                    return {
+                        ...todo,
+                        done: !todo.done,
+                    };
+                }
+                return todo;
+            });
+        },
+    },
 });
 
 export const {
     addTodos,
     removeTodos,
+    completeTodos,
 } = todoSlice.actions;
