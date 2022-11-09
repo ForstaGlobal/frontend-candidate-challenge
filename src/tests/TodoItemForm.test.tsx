@@ -2,8 +2,20 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
 import store from "../core/state/configureStore";
 import { TodoItemForm } from "../modules/todos/components/TodoItemForm";
+import todosReducer, {
+  addNewTodo,
+  updateTodo,
+} from "../modules/todos/store/todosPageSlice";
 
 const mockedSetEditTask = jest.fn();
+
+export const mockedTask = "Use your time...";
+
+const mockedUpdatedTask = "Use your time updated...";
+
+export const mockedInitialState = {
+  allTodos: [{ id: "1", task: mockedTask, completed: false }],
+};
 
 const MockTodoItemForm = () => {
   return (
@@ -47,5 +59,29 @@ describe("AddNewItemForm", () => {
     render(<MockTodoItemForm />);
     const buttonElement = screen.getByTestId("submitButton");
     expect(buttonElement.textContent).not.toBe("Edit");
+  });
+
+  it("should render add action", () => {
+    expect(
+      todosReducer(mockedInitialState, addNewTodo("Add new item..."))
+    ).not.toEqual(mockedInitialState);
+  });
+
+  it("should add new todo item", () => {
+    let state = store.getState().allTodos;
+    store.dispatch(addNewTodo("Read a book..."));
+    state = store.getState().allTodos;
+    expect(state.allTodos.length).toBe(3);
+  });
+
+  it("should render update action", () => {
+    expect(
+      todosReducer(
+        mockedInitialState,
+        updateTodo({ id: "1", task: mockedUpdatedTask })
+      )
+    ).toEqual({
+      allTodos: [{ id: "1", task: mockedUpdatedTask, completed: false }],
+    });
   });
 });

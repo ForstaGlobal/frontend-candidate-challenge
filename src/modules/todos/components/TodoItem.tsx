@@ -68,9 +68,7 @@ export const TodoItem: FC<TodoItemProps> = ({
           <IconButton
             edge="end"
             disableRipple
-            onClick={() => {
-              dispatch(deleteTodo(id));
-            }}
+            onClick={() => dispatch(deleteTodo(id))}
             className={classes.red}
             data-testid="deleteButton"
             disabled={editId === id}
@@ -88,9 +86,7 @@ export const TodoItem: FC<TodoItemProps> = ({
             checked={completed}
             tabIndex={-1}
             disableRipple
-            onClick={() => {
-              dispatch(updateStatus({ id, completed }));
-            }}
+            onClick={() => dispatch(updateStatus({ id, completed }))}
           />
         </ListItemIcon>
         <ListItemText className={classes.black} primary={task} />
