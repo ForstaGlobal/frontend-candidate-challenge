@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { Checkbox, Box, Tooltip, IconButton, Grid, Slide } from '@mui/material';
 import { Clear, Edit } from '@mui/icons-material';
 import { Props } from './types';
 import { TodoStatus } from '../../enums/TodoEnums';
+import TodoDialog from '../todoDialog/TodoDialog';
 
 const TodoItem = ({ todo, onDeleteTodo, onToggleTodo, onEditTodo }: Props) => {
+  
+  const [showDialog, setShowDialog] = useState(false);
 
   const todoStatusTitle = (todo.status === TodoStatus.PENDING) ? 'Mark as Completed' : 'Mark as Pending';
 
@@ -12,9 +15,9 @@ const TodoItem = ({ todo, onDeleteTodo, onToggleTodo, onEditTodo }: Props) => {
     onToggleTodo(todo.id);
   }
 
-  const handleTodoDelete = () => {
-    onDeleteTodo(todo.id)
-  }
+  const handleTodoDelete = useCallback(() => onDeleteTodo(todo.id), [onDeleteTodo, todo.id]);
+
+  const handleDialogClose = useCallback(() => setShowDialog(false), []);
 
   const isTodoCompleted = (todo.status === TodoStatus.COMPLETED);
 
@@ -52,13 +55,14 @@ const TodoItem = ({ todo, onDeleteTodo, onToggleTodo, onEditTodo }: Props) => {
                 color='error'
                 aria-label='Delete a Todo'
                 size='large'
-                data-testid={`delete_todo_${todo.id}`}
-                onClick={handleTodoDelete}>
+                data-testid={`delete_dialog_todo_${todo.id}`}
+                onClick={() => setShowDialog(true)}>
                 <Clear />
               </IconButton>
             </Tooltip>
           </Grid>
         </Grid>
+        <TodoDialog open={showDialog} onDeleteTodo={handleTodoDelete} handleClose={handleDialogClose} data-testid={`delete_todo_${todo.id}`}></TodoDialog>
       </Box>
     </Slide>
   )

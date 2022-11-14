@@ -37,14 +37,17 @@ describe('TodoList App', () => {
   });
 
   test('can delete Todo Item', () => {
-    const handleTodoDelete = jest.fn()
+    const onDeleteTodo = jest.fn()
 
     render(<App />);
     setTimeout(() => {
       expect(screen.getByTestId(`todo_${fakeTodos[0].id}`)).toBeInTheDocument()
       expect(screen.getByDisplayValue(fakeTodos[0].text)).toBeInTheDocument()
+      expect(screen.getByTestId(`delete_dialog_todo_${fakeTodos[0].id}`)).toBeInTheDocument()
+      userEvent.click(screen.getByTestId(`delete_dialog_todo_${fakeTodos[0].id}`))
+      expect(screen.getByTestId(`delete_todo_${fakeTodos[0].id}`)).toBeInTheDocument()
       userEvent.click(screen.getByTestId(`delete_todo_${fakeTodos[0].id}`))
-      expect(handleTodoDelete).toBeCalledTimes(1)
+      expect(onDeleteTodo).toBeCalledTimes(1)
     }, 600);
   });
 })
