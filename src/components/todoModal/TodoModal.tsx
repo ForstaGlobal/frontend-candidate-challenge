@@ -23,6 +23,7 @@ const TodoModal = ({open, todo, onClose, onAddTodo, onUpdateTodo}: Props) => {
     if(todo) {
       setValue(todo.text);
     }
+    return () => setValue("");
   }, [todo])
 
   const handleSubmit = () => {
