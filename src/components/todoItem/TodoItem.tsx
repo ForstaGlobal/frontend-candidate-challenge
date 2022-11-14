@@ -1,15 +1,15 @@
 import React from 'react'
 import { Checkbox, Box, Tooltip, IconButton, Grid, Slide } from '@mui/material';
-import { Clear } from '@mui/icons-material';
+import { Clear, Edit } from '@mui/icons-material';
 import { Props } from './types';
 import { TodoStatus } from '../../enums/TodoEnums';
 
-const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo }: Props) => {
+const TodoItem = ({ todo, onDeleteTodo, onToggleTodo, onEditTodo }: Props) => {
 
   const todoStatusTitle = (todo.status === TodoStatus.PENDING) ? 'Mark as Completed' : 'Mark as Pending';
 
   const handleTodoStatusChange = () => {
-    onUpdateTodo(todo.id);
+    onToggleTodo(todo.id);
   }
 
   const handleTodoDelete = () => {
@@ -36,13 +36,22 @@ const TodoItem = ({ todo, onDeleteTodo, onUpdateTodo }: Props) => {
             </Tooltip>
             <span>{todo.text}</span>
           </Grid>
-          <Grid item xs={1}>
+          <Grid item xs={1} sx={{display: 'inline-flex'}}>
+            <Tooltip title="Delete a Todo" placement='top'>
+              <IconButton
+                color='default'
+                aria-label='Update a Todo'
+                size='large'
+                data-testid={`update_todo_${todo.id}`}
+                onClick={() => onEditTodo(todo.id, todo.text)}>
+                <Edit />
+              </IconButton>
+            </Tooltip>
             <Tooltip title="Delete a Todo" placement='top'>
               <IconButton
                 color='error'
                 aria-label='Delete a Todo'
                 size='large'
-                sx={{ float: 'right' }}
                 data-testid={`delete_todo_${todo.id}`}
                 onClick={handleTodoDelete}>
                 <Clear />

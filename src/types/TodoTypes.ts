@@ -8,10 +8,12 @@ export interface Todo {
   updatedAt?: Date
 }
 
+export type payload = string | { id: string, text: string }
+
 // An interface for our actions
 export interface TodoAction {
   type: TodoActions;
-  payload?: string;
+  payload?: payload;
 }
 
 // An interface for our state

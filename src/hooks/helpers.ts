@@ -1,5 +1,5 @@
 import { TodoStatus } from "../enums/TodoEnums";
-import { Todo } from "../types/TodoTypes";
+import { payload, Todo } from "../types/TodoTypes";
 const uniqid = require('uniqid');
 
 const generateTodo = (text: string): Todo => {
@@ -15,17 +15,31 @@ const addTodo = (todos: Todo[], todo: Todo): Todo[] => {
   return [todo].concat(todos)
 }
 
-const toggleDone = (todos: Todo[], id: string): Todo[] => {
-  return todos.map((todo) => (todo.id !== id) ? todo : { ...todo, status: (todo.status === TodoStatus.PENDING) ? TodoStatus.COMPLETED : TodoStatus.PENDING })
+const updateTodo = (todos: Todo[], payload: payload): Todo[] => {
+  if (typeof payload !== 'object') {
+    return todos;
+  }
+  return todos.map((todo) => (todo.id !== payload.id) ? todo : { ...todo, text: payload.text, updatedAt: new Date() })
 }
 
-const deleteTodo = (todos: Todo[], id: string): Todo[] => {
+const toggleDone = (todos: Todo[], id: payload): Todo[] => {
+  if (typeof id !== 'string') {
+    return todos;
+  }
+  return todos.map((todo) => (todo.id !== id) ? todo : { ...todo, status: (todo.status === TodoStatus.PENDING) ? TodoStatus.COMPLETED : TodoStatus.PENDING, updatedAt: new Date() })
+}
+
+const deleteTodo = (todos: Todo[], id: payload): Todo[] => {
+  if (typeof id !== 'string') {
+    return todos;
+  }
   return todos.filter((todo) => todo.id !== id)
 }
 
 export {
   addTodo,
   generateTodo,
+  updateTodo,
   toggleDone,
   deleteTodo
 }

@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Modal, Box, TextField, Button, Grid, Typography, IconButton, Fade } from '@mui/material'
 import { Clear as ClearIcon, Save as SaveIcon } from '@mui/icons-material';
 import { useToasts } from 'react-toast-notifications';
 import { Props } from '../todoModal/types'
 
-const TodoModal = ({open, onClose, onAddTodo}: Props) => {
+const TodoModal = ({open, todo, onClose, onAddTodo, onUpdateTodo}: Props) => {
   const { addToast } = useToasts();
   const style = {
     position: 'absolute' as 'absolute',
@@ -19,13 +19,23 @@ const TodoModal = ({open, onClose, onAddTodo}: Props) => {
 
   const [value, setValue] = useState("");
 
+  useEffect(() => {
+    if(todo) {
+      setValue(todo.text);
+    }
+  }, [todo])
+
   const handleSubmit = () => {
     if(value === "") {
       addToast('Please fill the todo input before submitting!', { appearance: 'error', autoDismiss: true });
       return;
     }
 
-    onAddTodo(value);
+    if(todo) {
+      onUpdateTodo(todo.id, value);
+    } else {
+      onAddTodo(value);
+    }
     setValue("");
     onClose();
   }
