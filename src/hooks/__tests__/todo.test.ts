@@ -1,6 +1,6 @@
 import { getInitialTodos } from "../../service/todoService"
 import { Todo } from "../../types/TodoTypes"
-import { generateTodo, addTodo, deleteTodo, toggleDone } from "../helpers"
+import { generateTodo, addTodo, deleteTodo, toggleDone } from "../../helpers/todoHelper"
 import { expect } from 'chai'
 import { TodoStatus } from "../../enums/TodoEnums"
 

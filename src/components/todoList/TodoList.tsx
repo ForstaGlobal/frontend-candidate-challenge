@@ -1,6 +1,6 @@
-import React, { useCallback, useReducer, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useToasts } from 'react-toast-notifications';
-import { Box, Button, Modal, Tooltip } from '@mui/material';
+import { Box, Button, Tooltip } from '@mui/material';
 import { Stack } from '@mui/system';
 import { Add as AddIcon } from '@mui/icons-material';
 import { TodoActions } from '../../enums/TodoEnums';
@@ -8,22 +8,18 @@ import TodoItem from '../todoItem/TodoItem';
 import TodoModal from '../todoModal/TodoModal';
 import EmptyTodoList from '../emptyTodoList/EmptyTodoList';
 import useTodos from '../../hooks/todosHook';
-import { getInitialTodos } from '../../service/todoService';
 import { modalType } from './types';
 
 const TodoList = () => {
   const { addToast } = useToasts();
-  const initialState = {
-    todos: getInitialTodos()
-  };
 
   const [modal, setModal] = useState<modalType>({ show: false });
-  const [state, dispatch] = useReducer(useTodos, initialState);
+  const [state, dispatch] = useTodos();
 
   const addTodo = useCallback((text: string) => {
     dispatch({ type: TodoActions.ADD, payload: text });
     addToast('Todo created successfully!', { appearance: 'success', autoDismiss: true });
-  }, [addToast]);
+  }, [addToast, dispatch]);
 
   const editTodoText = (id: string, text: string) => {
     setModal({ show: true, payload: { id, text } });
@@ -32,17 +28,17 @@ const TodoList = () => {
   const updateTodoText = useCallback((id: string, text: string) => {
     dispatch({ type: TodoActions.UPDATE, payload: {id, text} });
     addToast('Todo updated successfully!', { appearance: 'success', autoDismiss: true });
-  }, [addToast]);
+  }, [addToast, dispatch]);
 
   const toggleTodo = useCallback((id: string) => {
     dispatch({ type: TodoActions.PATCH, payload: id });
     addToast('Todo updated successfully!', { appearance: 'success', autoDismiss: true });
-  }, [addToast]);
+  }, [addToast, dispatch]);
 
   const deleteTodo = useCallback((id: string) => {
     dispatch({ type: TodoActions.DELETE, payload: id });
     addToast('Todo deleted successfully!', { appearance: 'error', autoDismiss: true });
-  }, [addToast]);
+  }, [addToast, dispatch]);
 
   return (
     <Box marginTop={8} sx={{ width: '100%' }}>

@@ -1,9 +1,19 @@
+import { useReducer } from "react";
 import { TodoActions } from "../enums/TodoEnums";
 import { TodoAction, TodoState } from "../types/TodoTypes";
-import { addTodo, deleteTodo, generateTodo, toggleDone, updateTodo } from "./helpers";
+import { addTodo, deleteTodo, generateTodo, toggleDone, updateTodo } from "../helpers/todoHelper";
+import { getInitialTodos } from "../service/todoService";
 
-// Our reducer function that uses a switch statement to handle our actions
-const useTodos = (state: TodoState, action: TodoAction) => {
+const useTodos = () => {
+  const initialState = {
+    todos: getInitialTodos()
+  };
+
+  return useReducer(todosReducer, initialState);
+}
+
+// reducer function that uses a switch statement to handle our actions
+const todosReducer = (state: TodoState, action: TodoAction) => {
   const { type, payload } = action;
   switch (type) {
     case TodoActions.ADD:
