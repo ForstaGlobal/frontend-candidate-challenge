@@ -16,13 +16,17 @@ body {
   width: 165px;
 }
 .todoListApp button {
-  padding: 5px;
+  padding: 10px 20px;
   font-size: 16px;
   margin: 5px;
   margin-right: 5px;
   background-color: #00a8f0;
   color: #FFF;
   border: none;
+  border-radius: 3px;
+}
+.todoListApp button:hover {
+  background-color: #1395ec;
 }
 .todoListApp button:hover {
   cursor: pointer;
@@ -31,7 +35,7 @@ body {
   list-style: none;
   padding-left: 0;
   width: 250px;
-} 
+}
 .todoListApp .todoList li {
   color: #333;
   background-color: rgba(255,255,255,.5);
@@ -39,7 +43,28 @@ body {
   margin-bottom: 10px;
   border-radius: 2px;
   list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 ul.todoList {
   padding: 0;
+}
+
+.todoListApp form input {
+  font-size: 16px;
+  border-radius: 1px;
+  border: 1px solid lightgray;
+  padding: 10px 15px;
+  margin-right: 5px;
+}
+.delBtn {
+  background: tomato;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.delBtn:hover {
+  background: red;
 }
