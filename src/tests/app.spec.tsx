@@ -45,7 +45,7 @@ it('has the first todo', () => {
 })
 
 it('has the second todo', () => {
-  const expectedText = 'Buy milk'
+  const expectedText = 'Buy bread'
   const { getByText } = render(<App />)
   getByText(expectedText)
 })
