@@ -33,6 +33,7 @@ function TodoForm(props: {
         </h1>
         <form onSubmit={submitHandler}>
           <input
+            aria-label="Enter todo"
             type="text"
             name="text"
             placeholder="text"

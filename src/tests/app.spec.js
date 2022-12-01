@@ -23,30 +23,52 @@
 // });
 
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import App from '../App';
 
-it('renders learn heading text', () => {
+test('it renders the h1 heading text', () => {
   const expectedText = 'Things to do today:'
   const { getByText } = render(<App />)
   getByText(expectedText)
 })
 
-it('has the button', () => {
+test('it renders the form button text', () => {
   const expectedText = 'Submit Todo'
   const { getByText } = render(<App />)
   getByText(expectedText)
 })
 
-it('has the first todo', () => {
+test('it renders the first todo text', () => {
   const expectedText = 'Buy milk'
   const { getByText } = render(<App />)
   getByText(expectedText)
 })
 
-it('has the second todo', () => {
+test('it renders the second todo text', () => {
   const expectedText = 'Buy bread'
   const { getByText } = render(<App />)
   getByText(expectedText)
 })
 
+describe('WHEN app is rendered with these', () => {
+  let getByLabelText, getByText, container;
+  beforeEach(() => {
+    ({ getByLabelText, getByText, container } = render(<App />))
+  })
+
+  describe("AND when a todo is added", () => {
+    beforeEach(() => {
+      fireEvent.change(getByLabelText(/enter todo/i), {
+        target: { value: "Go shopping" }
+      });
+      fireEvent.click(getByText(/submit todo/i))
+    })
+
+    test("THEN that todo is visible", () => {
+      const expectedText = 'Go shopping'
+      const { getByText } = render(<App />)
+      getByText(expectedText)
+    })
+
+  }) // second describe
+}) // first describe
