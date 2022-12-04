@@ -28,11 +28,24 @@ export default function App() {
     setTodos(prevTodos => prevTodos.filter(task => task.id !== todo.id))
   }
 
+  function editTodo(todo) {
+    const newTodos = [...todos].map(i => i.id === todo.id ?
+        { ...i, text: prompt('Enter your updated todo text')} : {...i}
+      )
+    setTodos(newTodos)
+  }
+
   return (
     <div className="todoListApp">
       <div className="forsta-logo" />
         <TodoForm todos={todos} onAdd={addTodo} />
-        <TodoList todos={todos} setTodos={setTodos} onToggle={toggleTodo} onDelete={deleteTodo} />
+        <TodoList
+          todos={todos}
+          setTodos={setTodos}
+          onToggle={toggleTodo}
+          onDelete={deleteTodo}
+          onEdit={editTodo}
+        />
     </div>
   );
 }

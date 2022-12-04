@@ -9,6 +9,10 @@ export const TodoList = (props) => {
         props.onDelete(item);
     }
 
+    function editIt(event, item) {
+      props.onEdit(item);
+    }
+
     return (
     <ul className="todoList">
       {props.todos.map((item) => (
@@ -19,6 +23,12 @@ export const TodoList = (props) => {
             onClick={ (event) => toggleDone(event, item) }
           >
             {item.text}
+          </span>
+          <span
+            className="editBtn"
+            onClick={ (event) => editIt(event, item) }
+          >
+            edit
           </span>
           <span
             className="delBtn"
