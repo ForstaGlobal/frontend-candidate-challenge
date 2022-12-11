@@ -1,33 +1,52 @@
-# Coding Challenge for Frontend Developers
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## ASSIGNMENT DESCRIPTION
+## Getting Started
 
-Please use the React framework to solve this assignment or alternatively pure javascript if you don't know React.
+First, run the development server:
 
-You can add/remove/upgrade any project dependency and change/remove any part of the project as you deem appropriate.
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-#### SPECIFICATION
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- Create a todo list app where the user can create/edit/delete tasks.
-- The user should also be able to toggle tasks as "done" vs. "not done".
-- When a task is deleted, it should be removed from the list.
-- New tasks should be added to the top of the list.
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-#### OTHER REQUIREMENTS
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-- All functionality should be tested. For the testing you should use [React testing library](https://testing-library.com/).
-- We value clean, readable, concise code.
-- The project is set up to use TypeScript. Please make sure your code has good types. If you don't know TypeScript, you are not required to write types.
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## HOW TO SUBMIT YOUR CODE
+## Learn More
 
-1. Fork this repo.
-2. Push your code changes to your fork.
-3. Create a pull request targeting this repo.
+To learn more about Next.js, take a look at the following resources:
 
-If you have any doubts about the fork + pull request workflow you can refer to [this guide](https://reflectoring.io/github-fork-and-pull/).
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## DEADLINE
-You can take all the time you need (but please not more than 2 weeks).
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-Submit your PR when you are proud of your code :-)
+## Database Included
+
+I included the .env file containing the URI to my database for testing.
+
+## NextJS with Cypress
+
+```bash
+# Start Cypress
+npm run cypress
+npm run cypress:headless
+
+# Start E2E Tests
+npm run e2e
+npm run e2e:headless
+```
+
+## Deploy on Vercel
+
+Application is deployed on vercel and can be found under the following [link](https://todo-app-jimpad.vercel.app/).
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
