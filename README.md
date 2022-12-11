@@ -27,6 +27,22 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
+## Database Included
+
+I included the .env file containing the URI to my database for testing.
+
+## NextJS with Cypress
+
+```bash
+# Start Cypress
+npm run cypress
+npm run cypress:headless
+
+# Start E2E Tests
+npm run e2e
+npm run e2e:headless
+```
+
 ## Deploy on Vercel
 
 Application is deployed on vercel and can be found under the following [link](https://todo-app-jimpad.vercel.app/).
@@ -34,7 +50,3 @@ Application is deployed on vercel and can be found under the following [link](ht
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-## Connect to Database
-
-I included the .env file so that you can connect to my database and test the application.
