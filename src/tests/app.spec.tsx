@@ -2,7 +2,6 @@ import React from 'react';
 
 import App from "../App";
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
 
 describe("TodoApp", () => {
   it("renders app", () => {
@@ -13,8 +12,8 @@ describe("TodoApp", () => {
   it("renders initial items", () => {
     render(<App />);
 
-    expect(screen.getByText("Buy milk")).toBeDefined();
-    screen.getByTestId("todo0");
+    expect(screen.getAllByText("Buy milk")).toBeDefined();
+    screen.getAllByTestId("todo0");
 
     // TODO: Verify second todo
   });
