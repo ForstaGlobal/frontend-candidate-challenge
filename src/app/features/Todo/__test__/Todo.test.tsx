@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import Todo from "../Todo";
 import { TodoType } from "../../../models/todo";
 import { renderWithProviders } from "../../../utils/test-util";
-describe("Todo integration test", () => {
+describe("Todo compoent and integration test", () => {
   const todos: TodoType[] = [
     {
       id: 1,
@@ -52,7 +52,7 @@ describe("Todo integration test", () => {
       },
     };
     renderWithProviders(<Todo />, {
-      preloadedState: initialState
+      preloadedState: initialState,
     });
     const button = screen.getByTestId("addBtn");
     await fireEvent.click(button);
@@ -72,7 +72,7 @@ describe("Todo integration test", () => {
       },
     };
     renderWithProviders(<Todo />, {
-      preloadedState: initialState
+      preloadedState: initialState,
     });
     expect(screen.getByText("Task1")).toBeInTheDocument();
     expect(screen.queryByText("Task2")).not.toBeInTheDocument();
@@ -89,9 +89,31 @@ describe("Todo integration test", () => {
       },
     };
     renderWithProviders(<Todo />, {
-      preloadedState: initialState
+      preloadedState: initialState,
     });
     expect(screen.getByText("Task2")).toBeInTheDocument();
     expect(screen.queryByText("Task1")).not.toBeInTheDocument();
   });
+
+  /* it("should be able add new todo", async () => {
+    const initialState = {
+      todo: {
+        todos: todos,
+        selectedTodo: null,
+        showPopup: false,
+        searchQuery: "",
+        filterCategory: "home",
+      },
+    };
+    renderWithProviders(<Todo />, {
+      preloadedState: initialState
+    });
+   
+    fireEvent.click(screen.getByTestId('addBtn'));
+    fireEvent.change(screen.getByTestId('name'), { target: { value: 'Task3' } });
+    fireEvent.change(screen.getByTestId('category'), { target: { value: 'home' } });
+    fireEvent.change(screen.getByTestId('description'), { target: { value: 'Test Description' } });
+    fireEvent.click(screen.getByTestId('saveBtn'));
+    expect(screen.getByText("Task3")).toBeInTheDocument();
+  });*/
 });
