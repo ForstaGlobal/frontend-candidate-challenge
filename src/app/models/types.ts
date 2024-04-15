@@ -1,5 +1,9 @@
-import { TodoItem } from '../models/todo';
+import { TodoType } from '../models/todo';
 
 export interface AppState {
-  todos: TodoItem[];
+  todos: TodoType[];
+  showPopup: boolean;
+  selectedTodo: TodoType | null;
+  searchQuery: string | "";
+  filterCategory: string | "";
 }

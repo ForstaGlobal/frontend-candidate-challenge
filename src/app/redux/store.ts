@@ -1,8 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./counter/counterSlice";
 import todoReducer from "./todo/todosSlice";
 const rootReducer = combineReducers({
-    counter: counterReducer,
     todo: todoReducer
   })
 export function setupStore(preloadedState?: Partial<RootState>) {

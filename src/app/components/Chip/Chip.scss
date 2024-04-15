@@ -1,0 +1,21 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375em 0.75em;  
+  font-size: 1em; 
+  font-weight: bold;
+  border: 2px solid #eef1f3; 
+  border-radius: 1.25em; 
+  background-color: aquamarine;
+  color: black;
+  margin: 0.5em;
+}
+.chip:hover {
+    background-color: #0cefe7;
+    color: black;
+    cursor: pointer;
+}
+.chip-icon{
+    margin-right: 0.5em;
+}
+  

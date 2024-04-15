@@ -5,11 +5,7 @@ function Header() {
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand href="#">
-          <img
-            src={""}
-            alt="Forsta"
-            style={{ width: "50px", marginRight: "10px" }} 
-          />{" "}
+         Todo App
         </Navbar.Brand>
       </Container>
     </Navbar>

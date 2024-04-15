@@ -1,49 +1,33 @@
-import "./TodoList.scss"
-import TodoFooter from '../TodoFooter/TodoFooter';
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
-import { toggleTodo } from '../../redux/todo/todosSlice';
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store"; 
+import "./TodoList.scss";
+import TodoItem from "../TodoItem/TodoItem";
+import { useMemo } from "react";
 
 function TodoList() {
-    const todos = useSelector((state: RootState) => state.todo.todos);
+  const todos = useSelector(
+    (state: RootState) => state.todo.todos
+  );
+  const searchQuery = useSelector( (state: RootState) => state.todo.searchQuery);
+  const filterCategory = useSelector( (state: RootState) => state.todo.filterCategory);
 
-    const dispatch = useDispatch();
-  
-    const updateTodo = (id: number) => {
-      dispatch(toggleTodo(id));
-    };
-
-    const calcNumberOfIncompletedTasks = () => {
-        let count = 0;
-        todos.forEach(todo => {
-            if(!todo.completed) count++
-        })
-        return count
-    }
-
-    return (
-        <div className="todolist-container">
-            <div className="todos-container">
-                <div>
-                    {
-                        todos.map((todo, index) => (
-                            <div 
-                                className={`todo-item ${todo.completed && "todo-item-active"}`} 
-                                onClick={() => updateTodo(todo.id)}
-                            >
-                                {todo.task}
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
-            <div>
-                <TodoFooter 
-                    numberOfIncompleteTasks={calcNumberOfIncompletedTasks()}
-                />
-            </div>
-        </div>
-    )
+  const filteredTodos = useMemo(() => {
+    return todos.filter(todo =>
+      todo.category.toLowerCase().includes(filterCategory.toLowerCase()) &&
+      (todo.task.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (todo.description?.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      todo.category.toLowerCase().includes(searchQuery.toLowerCase()))
+    );
+  }, [todos, filterCategory, searchQuery]);   
+  return (
+    <div className="todolist-container">
+      <ul className="todos-container">
+        {filteredTodos.map((todo) => (
+          <TodoItem todo={todo} key={todo.id} />
+        ))}
+      </ul> 
+    </div>
+  );
 }
 
-export default TodoList
+export default TodoList;
