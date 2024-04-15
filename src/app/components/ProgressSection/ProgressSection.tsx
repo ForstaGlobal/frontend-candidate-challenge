@@ -1,13 +1,13 @@
-import "./ProgressSection.scss";
 import {  useSelector } from "react-redux";
 import ProgressCircle from "../ProgressCircle/ProgressCircle";
 import { RootState } from "../../redux/store";
+import { floor } from "lodash";
 
 function ProgressSection() {
   const todos = useSelector((state: RootState) => state.todo.todos); 
   const completedTodos = todos.filter(todo => todo.completed).length;
   const incompletedTodos = todos.filter(todo => !todo.completed).length;
-  const progress=   completedTodos/ todos.length*100;   
+  const progress=  floor(completedTodos/ todos.length*100,2);   
   return (
     <div className="section">  
       <ProgressCircle value={progress} />

@@ -1,6 +1,10 @@
+@import "../../styles/colors.scss";
+
 .input {    
     border: none;
-    width: 90%
+    width: 90%;
+    flex: 1;
+    padding-left: 10px; 
 }
 
 .input:focus {
@@ -9,11 +13,18 @@
  
 .section {
     background-color: white;
-    margin-top: 2rem;
+    margin-top: 1rem;
     border-radius: 0.25rem;
     padding: 1rem;
-    box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.329);
+    box-shadow: 0.1rem 0.1rem 1rem $dark-grey;
     display: flex;
     justify-content: space-between;
+    position: relative; 
+    align-items: center;
 } 
 
+.search-icon {
+     color: gray; 
+  }
+  
+ 

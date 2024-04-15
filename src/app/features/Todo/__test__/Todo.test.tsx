@@ -16,7 +16,7 @@ describe("Todo integration test", () => {
       id: 2,
       task: "Task2",
       description: "Test Description 2",
-      category: "work",
+      category: "home",
       completed: false,
     },
   ];
@@ -59,5 +59,39 @@ describe("Todo integration test", () => {
 
     const modal = screen.queryByTestId("modal");
     expect(modal).toBeInTheDocument();
+  });
+
+  it("should be able to search", async () => {
+    const initialState = {
+      todo: {
+        todos: todos,
+        selectedTodo: null,
+        showPopup: false,
+        searchQuery: "Task1",
+        filterCategory: "",
+      },
+    };
+    renderWithProviders(<Todo />, {
+      preloadedState: initialState
+    });
+    expect(screen.getByText("Task1")).toBeInTheDocument();
+    expect(screen.queryByText("Task2")).not.toBeInTheDocument();
+  });
+
+  it("should be able to filter", async () => {
+    const initialState = {
+      todo: {
+        todos: todos,
+        selectedTodo: null,
+        showPopup: false,
+        searchQuery: "",
+        filterCategory: "home",
+      },
+    };
+    renderWithProviders(<Todo />, {
+      preloadedState: initialState
+    });
+    expect(screen.getByText("Task2")).toBeInTheDocument();
+    expect(screen.queryByText("Task1")).not.toBeInTheDocument();
   });
 });

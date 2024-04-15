@@ -1,13 +1,14 @@
+@import "../../styles/colors.scss";
 .todo-card{
-    box-shadow: 0.1rem 0.1rem 1rem rgba(0, 0, 0, 0.329);
+    box-shadow: 0.1rem 0.1rem 1rem $grey;
     border-radius: '20px' 
 }
 
 .category-icon{
-    background-color: rgb(182, 36, 255);
+    background-color: $pink;
 }
 .action-btn{
-    background-color:aquamarine !important;
+    background-color:$aqua !important;
     color: white;
     font-weight: 900;
 }

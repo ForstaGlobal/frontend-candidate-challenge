@@ -1,5 +1,5 @@
 import { Modal } from 'react-bootstrap';
-import './Popup.scss'; // Import CSS file for styling
+import './Popup.scss'; 
 interface PopupProps {  
     isOpen: boolean;
     onClose: () => void;

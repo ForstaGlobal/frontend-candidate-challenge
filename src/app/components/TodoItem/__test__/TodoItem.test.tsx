@@ -10,14 +10,14 @@ describe("TodoItem component", () => {
         id: 1,
         task: "Test Task",
         description: "Test Description",
-        category: "work",
+        category: "Work",
         completed: false,
       };
     
     renderWithProviders(<TodoItem todo={todo} />);
     expect(screen.getByText("Test Task")).toBeInTheDocument();
     expect(screen.getByText("Test Description")).toBeInTheDocument();
-    expect(screen.getByText("work")).toBeInTheDocument();
+    expect(screen.getByText("Work")).toBeInTheDocument();
   });
 
   it("Able to display TodoItem as complete", () => {

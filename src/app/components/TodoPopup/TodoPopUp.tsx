@@ -1,5 +1,4 @@
 import Popup from "../Popup/Popup";
-import "./TodoPopUp.scss";
 import TodoForm from "../TodoForm/TodoForm";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";

@@ -1,4 +1,4 @@
-import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import "./FloatingButton.scss"; // Import custom CSS for styling
 interface FloatingButtonProps {
   onClick: () => void;
@@ -14,7 +14,7 @@ const FloatingButton = ({ onClick }: FloatingButtonProps) => {
           <Tooltip id={`tooltip-top`}>Click here to add new todo</Tooltip>
         }
       >
-        <button onClick={onClick} className="floating-button">
+        <button  data-testid="addBtn" onClick={onClick} className="floating-button">
           +
         </button>
       </OverlayTrigger>

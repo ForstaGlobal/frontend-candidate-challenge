@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@playwright/test": "^1.43.1",
     "@reduxjs/toolkit": "^2.2.3",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -15,6 +16,7 @@
     "@types/react-dom": "^18.2.24",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "dotenv": "^16.4.5",
     "final-form": "^4.20.10",
     "i": "^0.3.7",
     "lodash": "^4.17.21",

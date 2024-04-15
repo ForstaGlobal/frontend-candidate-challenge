@@ -40,7 +40,7 @@ function TodoItem({ todo }: TodoItemProps) {
     >
       <Card.Body> 
         <Card.Title style={getDecorationStyle()}>
-      {todo.completed && <i className="bi bi-check-circle-fill text-success me-2"></i>} {todo.task}</Card.Title>
+      {todo.completed && <i className="bi bi-check-circle-fill me-2"></i>} {todo.task}</Card.Title>
         <Card.Text style={getDecorationStyle()}> {todo.description}</Card.Text>
         <Chip  icon={getIcon(todo.category)} title= {todo.category} /> 
         <Dropdown className="float-end">

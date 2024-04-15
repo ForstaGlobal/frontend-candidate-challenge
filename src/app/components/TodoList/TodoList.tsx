@@ -18,7 +18,8 @@ function TodoList() {
       (todo.description?.toLowerCase().includes(searchQuery.toLowerCase())) ||
       todo.category.toLowerCase().includes(searchQuery.toLowerCase()))
     );
-  }, [todos, filterCategory, searchQuery]);   
+  }, [todos, filterCategory, searchQuery]);  
+   
   return (
     <div className="todolist-container">
       <ul className="todos-container">

@@ -28,6 +28,7 @@ function SearchTodo() {
 
   return (
     <div className="section">
+      <i className="search-icon bi bi-search"></i>
       <input
         className="input"
         value={todo}

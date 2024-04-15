@@ -51,7 +51,7 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
           <Field name="id" component="input" type="hidden" />
 
           <div className="form-group">
-            <label htmlFor="task">Task</label>
+            <label htmlFor="task">Task<span className="required">*</span></label>
             <Field name="task" >
               {({ input, meta }) => (
                 <div>
@@ -59,7 +59,6 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
                     {...input}
                     type="text"
                     placeholder="Enter task"
-                    className={meta.error && meta.touched ? "error" : ""}
                     data-testid="name"
                   />
                   {meta.error && meta.touched && (
@@ -70,15 +69,15 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
             </Field>
           </div>
           <div className="form-group">
-            <label htmlFor="category">Category</label>
-            <Field name="category" component="select" data-testid="category">
+            <label htmlFor="category">Category<span className="required">*</span></label>
+            <Field name="category" component="select" data-testid="category" >
               <option value="">Select category</option>
               <option value="home">Home</option>
               <option value="work">Work</option>
               <option value="personal">Personal</option>
               <option value="other">Other</option>
             </Field>
-            <Field name="category">
+            <Field name="category" >
               {({ meta }) =>
                 meta.error &&
                 meta.touched && <span className="error-msg">{meta.error}</span>
