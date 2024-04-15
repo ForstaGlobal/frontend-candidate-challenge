@@ -16,6 +16,14 @@ export default function App() {
     ]);
   };
 
+  const deleteTask = (id: string) => {
+    setTodos(todos.filter((item) => item.id != id));
+  };
+
+  const editTask = (id: string) => {
+    // TODO: implement edit functionality
+  };
+
   return (
     <>
       <header>
@@ -28,8 +36,11 @@ export default function App() {
         </p>
       </div>
       <TodoForm onTaskFormSubmit={(task) => saveTask(task)} />
-      {/* TODO: Update TodoList component to display active and completed tasks with actions */}
-      <TodoList todos={todos} />
+      <TodoList
+        todos={todos}
+        onDeleteTask={(id) => deleteTask(id)}
+        onEditTask={(id) => editTask(id)}
+      />
     </>
   );
 }

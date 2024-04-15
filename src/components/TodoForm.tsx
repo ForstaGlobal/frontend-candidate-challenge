@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa";
-import { MdClear } from "react-icons/md";
+import { CiCircleRemove } from "react-icons/ci";
 
 import "../styles/main.scss";
 
@@ -30,7 +30,7 @@ export const TodoForm = ({ onTaskFormSubmit }: TodoFormProps) => {
       {task ? (
         <>
           <span className="todo-clear-button" onClick={() => setTask("")}>
-            <MdClear size={24} />
+            <CiCircleRemove size={24} />
           </span>
         </>
       ) : null}
