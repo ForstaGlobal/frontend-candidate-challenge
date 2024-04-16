@@ -15,3 +15,17 @@
 .due-date{
     font-style: italic;
 }
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(10px);  
+      }
+      100% {
+        transform: translateX(0);
+      }
+  }
+  .shaking-icon {
+    animation: shake 0.5s ease-in-out infinite;
+  }

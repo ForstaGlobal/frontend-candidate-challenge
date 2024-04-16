@@ -9,21 +9,22 @@
   height: 100%;
   overflow: auto;
   background-color: $grey;
+  .popup-content {
+    background-color: $white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid $grey;
+    width: 80%;
+    max-width: 400px;
+    position: relative;
+  }
+  
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+  }
 }
 
-.popup-content {
-  background-color: $white;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid $grey;
-  width: 80%;
-  max-width: 400px;
-  position: relative;
-}
 
-.close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer;
-}

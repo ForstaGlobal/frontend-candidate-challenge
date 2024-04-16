@@ -1,6 +1,7 @@
 import React from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css'; // Import the styles
+import colors from '../../styles/colors';
 
 interface ProgressCircleProps {
     value: number;    
@@ -8,12 +9,12 @@ interface ProgressCircleProps {
 const ProgressCircle = ({ value }: ProgressCircleProps) => {
   const style= buildStyles({
     textSize: '16px',
-    pathColor: '#ff24da',
-    textColor: '#ff24da',
-    trailColor: '#f5f5f5',
+    pathColor: colors.lightPink,
+    textColor: colors.lightPink,
+    trailColor: colors.grey,
   });
   return (
-    <div style={{ width: '100px' }}>
+    <div style={{ width: '100px', padding:"10px" }}>
       <CircularProgressbar
         background={true}
         value={value}

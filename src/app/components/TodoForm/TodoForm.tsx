@@ -8,6 +8,8 @@ import { RootState } from "../../redux/store";
 import { CirclePicker } from "react-color";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import colors from "../../styles/colors";
+import moment from "moment";
 
 interface Props {
   hidePopup?: () => void;
@@ -19,7 +21,7 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
   );
   const initialValue = selectedTodo || {
     id: generateUniqueId(),
-    color: "#bd6ce5",
+    color: colors.darkPink,
   };
   const dispatch = useDispatch();
   const handleSubmit = (values: any) => {
@@ -101,6 +103,7 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
                     onChange={input.onChange}
                     showTimeInput
                     dateFormat="Pp"
+                    minDate={ moment().toDate() } 
                   />
                 </div>
               )}
@@ -124,6 +127,14 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
             <Field name="color">
               {({ input }) => (
                 <CirclePicker
+                  colors={[
+                    colors.red,
+                    colors.darkPink,
+                    colors.lightPink,
+                    colors.darkGreen,
+                    colors.green,
+                    colors.brown,
+                  ]}
                   width="100%"
                   color={input.value}
                   onChange={(color) => input.onChange(color.hex)}

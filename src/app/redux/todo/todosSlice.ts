@@ -20,6 +20,7 @@ const todosSlice = createSlice({
     },
     searchTodo: (state, action) => {
       state.searchQuery = action.payload.toLowerCase();
+      
     },
     updateTodo: (state, action) => {
       state.todos = state.todos.map((todo) => {

@@ -24,9 +24,9 @@ function TodoList() {
   return (
     <div className="todolist-container">
       {filteredTodos.length === 0 ? (
-        <p>No todo items found</p>
+        <p>No items found</p>
       ) : (
-        <ul className="todos-container">
+        <ul className="todos-container todo-scroll">
           {filteredTodos.map((todo) => (
             <TodoItem todo={todo} key={todo.id} />
           ))}

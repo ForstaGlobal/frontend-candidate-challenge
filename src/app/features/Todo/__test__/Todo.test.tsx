@@ -95,7 +95,7 @@ describe("Todo compoent and integration test", () => {
     expect(screen.queryByText("Task1")).not.toBeInTheDocument();
   });
 
-  /* it("should be able add new todo", async () => {
+ it("should be able add new todo", async () => {
     const initialState = {
       todo: {
         todos: todos,
@@ -115,5 +115,5 @@ describe("Todo compoent and integration test", () => {
     fireEvent.change(screen.getByTestId('description'), { target: { value: 'Test Description' } });
     fireEvent.click(screen.getByTestId('saveBtn'));
     expect(screen.getByText("Task3")).toBeInTheDocument();
-  });*/
+  });
 });

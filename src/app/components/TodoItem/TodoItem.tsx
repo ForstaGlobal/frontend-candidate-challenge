@@ -33,17 +33,19 @@ function TodoItem({ todo }: TodoItemProps) {
   });
   const getDueDate = (date: Date) => {
     const currentDate = moment();
-const targetDatetime = moment(date);
-const daysDifference = targetDatetime.diff(currentDate, 'days');
+    const targetDatetime = moment(date);
+    const daysDifference = targetDatetime.diff(currentDate, "days");
 
-let formattedDatetime = targetDatetime.format("DD.MM.YYYY • h:mm:ss A");
+    let formattedDatetime = targetDatetime.format("DD.MM.YYYY • h:mm:ss A");
 
-if (daysDifference > 0) {
-  formattedDatetime += ` • in ${daysDifference} days`;
-}
+    if (daysDifference > 0) {
+      formattedDatetime += ` • in ${daysDifference} days`;
+    }
 
-return formattedDatetime;
-  };
+    return formattedDatetime;
+  }; 
+
+  const duteDateDiff= moment(todo.dueDate).diff(moment(), 'days');
 
   return (
     <Card
@@ -60,9 +62,10 @@ return formattedDatetime;
         <Card.Text style={getDecorationStyle()}> {todo.description}</Card.Text>
 
         {todo.dueDate && (
-          <Card.Text style={getDecorationStyle()} className="due-date">
-            <i className="bi bi-clock"></i>{" "}
-            {getDueDate(todo.dueDate)}
+          <Card.Text style={getDecorationStyle()} className={`due-date ${ duteDateDiff<=0? "shaking-icon":""}`}>
+              <i className="bi bi-clock"></i>  {getDueDate(todo.dueDate)}
+              {duteDateDiff === 0 ? " You have a task due today" :
+              duteDateDiff <= 0 ? " Task not completed on time" : ""}
           </Card.Text>
         )}
         <Chip icon={getIcon(todo.category)} title={todo.category} />

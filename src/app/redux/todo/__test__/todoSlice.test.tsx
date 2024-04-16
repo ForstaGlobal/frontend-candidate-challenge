@@ -1,5 +1,5 @@
 import { AppState } from "../../../models/types";
-import todosReducer, { initialState, addTodo, removeTodo, toggleTodo, showHidePopup, selectTodo, updateTodo, searchTodo } from "../todosSlice";
+import todosReducer, { initialState, addTodo, removeTodo, toggleTodo, showHidePopup, selectTodo, updateTodo, searchTodo, filterByCategory } from "../todosSlice";
 
 describe("todosSlice reducers", () => {
   test("addTodo reducer", () => {
@@ -51,5 +51,11 @@ describe("todosSlice reducers", () => {
     const action = { type: searchTodo.type, payload: "search query" };
     const state = todosReducer(initialState, action);
     expect(state.searchQuery).toBe("search query");
+  });
+
+  test("filter reducer", () => {
+    const action = { type: filterByCategory.type, payload: "filter query" };
+    const state = todosReducer(initialState, action);
+    expect(state.filterCategory).toBe("filter query");
   });
 });
