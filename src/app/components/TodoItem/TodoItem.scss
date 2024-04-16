@@ -5,10 +5,13 @@
 }
 
 .category-icon{
-    background-color: $pink;
+    background-color: $dark-pink;
 }
 .action-btn{
     background-color:$aqua !important;
     color: white;
     font-weight: 900;
+} 
+.due-date{
+    font-style: italic;
 }

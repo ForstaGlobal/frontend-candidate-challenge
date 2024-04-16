@@ -1,17 +1,5 @@
 @import "../../styles/colors.scss";
-
-.input {    
-    border: none;
-    width: 90%;
-    flex: 1;
-    padding-left: 10px; 
-}
-
-.input:focus {
-    outline: none;
-}
- 
-.section {
+.progress-section {
     background-color: white;
     margin-top: 1rem;
     border-radius: 0.25rem;
@@ -19,11 +7,15 @@
     box-shadow: 0.1rem 0.1rem 1rem $dark-pink;
     display: flex; 
     position: relative; 
-    align-items: center;
+   
+    .completed-msg{ 
+        font-size: 17px;
+        top: 10px;
+        position: relative;
+        font-weight: bold;
+    }
+    .progress-msg{
+        top:1px;
+        font-size: 16px;
+    }
 } 
-
-.search-icon {
-     color: gray; 
-}
-  
- 

@@ -47,7 +47,7 @@ const todosSlice = createSlice({
       state.selectedTodo=state.todos.find(todo => todo.id === action.payload) || null; 
     },
     filterByCategory: (state, action: PayloadAction<string>) => {
-      if(action.payload === state.filterCategory){
+      if(action.payload === "ALL"){
         state.filterCategory = "";
       }else{
         state.filterCategory = action.payload;

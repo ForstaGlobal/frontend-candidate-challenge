@@ -1,4 +1,4 @@
-import "./TodoItem.scss" 
+import "./TodoItem.scss";
 import { TodoType } from "../../models/todo";
 import { useDispatch } from "react-redux";
 import {
@@ -7,9 +7,10 @@ import {
   toggleTodo,
   removeTodo,
 } from "../../redux/todo/todosSlice";
-import {  Card, Dropdown } from "react-bootstrap";
+import { Card, Dropdown } from "react-bootstrap";
 import Chip from "../Chip/Chip";
 import { getIcon } from "../../utils/utils";
+import moment from "moment";
 
 interface TodoItemProps {
   todo: TodoType;
@@ -30,21 +31,49 @@ function TodoItem({ todo }: TodoItemProps) {
   const getDecorationStyle = () => ({
     textDecoration: todo.completed ? "line-through" : "none",
   });
+  const getDueDate = (date: Date) => {
+    const currentDate = moment();
+const targetDatetime = moment(date);
+const daysDifference = targetDatetime.diff(currentDate, 'days');
+
+let formattedDatetime = targetDatetime.format("DD.MM.YYYY • h:mm:ss A");
+
+if (daysDifference > 0) {
+  formattedDatetime += ` • in ${daysDifference} days`;
+}
+
+return formattedDatetime;
+  };
 
   return (
-    <Card 
-      key={todo.id}       
+    <Card
+      key={todo.id}
       className={`todo-card mb-3  ${todo.completed ? "completed" : ""}`}
       style={{ backgroundColor: todo.color, color: "white" }}
       aria-label={todo.completed ? `${todo.task} (completed)` : todo.task}
     >
-      <Card.Body> 
+      <Card.Body>
         <Card.Title style={getDecorationStyle()}>
-      {todo.completed && <i className="bi bi-check-circle-fill me-2"></i>} {todo.task}</Card.Title>
+          {todo.completed && <i className="bi bi-check-circle-fill me-2"></i>}{" "}
+          {todo.task}
+        </Card.Title>
         <Card.Text style={getDecorationStyle()}> {todo.description}</Card.Text>
-        <Chip  icon={getIcon(todo.category)} title= {todo.category} /> 
+
+        {todo.dueDate && (
+          <Card.Text style={getDecorationStyle()} className="due-date">
+            <i className="bi bi-clock"></i>{" "}
+            {getDueDate(todo.dueDate)}
+          </Card.Text>
+        )}
+        <Chip icon={getIcon(todo.category)} title={todo.category} />
+
         <Dropdown className="float-end">
-          <Dropdown.Toggle variant="" id="dropdown-basic" data-testid="Action"  className="action-btn">
+          <Dropdown.Toggle
+            variant=""
+            id="dropdown-basic"
+            data-testid="Action"
+            className="action-btn"
+          >
             Actions
           </Dropdown.Toggle>
 
@@ -55,8 +84,11 @@ function TodoItem({ todo }: TodoItemProps) {
             <Dropdown.Item onClick={() => handleDelete(todo.id)}>
               Delete
             </Dropdown.Item>
-            <Dropdown.Item onClick={() => handleMarkAsComplete(todo.id)} data-testid="MarkAsComplete">
-              {todo.completed? "Mark as Incomplete": "Mark as Complete"}
+            <Dropdown.Item
+              onClick={() => handleMarkAsComplete(todo.id)}
+              data-testid="MarkAsComplete"
+            >
+              {todo.completed ? "Mark as Incomplete" : "Mark as Complete"}
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>

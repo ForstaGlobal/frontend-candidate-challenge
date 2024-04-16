@@ -70,7 +70,7 @@ input[type="text"]:focus,
 textarea:focus,
 select:focus {
   outline: none;
-  border-color:  $pink;
+  border-color:  $dark-pink;
 }
 
 .error {
@@ -103,4 +103,7 @@ select:focus {
   background-color: #aeb5bc;
   cursor: not-allowed;
   color: white;
+}
+.react-datepicker-wrapper {
+  width: 100%;
 }

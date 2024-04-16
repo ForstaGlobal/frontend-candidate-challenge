@@ -8,8 +8,10 @@
   border-radius: 1.25em; 
   background-color: $aqua;
   color: $black;
-  margin: 0.5em;
   transition: background-color 0.3s; 
+}
+.selected-chip{
+  background-color: $dark-aqua !important;
 }
 
 .chip:hover {

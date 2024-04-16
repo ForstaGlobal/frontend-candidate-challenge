@@ -20,7 +20,11 @@ export const getIcon = (category: string) => {
       return "bi-briefcase";
     case "personal":
       return "bi-person";
+    case "other":
+      
+    return "bi-question-circle";
     default:
-      return "bi-question-circle";
+      
+    return "bi-three-dots";
   }
 }; 

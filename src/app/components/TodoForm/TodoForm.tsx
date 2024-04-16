@@ -5,7 +5,9 @@ import { generateUniqueId } from "../../utils/utils";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo, updateTodo } from "../../redux/todo/todosSlice";
 import { RootState } from "../../redux/store";
-import {  CirclePicker} from "react-color";
+import { CirclePicker } from "react-color";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 interface Props {
   hidePopup?: () => void;
@@ -17,7 +19,7 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
   );
   const initialValue = selectedTodo || {
     id: generateUniqueId(),
-    color: "#b624ff",
+    color: "#bd6ce5",
   };
   const dispatch = useDispatch();
   const handleSubmit = (values: any) => {
@@ -51,8 +53,10 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
           <Field name="id" component="input" type="hidden" />
 
           <div className="form-group">
-            <label htmlFor="task">Task<span className="required">*</span></label>
-            <Field name="task" >
+            <label htmlFor="task">
+              Task<span className="required">*</span>
+            </label>
+            <Field name="task">
               {({ input, meta }) => (
                 <div>
                   <input
@@ -69,19 +73,37 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
             </Field>
           </div>
           <div className="form-group">
-            <label htmlFor="category">Category<span className="required">*</span></label>
-            <Field name="category" component="select" data-testid="category" >
+            <label htmlFor="category">
+              Category<span className="required">*</span>
+            </label>
+            <Field name="category" component="select" data-testid="category">
               <option value="">Select category</option>
               <option value="home">Home</option>
               <option value="work">Work</option>
               <option value="personal">Personal</option>
               <option value="other">Other</option>
             </Field>
-            <Field name="category" >
+            <Field name="category">
               {({ meta }) =>
                 meta.error &&
                 meta.touched && <span className="error-msg">{meta.error}</span>
               }
+            </Field>
+          </div>
+          <div className="form-group">
+            <label htmlFor="dueDate">Due Date</label>
+            <Field name="dueDate">
+              {({ input }) => (
+                <div>
+                  <DatePicker
+                    {...input}
+                    selected={input.value}
+                    onChange={input.onChange}
+                    showTimeInput
+                    dateFormat="Pp"
+                  />
+                </div>
+              )}
             </Field>
           </div>
           <div className="form-group">
@@ -91,7 +113,8 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
                 <textarea
                   {...input}
                   rows={3}
-                  placeholder="Enter description" data-testid="description"
+                  placeholder="Enter description"
+                  data-testid="description"
                 ></textarea>
               )}
             </Field>
@@ -100,8 +123,8 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
             <label htmlFor="color">Color</label>
             <Field name="color">
               {({ input }) => (
-                <CirclePicker    
-                 width="100%"
+                <CirclePicker
+                  width="100%"
                   color={input.value}
                   onChange={(color) => input.onChange(color.hex)}
                 />
@@ -112,7 +135,14 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
             <button type="button" onClick={hidePopup}>
               Cancel
             </button>
-            <button type="submit" data-testid="saveBtn" className={valid?"enable-btn": "disable-btn"} disabled={!valid} >Save</button>
+            <button
+              type="submit"
+              data-testid="saveBtn"
+              className={valid ? "enable-btn" : "disable-btn"}
+              disabled={!valid}
+            >
+              Save
+            </button>
           </div>
         </form>
       )}

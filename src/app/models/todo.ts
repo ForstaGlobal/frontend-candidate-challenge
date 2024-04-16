@@ -5,4 +5,5 @@ export interface TodoType {
     category: string;
     description: string;
     color?: string;
+    dueDate?: Date;
   }

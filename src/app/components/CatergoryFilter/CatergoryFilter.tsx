@@ -10,10 +10,12 @@ import "./CatergoryFilter.scss";
 const CategoryFilter: React.FC = () => {
   const todos = useSelector((state: RootState) => state.todo.todos);
   const searchQuery = useSelector((state: RootState) => state.todo.searchQuery);
+  const filterCategory = useSelector((state: RootState) => state.todo.filterCategory);
 
   const dispatch = useDispatch();
 
   const categories = useMemo(() => {
+    debugger;
     const filteredTodos = searchQuery
       ? todos.filter(
           (todo) =>
@@ -22,7 +24,7 @@ const CategoryFilter: React.FC = () => {
             todo.description?.toLowerCase().includes(searchQuery.toLowerCase())
         )
       : todos;
-    const categoryCounts: Record<string, number> = {};
+    const categoryCounts: Record<string, number> = {"ALL": todos.length};
     filteredTodos.forEach((todo: TodoType) => {
       categoryCounts[todo.category] = (categoryCounts[todo.category] || 0) + 1;
     });
@@ -44,6 +46,7 @@ const CategoryFilter: React.FC = () => {
           icon={getIcon(category.title)}
           title={`${category.title} (${category.count})`}
           onClick={() => filter(category.title)}
+          selected={filterCategory === category.title}
         />
       ))}
     </div>
