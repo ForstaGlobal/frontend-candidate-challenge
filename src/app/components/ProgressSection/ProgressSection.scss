@@ -1,21 +1,14 @@
-@import "../../styles/colors.scss";
+@import "../../styles/styles.scss";
 .progress-section {
-    background-color: white;
-    margin-top: 1rem;
-    border-radius: 0.25rem;
-    padding: 1rem;
-    box-shadow: 0.1rem 0.1rem 1rem $dark-pink;
-    display: flex; 
-    position: relative; 
-   
+    @include section;   
     .completed-msg{ 
-        font-size: 17px;
+        font-size: $font-size-medium;
         top: 10px;
         position: relative;
         font-weight: bold;
     }
     .progress-msg{
         top:1px; 
-        font-size: 16px;
+        font-size: $font-size-small;
     }
 } 

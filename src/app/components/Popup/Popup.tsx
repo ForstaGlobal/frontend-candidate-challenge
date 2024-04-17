@@ -5,8 +5,7 @@ interface PopupProps {
     onClose: () => void;
     children?: React.ReactNode;
 }
-
-const Popup = ({ isOpen, onClose, children }: PopupProps) => {
+const Popup :React.FC<PopupProps> = ({ isOpen, onClose, children }) =>   { 
   return (
     <Modal data-testid="modal" show={isOpen} onHide={onClose}>
       <Modal.Header closeButton>

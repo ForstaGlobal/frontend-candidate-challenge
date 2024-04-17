@@ -1,6 +1,6 @@
 export function generateUniqueId() {
   const timestamp = Date.now();
-  const randomNumber = Math.floor(Math.random() * 10000);  
+  const randomNumber = Math.floor(Math.random() * 10000);
   return timestamp.toString() + randomNumber.toString();
 }
 
@@ -21,10 +21,8 @@ export const getIcon = (category: string) => {
     case "personal":
       return "bi-person";
     case "other":
-      
-    return "bi-question-circle";
+      return "bi-question-circle";
     default:
-      
-    return "bi-three-dots";
+      return "bi-three-dots";
   }
-}; 
+};

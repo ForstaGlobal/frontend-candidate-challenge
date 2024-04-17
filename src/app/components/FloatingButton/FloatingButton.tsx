@@ -4,7 +4,7 @@ interface FloatingButtonProps {
   onClick: () => void;
 }
 
-const FloatingButton = ({ onClick }: FloatingButtonProps) => {
+const FloatingButton :React.FC<FloatingButtonProps> = ({ onClick }) =>   {
   return (
     <div className="floating-button-container">
       <OverlayTrigger

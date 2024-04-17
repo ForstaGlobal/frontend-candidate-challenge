@@ -24,7 +24,6 @@ const CategoryFilter: React.FC = () => {
           todo.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
           todo.category?.toLowerCase().includes(searchQuery.toLowerCase()))
     );
-    console.log(filterCategory.toLowerCase(), filteredTodos);
     const categoryCounts: Record<string, number> = { ALL: todos.length };
     filteredTodos.forEach((todo: TodoType) => {
       categoryCounts[todo.category] = (categoryCounts[todo.category] || 0) + 1;

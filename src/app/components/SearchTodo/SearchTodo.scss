@@ -1,29 +1,19 @@
-@import "../../styles/colors.scss";
-
-.input {    
+@import "../../styles/styles";
+.section {
+  @include section;
+  .search-icon {
+    color: gray;
+  }
+  .input {
     border: none;
     width: 90%;
     flex: 1;
-    padding-left: 10px; 
-}
-
-.input:focus {
-    outline: none;
-}
- 
-.section {
-    background-color: white;
-    margin-top: 1rem;
-    border-radius: 0.25rem;
-    padding: 1rem;
-    box-shadow: 0.1rem 0.1rem 1rem $dark-pink;
-    display: flex; 
-    position: relative; 
-    align-items: center;
-} 
-
-.search-icon {
-     color: gray; 
-}
+    padding-left: 10px;
   
- 
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+

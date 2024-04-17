@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import { searchTodo } from "../../redux/todo/todosSlice";
 import { debounce } from "lodash";
 
-function SearchTodo() {
+const SearchTodo: React.FC = () => {
+
   const [todo, setSearchTest] = useState("");
 
   const dispatch = useDispatch();

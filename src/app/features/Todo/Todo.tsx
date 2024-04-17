@@ -9,13 +9,15 @@ import "./Todo.scss";
 import SearchTodo from "../../components/SearchTodo/SearchTodo";
 import CatergoryFilter from "../../components/CatergoryFilter/CatergoryFilter";
 import { useCallback } from "react";
-function Todo() {
+
+const Todo: React.FC = () => { 
   const dispatch = useDispatch();
   const todos = useSelector((state: RootState) => state.todo.todos);
 
   const handleClick = useCallback(() => {
     dispatch(showHidePopup());
   }, [dispatch]);
+  
   return (
     <div className="todo">
       {todos.length > 0 ? (

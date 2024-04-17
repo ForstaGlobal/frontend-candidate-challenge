@@ -25,7 +25,6 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
   };
   const dispatch = useDispatch();
   const handleSubmit = (values: any) => {
-    console.log(values);
     if (!selectedTodo) {
       dispatch(addTodo(values));
     } else {
@@ -51,7 +50,8 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
       validate={validate}
       initialValues={initialValue}
       render={({ handleSubmit, valid }) => (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} 
+        className="todo-form">
           <Field name="id" component="input" type="hidden" />
 
           <div className="form-group">
@@ -94,7 +94,7 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
           </div>
           <div className="form-group">
             <label htmlFor="dueDate">Due Date</label>
-            <Field name="dueDate">
+            <Field name="dueDate"  >
               {({ input }) => (
                 <div>
                   <DatePicker
@@ -104,6 +104,7 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
                     showTimeInput
                     dateFormat="Pp"
                     minDate={ moment().toDate() } 
+                    autoComplete="off"
                   />
                 </div>
               )}
@@ -128,8 +129,8 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
               {({ input }) => (
                 <CirclePicker
                   colors={[
-                    colors.red,
                     colors.darkPink,
+                    colors.red,
                     colors.lightPink,
                     colors.darkGreen,
                     colors.green,

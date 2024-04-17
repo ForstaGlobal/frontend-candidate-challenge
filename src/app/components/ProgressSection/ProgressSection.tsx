@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import ProgressCircle from "../ProgressCircle/ProgressCircle";
 import { RootState } from "../../redux/store";
 import { floor } from "lodash";
-import "./ProgressSection.scss"; 
+import "./ProgressSection.scss";
 
-function ProgressSection() {
+const ProgressSection: React.FC = () => {
   const todos = useSelector((state: RootState) => state.todo.todos);
   const completedTodos = todos.filter((todo) => todo.completed).length;
   const progress = floor((completedTodos / todos.length) * 100, 2);
@@ -38,6 +38,6 @@ function ProgressSection() {
       </div>
     </div>
   );
-}
+};
 
 export default ProgressSection;

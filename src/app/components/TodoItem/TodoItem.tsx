@@ -15,7 +15,7 @@ import moment from "moment";
 interface TodoItemProps {
   todo: TodoType;
 }
-function TodoItem({ todo }: TodoItemProps) {
+const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
   const dispatch = useDispatch();
 
   const handleMarkAsComplete = (id: number) => {
@@ -35,17 +35,15 @@ function TodoItem({ todo }: TodoItemProps) {
     const currentDate = moment();
     const targetDatetime = moment(date);
     const daysDifference = targetDatetime.diff(currentDate, "days");
-
     let formattedDatetime = targetDatetime.format("DD.MM.YYYY • h:mm:ss A");
-
     if (daysDifference > 0) {
       formattedDatetime += ` • in ${daysDifference} days`;
     }
-
     return formattedDatetime;
   }; 
 
-  const duteDateDiff= moment(todo.dueDate).diff(moment(), 'days');
+  const  duteDateDiff= moment(todo.dueDate).diff(moment(), 'days');
+ 
 
   return (
     <Card

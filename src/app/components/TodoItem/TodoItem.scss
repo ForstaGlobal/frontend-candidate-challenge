@@ -1,31 +1,31 @@
-@import "../../styles/colors.scss";
-.todo-card{
-    box-shadow: 0.1rem 0.1rem 1rem $grey;
-    border-radius: '20px' 
-}
+@import "../../styles/styles";
+.todo-card {
+  box-shadow: 0.1rem 0.1rem 1rem $grey;
+  border-radius: $border-radius;
+  font: $font;
 
-.category-icon{
+  .category-icon {
     background-color: $dark-pink;
-}
-.action-btn{
-    background-color:$aqua !important;
+  }
+  .action-btn {
+    background-color: $aqua !important;
     color: white;
-    font-weight: 900;
-} 
-.due-date{
+  }
+  .due-date {
     font-style: italic;
-}
-@keyframes shake {
+  }
+  @keyframes shake {
     0% {
-        transform: translateX(0);
-      }
-      50% {
-        transform: translateX(10px);  
-      }
-      100% {
-        transform: translateX(0);
-      }
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(10px);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
   .shaking-icon {
     animation: shake 0.5s ease-in-out infinite;
   }
+}

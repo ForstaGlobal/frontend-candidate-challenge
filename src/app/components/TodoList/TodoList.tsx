@@ -3,8 +3,8 @@ import { RootState } from "../../redux/store";
 import "./TodoList.scss";
 import TodoItem from "../TodoItem/TodoItem";
 import { useMemo } from "react";
-
-function TodoList() {
+ 
+const TodoList: React.FC = () => {
   const todos = useSelector((state: RootState) => state.todo.todos);
   const searchQuery = useSelector((state: RootState) => state.todo.searchQuery);
   const filterCategory = useSelector(

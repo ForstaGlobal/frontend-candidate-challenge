@@ -1,24 +1,27 @@
-@import "../../styles/colors.scss";
+@import "../../styles/styles.scss";
+
 .chip {
   display: inline-flex;
   align-items: center;
   padding: 0.375em 0.75em;  
-  font: bold 1em sans-serif; 
+  margin-right: 5px;
+  font: $bold-font; 
   border: 2px solid $white; 
   border-radius: 1.25em; 
   background-color: $aqua;
   color: $black;
   transition: background-color 0.3s; 
-}
-.selected-chip{
-  background-color: $dark-aqua !important;
-}
 
-.chip:hover {
-  background-color: $dark-aqua;
-  cursor: pointer;
-}
+  &:hover {
+    background-color: $dark-aqua;
+    cursor: pointer;
+  }
 
-.chip-icon {
-  margin-right: 0.5em;
+  &.selected-chip {
+    background-color: $dark-aqua !important;
+  }
+
+  .chip-icon {
+    margin-right: 0.5em;
+  }
 }
