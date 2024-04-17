@@ -148,6 +148,7 @@ span {
           width: 24px;
           accent-color:  variables.$primary-color;
           cursor: pointer;
+          flex-shrink: 0;
         }
         .mark-done{
           text-decoration: line-through;
@@ -175,4 +176,27 @@ span {
 .no-tasks {
   text-align: center;
   margin: 40px;
+}
+
+dialog {
+  border: none;
+  border-radius: 8px;
+  width: 90%;
+  @include mixins.lg{
+    width: 80%;
+  }
+  
+
+  .modal-close{
+    position: absolute;
+    right: 12px;
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    padding: 8px;
+    cursor: pointer;
+    &:hover {
+          background-color: variables.$shadow-color;
+        }
+  }
 }
