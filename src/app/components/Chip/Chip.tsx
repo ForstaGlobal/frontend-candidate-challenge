@@ -9,13 +9,16 @@ interface ChipProps {
   selected?: boolean;
 }
 
-const Chip: React.FC<ChipProps> = ({ icon, title, onClick,selected }) => {
+const Chip: React.FC<ChipProps> = ({ icon, title, onClick, selected }) => {
   const onChipClick = () => {
     onClick?.();
   };
 
   return (
-    <span className={`chip ${selected && "selected-chip"} ` } onClick={onChipClick}>
+    <span
+      className={`chip ${selected && "selected-chip"} `}
+      onClick={onChipClick}
+    >
       <i className={`bi ${icon} chip-icon`}></i> {toCamelCase(title)}
     </span>
   );

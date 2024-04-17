@@ -1,21 +1,21 @@
-import { render , screen, fireEvent } from "@testing-library/react";
-import '@testing-library/jest-dom'
-import ErrorBoundary from '../ErrorBoundary';
+import { render, screen, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import ErrorBoundary from "../ErrorBoundary";
 
-describe('ErrorBoundary', () => {
-  it('renders children when there is no error', () => {
+describe("ErrorBoundary", () => {
+  it("renders children when there is no error", () => {
     render(
       <ErrorBoundary>
         <div data-testid="child">Child component</div>
       </ErrorBoundary>
     );
 
-    const childElement = screen.getByTestId('child');
+    const childElement = screen.getByTestId("child");
     expect(childElement).toBeInTheDocument();
   });
 
-  it('renders error message when there is an error', () => {
-    const errorMessage = 'Custom error message';
+  it("renders error message when there is an error", () => {
+    const errorMessage = "Custom error message";
 
     render(
       <ErrorBoundary errorMessage={errorMessage}>
@@ -29,6 +29,6 @@ describe('ErrorBoundary', () => {
 });
 
 function ChildWithError() {
-  throw new Error('Test error');
+  throw new Error("Test error");
   return <div>Child component</div>;
 }

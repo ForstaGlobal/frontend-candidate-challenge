@@ -1,14 +1,14 @@
 @import "../../styles/styles.scss";
 .progress-section {
-    @include section;   
-    .completed-msg{ 
-        font-size: $font-size-medium;
-        top: 10px;
-        position: relative;
-        font-weight: bold;
-    }
-    .progress-msg{
-        top:1px; 
-        font-size: $font-size-small;
-    }
-} 
+  @include section;
+  .completed-msg {
+    font-size: $font-size-medium;
+    top: 10px;
+    position: relative;
+    font-weight: bold;
+  }
+  .progress-msg {
+    top: 1px;
+    font-size: $font-size-small;
+  }
+}

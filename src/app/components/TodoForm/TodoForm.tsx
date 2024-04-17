@@ -50,8 +50,7 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
       validate={validate}
       initialValues={initialValue}
       render={({ handleSubmit, valid }) => (
-        <form onSubmit={handleSubmit} 
-        className="todo-form">
+        <form onSubmit={handleSubmit} className="todo-form">
           <Field name="id" component="input" type="hidden" />
 
           <div className="form-group">
@@ -94,7 +93,7 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
           </div>
           <div className="form-group">
             <label htmlFor="dueDate">Due Date</label>
-            <Field name="dueDate"  >
+            <Field name="dueDate">
               {({ input }) => (
                 <div>
                   <DatePicker
@@ -103,7 +102,7 @@ const TodoForm: React.FC<Props> = ({ hidePopup }) => {
                     onChange={input.onChange}
                     showTimeInput
                     dateFormat="Pp"
-                    minDate={ moment().toDate() } 
+                    minDate={moment().toDate()}
                     autoComplete="off"
                   />
                 </div>

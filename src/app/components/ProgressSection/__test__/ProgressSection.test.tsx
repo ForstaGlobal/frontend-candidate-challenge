@@ -18,7 +18,7 @@ describe("Progress Section component", () => {
       description: "Test Description",
       category: "Work",
       completed: false,
-    }
+    },
   ];
   test("Should show complete task", async () => {
     const initialState = {
@@ -34,6 +34,5 @@ describe("Progress Section component", () => {
       preloadedState: initialState,
     });
     expect(screen.getByText("50%")).toBeInTheDocument();
-  }); 
+  });
 });
-  

@@ -40,10 +40,9 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
       formattedDatetime += ` • in ${daysDifference} days`;
     }
     return formattedDatetime;
-  }; 
+  };
 
-  const  duteDateDiff= moment(todo.dueDate).diff(moment(), 'days');
- 
+  const duteDateDiff = moment(todo.dueDate).diff(moment(), "days");
 
   return (
     <Card
@@ -60,10 +59,16 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
         <Card.Text style={getDecorationStyle()}> {todo.description}</Card.Text>
 
         {todo.dueDate && (
-          <Card.Text style={getDecorationStyle()} className={`due-date ${ duteDateDiff<=0? "shaking-icon":""}`}>
-              <i className="bi bi-clock"></i>  {getDueDate(todo.dueDate)}
-              {duteDateDiff === 0 ? " You have a task due today" :
-              duteDateDiff <= 0 ? " Task not completed on time" : ""}
+          <Card.Text
+            style={getDecorationStyle()}
+            className={`due-date ${duteDateDiff <= 0 ? "shaking-icon" : ""}`}
+          >
+            <i className="bi bi-clock"></i> {getDueDate(todo.dueDate)}
+            {duteDateDiff === 0
+              ? " You have a task due today"
+              : duteDateDiff <= 0
+              ? " Task not completed on time"
+              : ""}
           </Card.Text>
         )}
         <Chip icon={getIcon(todo.category)} title={todo.category} />
@@ -96,6 +101,6 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
       </Card.Body>
     </Card>
   );
-}
+};
 
 export default TodoItem;

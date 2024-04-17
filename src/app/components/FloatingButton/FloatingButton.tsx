@@ -4,7 +4,7 @@ interface FloatingButtonProps {
   onClick: () => void;
 }
 
-const FloatingButton :React.FC<FloatingButtonProps> = ({ onClick }) =>   {
+const FloatingButton: React.FC<FloatingButtonProps> = ({ onClick }) => {
   return (
     <div className="floating-button-container">
       <OverlayTrigger
@@ -14,7 +14,11 @@ const FloatingButton :React.FC<FloatingButtonProps> = ({ onClick }) =>   {
           <Tooltip id={`tooltip-top`}>Click here to add new todo</Tooltip>
         }
       >
-        <button  data-testid="addBtn" onClick={onClick} className="floating-button">
+        <button
+          data-testid="addBtn"
+          onClick={onClick}
+          className="floating-button"
+        >
           +
         </button>
       </OverlayTrigger>

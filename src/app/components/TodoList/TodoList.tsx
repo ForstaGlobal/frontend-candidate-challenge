@@ -3,7 +3,7 @@ import { RootState } from "../../redux/store";
 import "./TodoList.scss";
 import TodoItem from "../TodoItem/TodoItem";
 import { useMemo } from "react";
- 
+
 const TodoList: React.FC = () => {
   const todos = useSelector((state: RootState) => state.todo.todos);
   const searchQuery = useSelector((state: RootState) => state.todo.searchQuery);
@@ -34,6 +34,6 @@ const TodoList: React.FC = () => {
       )}
     </div>
   );
-}
+};
 
 export default TodoList;

@@ -10,21 +10,21 @@ import SearchTodo from "../../components/SearchTodo/SearchTodo";
 import CatergoryFilter from "../../components/CatergoryFilter/CatergoryFilter";
 import { useCallback } from "react";
 
-const Todo: React.FC = () => { 
+const Todo: React.FC = () => {
   const dispatch = useDispatch();
   const todos = useSelector((state: RootState) => state.todo.todos);
 
   const handleClick = useCallback(() => {
     dispatch(showHidePopup());
   }, [dispatch]);
-  
+
   return (
     <div className="todo">
       {todos.length > 0 ? (
         <>
           <ProgressSection />
-          <SearchTodo />          
-          <CatergoryFilter/>
+          <SearchTodo />
+          <CatergoryFilter />
           <TodoList />
         </>
       ) : (
@@ -37,6 +37,6 @@ const Todo: React.FC = () => {
       <FloatingButton onClick={handleClick} />
     </div>
   );
-}
+};
 
 export default Todo;

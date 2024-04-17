@@ -5,7 +5,6 @@ import { searchTodo } from "../../redux/todo/todosSlice";
 import { debounce } from "lodash";
 
 const SearchTodo: React.FC = () => {
-
   const [todo, setSearchTest] = useState("");
 
   const dispatch = useDispatch();
@@ -38,6 +37,6 @@ const SearchTodo: React.FC = () => {
       />
     </div>
   );
-}
+};
 
 export default SearchTodo;

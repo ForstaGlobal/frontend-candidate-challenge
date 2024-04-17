@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
-import { Container } from "react-bootstrap"; 
+import { Container } from "react-bootstrap";
 
 const AppLayout = () => {
-  return ( 
-      <Container>
-        <Outlet />
-       </Container> 
+  return (
+    <Container>
+      <Outlet />
+    </Container>
   );
 };
 
