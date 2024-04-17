@@ -143,14 +143,14 @@ span {
         display: flex;
         align-items: center;
         gap: 8px;
-        input{
+        input {
           height: 24px;
           width: 24px;
-          accent-color:  variables.$primary-color;
+          accent-color: variables.$primary-color;
           cursor: pointer;
           flex-shrink: 0;
         }
-        .mark-done{
+        .mark-done {
           text-decoration: line-through;
           font-style: italic;
         }
@@ -182,12 +182,11 @@ dialog {
   border: none;
   border-radius: 8px;
   width: 90%;
-  @include mixins.lg{
+  @include mixins.lg {
     width: 80%;
   }
-  
 
-  .modal-close{
+  .modal-close {
     position: absolute;
     right: 12px;
     border-radius: 50%;
@@ -196,7 +195,37 @@ dialog {
     padding: 8px;
     cursor: pointer;
     &:hover {
-          background-color: variables.$shadow-color;
-        }
+      background-color: variables.$shadow-color;
+    }
+  }
+
+  .delete-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h3,
+    p {
+      text-align: center;
+    }
+
+    button {
+      background-color: variables.$primary-color;
+      padding: 10px 20px;
+      border-radius: 5px;
+      outline: none;
+      border: none;
+      width: 100%;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      font-size: variables.$font-size;
+      color: variables.$background-color;
+      cursor: pointer;
+      @include mixins.lg {
+        width: 20%;
+      }
+      justify-self: center;
+    }
   }
 }
