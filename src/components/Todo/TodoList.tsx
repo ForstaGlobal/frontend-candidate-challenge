@@ -1,5 +1,5 @@
 import React from "react";
-import { Todo } from "../types";
+import { Todo } from "../../types";
 import { CiEdit } from "react-icons/ci";
 import { CiTrash } from "react-icons/ci";
 import { FcTodoList } from "react-icons/fc";

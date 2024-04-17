@@ -1,7 +1,7 @@
 import React from "react";
 
 import { render, screen } from "@testing-library/react";
-import { TodoForm } from "../../components/TodoForm";
+import { TodoForm } from "../../components/Todo/TodoForm";
 
 describe("TodoForm", () => {
   it("renders app", () => {

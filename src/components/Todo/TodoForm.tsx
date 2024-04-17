@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { CiCircleRemove } from "react-icons/ci";
 
-import "../styles/main.scss";
+import "../../styles/main.scss";
 
 type TodoFormProps = {
   onTaskFormSubmit: (task: string) => void;

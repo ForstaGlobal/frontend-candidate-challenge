@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import "../styles/main.scss";
-import { Todo } from "../types";
+import "../../styles/main.scss";
+import { Todo } from "../../types";
 
 type TaskProps = {
   todo: Todo;
