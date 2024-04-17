@@ -135,13 +135,25 @@ span {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        // &:not(:last-child) {
-        //   margin-bottom: 12px;
-        // }
       }
     }
 
     &-item {
+      &-task {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        input{
+          height: 24px;
+          width: 24px;
+          accent-color:  variables.$primary-color;
+          cursor: pointer;
+        }
+        .mark-done{
+          text-decoration: line-through;
+          font-style: italic;
+        }
+      }
       &-actions {
         display: flex;
         gap: 20px;

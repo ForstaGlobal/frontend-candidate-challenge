@@ -12,7 +12,7 @@ export default function App() {
   const saveTask = (task: string) => {
     setTodos([
       ...todos,
-      { id: Math.random().toString(), task, isCompleted: false },
+      { id: Math.random().toString(), task, isComplete: false },
     ]);
   };
 
@@ -22,6 +22,14 @@ export default function App() {
 
   const editTask = (id: string) => {
     // TODO: implement edit functionality
+  };
+
+  const toggleComplete = (id: string, value: boolean) => {
+    setTodos(
+      todos.map((item: Todo) =>
+        item.id === id ? { ...item, isComplete: value } : item
+      )
+    );
   };
 
   return (
@@ -40,6 +48,7 @@ export default function App() {
         todos={todos}
         onDeleteTask={(id) => deleteTask(id)}
         onEditTask={(id) => editTask(id)}
+        onToggleComplete={(id, value) => toggleComplete(id, value)}
       />
     </>
   );

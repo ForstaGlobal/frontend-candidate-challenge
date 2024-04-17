@@ -3,16 +3,20 @@ import { Todo } from "../types";
 import { CiEdit } from "react-icons/ci";
 import { CiTrash } from "react-icons/ci";
 import { FcTodoList } from "react-icons/fc";
+import Task from "./Task";
 
 type TodoListProps = {
   todos: Todo[];
   onDeleteTask: (id: string) => void;
   onEditTask: (id: string) => void;
+  onToggleComplete: (id: string, isComplete: boolean) => void;
 };
+
 export const TodoList = ({
   todos,
   onDeleteTask,
   onEditTask,
+  onToggleComplete,
 }: TodoListProps) => {
   const deleteTask = (todo: Todo) => {
     const res = window.confirm(`Are you sure you want to delete ${todo.task}`);
@@ -27,14 +31,22 @@ export const TodoList = ({
       {todos.length ? (
         todos.map((item, i) => (
           <li key={i}>
-            <span data-testid={`todo${i}`}>{item.task}</span>
+            <Task
+              todo={item}
+              onToggleComplete={(isComplete) =>
+                onToggleComplete(item.id, isComplete)
+              }
+            />
+
             <div className="todo-list-item-actions">
-              <span
-                className="todo-list-item-edit"
-                onClick={() => onEditTask(item.id)}
-              >
-                <CiEdit size={24} />
-              </span>
+              {!item.isComplete && (
+                <span
+                  className="todo-list-item-edit"
+                  onClick={() => onEditTask(item.id)}
+                >
+                  <CiEdit size={24} />
+                </span>
+              )}
               <span
                 className="todo-list-item-delete"
                 onClick={() => deleteTask(item)}

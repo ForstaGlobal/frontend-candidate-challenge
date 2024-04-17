@@ -7,7 +7,12 @@ describe("TodoList", () => {
   it("renders app", () => {
     const submit = () => {};
     const todoForm = render(
-      <TodoList todos={[]} onDeleteTask={() => {}} onEditTask={() => {}} />
+      <TodoList
+        todos={[]}
+        onDeleteTask={() => {}}
+        onEditTask={() => {}}
+        onToggleComplete={() => {}}
+      />
     );
     expect(todoForm).toBeDefined();
   });
