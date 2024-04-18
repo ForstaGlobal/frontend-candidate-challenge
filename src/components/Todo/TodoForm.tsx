@@ -27,7 +27,10 @@ export const TodoForm = ({ onTaskFormSubmit, todo }: TodoFormProps) => {
   };
 
   return (
-    <form className="todo-form" onSubmit={onFormSubmit}>
+    <form
+      className={todo ? "todo-form todo-form--edit-mode" : "todo-form"}
+      onSubmit={onFormSubmit}
+    >
       <input
         placeholder="Enter what needs to be done"
         type="text"

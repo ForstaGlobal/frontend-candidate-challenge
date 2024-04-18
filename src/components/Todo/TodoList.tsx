@@ -42,7 +42,11 @@ export const TodoList = ({
   };
 
   const EditModal = () => (
-    <Modal isOpen={openEditModal} onClose={() => closeEditModal()}>
+    <Modal
+      title="Edit task"
+      isOpen={openEditModal}
+      onClose={() => closeEditModal()}
+    >
       <TodoForm
         todo={taskInEditMode}
         onTaskFormSubmit={(task, id) => {
@@ -75,14 +79,18 @@ export const TodoList = ({
   };
 
   const DeleteModal = () => (
-    <Modal isOpen={openDeleteModal} onClose={() => closeDeleteModal()}>
+    <Modal
+      title="Delete task"
+      isOpen={openDeleteModal}
+      onClose={() => closeDeleteModal()}
+    >
       <div className="delete-modal">
         {taskToDelete ? (
           <>
-            <p>Are you sure you want to delete</p>
-            <p>
-              <strong>{taskToDelete.task}</strong>
-            </p>
+            <p>Are you sure you want to delete this task?</p>
+
+            <strong>{taskToDelete.task}</strong>
+
             <button onClick={() => deleteTask(taskToDelete)}>yes</button>
           </>
         ) : (

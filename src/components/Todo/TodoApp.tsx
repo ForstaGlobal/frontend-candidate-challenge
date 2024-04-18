@@ -10,8 +10,8 @@ export default function TodoApp() {
 
   const saveTask = (task: string) => {
     setTodos([
-      ...todos,
       { id: Math.random().toString(), task, isComplete: false },
+      ...todos,
     ]);
   };
 
