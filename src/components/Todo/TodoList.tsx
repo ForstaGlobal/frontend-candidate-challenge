@@ -16,88 +16,79 @@ type TodoListProps = {
   onToggleComplete: (id: string, isComplete: boolean) => void;
 };
 
+type ModalCtx = {
+  mode: "EDIT" | "DELETE";
+  title: string;
+  todo: Todo;
+};
+
 export const TodoList = ({
   todos,
   onDeleteTask,
   onEditTask,
   onToggleComplete,
 }: TodoListProps) => {
-  const [openEditModal, setOpenEditModal] = useState(false);
-  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [modalCtx, setModalCtx] = useState<ModalCtx>();
 
-  const [taskInEditMode, setTaskInEditMode] = useState<Todo | undefined>(
-    undefined
+  const openEditForm = (todo: Todo) => {
+    setModalCtx({ mode: "EDIT", title: "Edit task", todo });
+    setOpenModal(true);
+  };
+
+  const openDeleteConfirmation = (todo: Todo) => {
+    setModalCtx({ mode: "DELETE", title: "Delete todo", todo });
+    setOpenModal(true);
+  };
+
+  const closeModal = () => {
+    setModalCtx(undefined);
+    setOpenModal(false);
+  };
+
+  const editTodo = (id: string, task: string) => {
+    onEditTask(id, task);
+    closeModal();
+  };
+
+  const deleteTodo = (id: string) => {
+    onDeleteTask(id);
+    closeModal();
+  };
+
+  const TaskModal = () => (
+    <>
+      {modalCtx && (
+        <Modal
+          title={modalCtx.title}
+          isOpen={openModal}
+          onClose={() => closeModal()}
+        >
+          {/* Delete mode */}
+          {modalCtx.mode === "DELETE" && (
+            <div className="delete-modal">
+              <p>Are you sure you want to delete this task?</p>
+              <strong>{modalCtx.todo.task}</strong>
+              <button onClick={() => deleteTodo(modalCtx.todo.id)}>yes</button>
+            </div>
+          )}
+          {/* edit mode */}
+          {modalCtx.mode === "EDIT" && (
+            <TodoForm
+              todo={modalCtx.todo}
+              onTaskFormSubmit={(task) => editTodo(modalCtx.todo.id, task)}
+            />
+          )}
+        </Modal>
+      )}
+    </>
   );
 
-  const [taskToDelete, setTaskToDelete] = useState<Todo | undefined>(undefined);
-
-  const editTodo = (todo: Todo) => {
-    setTaskInEditMode(todo);
-    setOpenEditModal(true);
-  };
-
-  const closeEditModal = () => {
-    setTaskInEditMode(undefined);
-    setOpenEditModal(false);
-  };
-
-  const EditModal = () => (
-    <Modal
-      title="Edit task"
-      isOpen={openEditModal}
-      onClose={() => closeEditModal()}
-    >
-      <TodoForm
-        todo={taskInEditMode}
-        onTaskFormSubmit={(task, id) => {
-          if (!id) {
-            throw new Error("Nothing to edit");
-          }
-          onEditTask(id, task);
-          closeEditModal();
-        }}
-      />
-    </Modal>
-  );
-
-  const deleteTodo = (todo: Todo) => {
-    setTaskToDelete(todo);
-    setOpenDeleteModal(true);
-  };
-
-  const closeDeleteModal = () => {
-    setTaskToDelete(undefined);
-    setOpenDeleteModal(false);
-  };
-
-  const deleteTask = (todo: Todo | undefined) => {
-    if (!todo) {
-      return;
-    }
-    onDeleteTask(todo.id);
-    closeDeleteModal();
-  };
-
-  const DeleteModal = () => (
-    <Modal
-      title="Delete task"
-      isOpen={openDeleteModal}
-      onClose={() => closeDeleteModal()}
-    >
-      <div className="delete-modal">
-        {taskToDelete ? (
-          <>
-            <p>Are you sure you want to delete this task?</p>
-
-            <strong>{taskToDelete.task}</strong>
-
-            <button onClick={() => deleteTask(taskToDelete)}>yes</button>
-          </>
-        ) : (
-          "Nothing to delete"
-        )}
-      </div>
-    </Modal>
+  const EmptyListState = () => (
+    <div className="no-tasks">
+      <FcTodoList size={50} />
+      <p>You have no tasks. Add one now!</p>
+    </div>
   );
 
   return (
@@ -117,14 +108,14 @@ export const TodoList = ({
                 {!item.isComplete && (
                   <span
                     className="todo-list-item-edit"
-                    onClick={() => editTodo(item)}
+                    onClick={() => openEditForm(item)}
                   >
                     <CiEdit size={24} />
                   </span>
                 )}
                 <span
                   className="todo-list-item-delete"
-                  onClick={() => deleteTodo(item)}
+                  onClick={() => openDeleteConfirmation(item)}
                 >
                   <CiTrash size={24} />
                 </span>
@@ -132,14 +123,10 @@ export const TodoList = ({
             </li>
           ))
         ) : (
-          <div className="no-tasks">
-            <FcTodoList size={50} />
-            <p>You have no tasks. Add one now!</p>
-          </div>
+          <EmptyListState />
         )}
       </ul>
-      <EditModal />
-      <DeleteModal />
+      <TaskModal />
     </>
   );
 };
