@@ -1,19 +1,28 @@
-import React, { useState } from "react";
-
 import { TodoList } from "./components/TodoList";
-
-import "./styles.scss";
+import "./styles/main.scss";
 
 export default function App() {
-  const [todos] = useState([
-    { text: "Buy milk", done: true },
-    { text: "Buy bread", done: false },
-  ]);
+  const Header = () => (
+    <header>
+      <div className="forsta-logo"></div>
+    </header>
+  );
+
+  const IntroSection = () => (
+    <div className="intro">
+      <h2>Hi there! Let's get something done.</h2>
+      <p>
+        <i>Organize your plans here.</i>
+      </p>
+    </div>
+  );
 
   return (
-    <div className="todoListApp">
-      <div className="forsta-logo" />
-      <TodoList todos={todos} />
-    </div>
+    <>
+      <Header />
+      <IntroSection />
+      {/* TODO: Add Todo application */}
+      <TodoList todos={[]} />
+    </>
   );
 }
