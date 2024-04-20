@@ -4,7 +4,7 @@ import "./styles/main.scss";
 export default function App() {
   const Header = () => (
     <header>
-      <div className="forsta-logo"></div>
+      <div data-testid={"app_logo"} className="forsta-logo"></div>
     </header>
   );
 

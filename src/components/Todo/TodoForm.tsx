@@ -27,10 +27,12 @@ export const TodoForm = ({ onTaskFormSubmit, todo }: TodoFormProps) => {
 
   return (
     <form
+      name="todo-form"
       className={todo ? "todo-form todo-form--edit-mode" : "todo-form"}
       onSubmit={onFormSubmit}
     >
       <input
+        data-testid={`${todo ? "edit" : "create"}-input`}
         placeholder="Enter what needs to be done"
         type="text"
         name="task"
@@ -40,12 +42,21 @@ export const TodoForm = ({ onTaskFormSubmit, todo }: TodoFormProps) => {
       />
       {task ? (
         <>
-          <span className="todo-clear-button" onClick={() => setTask("")}>
+          <span
+            data-testid="clear-input"
+            className="todo-clear-button"
+            onClick={() => setTask("")}
+          >
             <CiCircleRemove size={24} />
           </span>
         </>
       ) : null}
-      <button className="todo-submit-button" type="submit" disabled={!task}>
+      <button
+        data-testid="task-submit"
+        className="todo-submit-button"
+        type="submit"
+        disabled={!task}
+      >
         <FaPlus color="#FFFFFF" />
         <span>{todo ? "Save" : "Add task"} </span>
       </button>

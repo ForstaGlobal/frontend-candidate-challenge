@@ -4,7 +4,7 @@ import { CiTrash } from "react-icons/ci";
 import { FcTodoList } from "react-icons/fc";
 import Task from "./Task";
 import { useState } from "react";
-import Modal from "../Modal";
+import { Modal } from "../Modal";
 import { TodoForm } from "./TodoForm";
 
 type ModalCtx = {
@@ -73,7 +73,7 @@ export const TodoList = ({
             <div className="delete-modal">
               <p>Are you sure you want to delete this task?</p>
               <strong>{modalCtx.todo.task}</strong>
-              <button onClick={() => deleteTodo(modalCtx.todo.id)}>yes</button>
+              <button onClick={() => deleteTodo(modalCtx.todo.id)}>Yes</button>
             </div>
           )}
           {/* edit mode */}
@@ -103,6 +103,7 @@ export const TodoList = ({
               <div className="todo-list-item-actions">
                 {!item.isDone && (
                   <span
+                    data-testid="edit-btn"
                     className="todo-list-item-edit"
                     onClick={() => openEditForm(item)}
                   >
@@ -110,6 +111,7 @@ export const TodoList = ({
                   </span>
                 )}
                 <span
+                  data-testid="delete-btn"
                   className="todo-list-item-delete"
                   onClick={() => openDeleteConfirmation(item)}
                 >

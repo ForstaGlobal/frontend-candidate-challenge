@@ -4,19 +4,14 @@ import { IoClose } from "react-icons/io5";
 
 import "../styles/main.scss";
 
-type ModalProps = {
+export type ModalProps = {
   title: string;
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
 };
 
-export default function Modal({
-  title,
-  isOpen,
-  onClose,
-  children,
-}: ModalProps) {
+export const Modal = ({ title, isOpen, onClose, children }: ModalProps) => {
   const ref = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {
@@ -38,4 +33,4 @@ export default function Modal({
       {children}
     </dialog>
   );
-}
+};

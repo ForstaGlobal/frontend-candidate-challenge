@@ -1,23 +1,13 @@
-import React from 'react';
-
 import App from "../App";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 
-describe("TodoApp", () => {
-  it("renders app", () => {
+describe("App", () => {
+  it("should render app with header logo, intro section and the todo-app", () => {
     const app = render(<App />);
-    expect(app).not.toBeUndefined();
+    expect(app).toBeDefined();
+    screen.getByTestId("app_logo");
+    screen.getByText(/Hi there!/i);
+    screen.getByText(/You have no tasks./i);
   });
-
-  it("renders initial items", () => {
-    render(<App />);
-
-    expect(screen.getByText("Buy milk")).toBeDefined();
-    screen.getByTestId("todo0");
-
-    // TODO: Verify second todo
-  });
-  
-  // TODO: Test app functionality: Create, edit, delete, mark as done.
 });
