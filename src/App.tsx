@@ -1,4 +1,4 @@
-import { TodoList } from "./components/TodoList";
+import TodoApp from "./components/Todo/TodoApp";
 import "./styles/main.scss";
 
 export default function App() {
@@ -21,8 +21,7 @@ export default function App() {
     <>
       <Header />
       <IntroSection />
-      {/* TODO: Add Todo application */}
-      <TodoList todos={[]} />
+      <TodoApp />
     </>
   );
 }
