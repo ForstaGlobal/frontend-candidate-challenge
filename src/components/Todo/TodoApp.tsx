@@ -16,8 +16,12 @@ export default function TodoApp() {
     setTodos(todos.filter((item) => item.id !== id));
   };
 
-  const editTask = (id: string) => {
-    // TODO: implement edit functionality
+  const editTask = (id: string, newTask: string) => {
+    setTodos(
+      todos.map((item: Todo) =>
+        item.id === id ? { ...item, task: newTask } : item
+      )
+    );
   };
 
   const toggleComplete = (id: string, value: boolean) => {
@@ -34,7 +38,7 @@ export default function TodoApp() {
       <TodoList
         todos={todos}
         onDeleteTask={(id) => deleteTask(id)}
-        onEditTask={(id) => editTask(id)}
+        onEditTask={(id, newTask) => editTask(id, newTask)}
         onToggleComplete={(id, value) => toggleComplete(id, value)}
       />
     </>

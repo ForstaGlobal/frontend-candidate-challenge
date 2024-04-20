@@ -5,6 +5,7 @@ import { FcTodoList } from "react-icons/fc";
 import Task from "./Task";
 import { useState } from "react";
 import Modal from "../Modal";
+import { TodoForm } from "./TodoForm";
 
 type ModalCtx = {
   mode: "EDIT" | "DELETE";
@@ -15,7 +16,7 @@ type ModalCtx = {
 type TodoListProps = {
   todos: Todo[];
   onDeleteTask: (id: string) => void;
-  onEditTask: (id: string) => void;
+  onEditTask: (id: string, newTask: string) => void;
   onToggleComplete: (id: string, isDone: boolean) => void;
 };
 export const TodoList = ({
@@ -33,12 +34,22 @@ export const TodoList = ({
   };
 
   const openDeleteConfirmation = (todo: Todo) => {
-    setModalCtx({ mode: "DELETE", title: "Delete todo", todo });
+    setModalCtx({ mode: "DELETE", title: "Delete task", todo });
     setOpenModal(true);
   };
 
   const deleteTodo = (id: string) => {
     onDeleteTask(id);
+    closeModal();
+  };
+
+  const openEditForm = (todo: Todo) => {
+    setModalCtx({ mode: "EDIT", title: "Edit task", todo });
+    setOpenModal(true);
+  };
+
+  const editTodo = (id: string, task: string) => {
+    onEditTask(id, task);
     closeModal();
   };
 
@@ -65,6 +76,13 @@ export const TodoList = ({
               <button onClick={() => deleteTodo(modalCtx.todo.id)}>yes</button>
             </div>
           )}
+          {/* edit mode */}
+          {modalCtx.mode === "EDIT" && (
+            <TodoForm
+              todo={modalCtx.todo}
+              onTaskFormSubmit={(task) => editTodo(modalCtx.todo.id, task)}
+            />
+          )}
         </Modal>
       )}
     </>
@@ -86,7 +104,7 @@ export const TodoList = ({
                 {!item.isDone && (
                   <span
                     className="todo-list-item-edit"
-                    onClick={() => onEditTask(item.id)}
+                    onClick={() => openEditForm(item)}
                   >
                     <CiEdit size={24} />
                   </span>
