@@ -64,7 +64,7 @@ export default function App() {
   return (
     <Stack className="app" direction="row">
       <Container maxWidth="lg">
-        <Stack direction="row" className="sections" mt={-2}>
+        <Stack direction="row" className="sections">
           <AppContext.Provider value={appContextValue}>
             <SidePanelContainer />
             <MainContentContainer />
