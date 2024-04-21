@@ -82,6 +82,24 @@ const getAll = async (query: string) => {
   }
 };
 
+const remove = async (query: string, id: number) => {
+  try {
+    const success = await new Promise((resolve, reject) => {
+      db.run(query, [id], (err) => {
+        if (err) {
+          console.error(err.message);
+          reject(false);
+        } else {
+          resolve(true);
+        }
+      });
+    });
+    return success;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const insertOrUpdate = async (query: string, params: any[]) => {
   try {
     const success = await new Promise((resolve, reject) => {
@@ -155,4 +173,10 @@ export const insertOrUpdateTask = async (
     const result = await insertOrUpdate(insertQuery, [id, category, text, time, done]);
     return result;
   }
+};
+
+export const removeTask = async (id: number) => {
+  const deleteQuery = 'DELETE FROM Task WHERE id = ?';
+  const success = await remove(deleteQuery, id);
+  return success;
 };

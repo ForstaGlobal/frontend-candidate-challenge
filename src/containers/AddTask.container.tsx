@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CategoryType, SetStateType, TaskType } from 'types';
 import { AddTask } from 'views/AddTask.view';
 import Tooltip from '@mui/material/Tooltip';
 import Circle from '@mui/icons-material/Circle';
+import { persistTask } from 'api/helper';
 
 export const AddTaskContainer: React.FC<{
   categories: CategoryType[];
@@ -11,6 +12,10 @@ export const AddTaskContainer: React.FC<{
 }> = ({ categories, tasks, setTasks }) => {
   const [value, setValue] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>(categories[0]?.label);
+
+  useEffect(() => {
+    setSelectedCategory(categories[0]?.label);
+  }, [categories]);
 
   const onChange = (str: string) => {
     setValue(str);
@@ -43,6 +48,7 @@ export const AddTaskContainer: React.FC<{
       };
       setTasks([...tasks, newTask]);
       setValue('');
+      persistTask(newTask);
     } else if (str === 'Escape') {
       setValue('');
     }

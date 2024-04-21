@@ -4,32 +4,8 @@ import Stack from '@mui/material/Stack';
 import { SidePanelContainer } from 'containers/SidePanel.container';
 import { MainContentContainer } from 'containers/MainContent.container';
 import { AppContextType, CategoryType, TaskType } from 'types';
-import './styles.scss';
 import { getCategories, getTasks } from 'api';
-
-const defaultCategories = [
-  { label: 'Personal', color: 'red' },
-  { label: 'School', color: 'blue' },
-  { label: 'Work', color: 'yellow' },
-];
-const defaultTasks = [
-  { id: 1, category: 'Personal', text: 'Write UI tests', time: '08:01 am', done: false },
-  { id: 2, category: 'School', text: 'Write the to-do app UI code', time: '11:42 pm', done: false },
-  {
-    id: 3,
-    category: 'Work',
-    text: 'Implement container-view design pattern',
-    time: '06:20 pm',
-    done: false,
-  },
-  {
-    id: 4,
-    category: 'Work',
-    text: 'Make a base structure for the app',
-    time: '10:45 am',
-    done: true,
-  },
-];
+import './styles.scss';
 
 export const AppContext = createContext<AppContextType>({
   categories: [],
@@ -43,21 +19,32 @@ export const AppContext = createContext<AppContextType>({
 });
 
 export default function App() {
-  const [categories, setCategories] = useState<CategoryType[]>(defaultCategories);
-  const [tasks, setTasks] = useState<TaskType[]>(defaultTasks);
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [tasks, setTasks] = useState<TaskType[]>([]);
   const [showDoneTasks, setShowDoneTasks] = useState<boolean>(false);
   const [filter, setFilter] = useState<string | null>(null);
 
   useEffect(() => {
     getCategories()
       .then((categories) => setCategories(categories))
-      .catch(() => console.log('Failed to fetch the categories from the server.'))
-      .finally(() => setCategories([]));
+      .catch(() => {
+        console.log('Failed to fetch the categories from the server.');
+        setCategories([]);
+      });
 
     getTasks()
-      .then((tasks) => setTasks(tasks))
-      .catch(() => console.log('Failed to fetch the tasks from the server.'))
-      .finally(() => setTasks([]));
+      .then((tasks) =>
+        setTasks(() =>
+          tasks.map((task: TaskType) => {
+            const obj = { ...task, done: task.done ? true : false };
+            return obj;
+          })
+        )
+      )
+      .catch(() => {
+        console.log('Failed to fetch the tasks from the server.');
+        setTasks([]);
+      });
   }, []);
 
   const appContextValue = useMemo(

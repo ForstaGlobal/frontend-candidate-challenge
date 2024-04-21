@@ -2,6 +2,7 @@ import React from 'react';
 import Stack from '@mui/material/Stack';
 import { Task } from 'views/Task.view';
 import { SetStateType, SetStateTypeSingle, TaskType } from 'types';
+import { removeTask } from 'api';
 
 export const TasksContainer: React.FC<{
   getTaskColor: (taskCategory: string) => string;
@@ -24,6 +25,7 @@ export const TasksContainer: React.FC<{
   const onDelete = (id: number) => {
     const remainingTasks = tasks.filter((task) => task.id !== id);
     setTasks(remainingTasks);
+    removeTask(id);
   };
 
   const onDone = (id: number) => {

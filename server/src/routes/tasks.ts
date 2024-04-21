@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllTasks, insertOrUpdateTask } from '../database/database';
+import { getAllTasks, insertOrUpdateTask, removeTask } from '../database/database';
 
 export const router = express.Router();
 
@@ -20,5 +20,16 @@ router.post('/', async (req, res) => {
     res.status(201).send({ message: 'Record was saved successfully!' });
   } else {
     res.status(500).send({ message: 'Error saving the record.' });
+  }
+});
+
+router.delete('/', async (req, res) => {
+  const id = req.body.id;
+  
+  const success = await removeTask(id);
+  if (success) {
+    res.status(201).send({ message: 'Record was removed successfully!' });
+  } else {
+    res.status(500).send({ message: 'Error removing the record.' });
   }
 });

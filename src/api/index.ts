@@ -16,7 +16,7 @@ export const insertOrUpdateCategories = (category: CategoryType) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ ...category }),
-  });
+  }).then((res) => res.json());
 
 /**
  * Gets all the tasks
@@ -34,4 +34,13 @@ export const insertOrUpdateTasks = (task: TaskType) =>
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ ...task }),
-  });
+  }).then((res) => res.json());
+
+export const removeTask = (id: number) =>
+  fetch('http://localhost:8888/tasks', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id }),
+  }).then((res) => res.json());

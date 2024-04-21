@@ -24,3 +24,7 @@ export type AppContextType = {
   filter: string | null;
   setFilter: SetStateTypeSingle<string | null>;
 };
+
+export type ServerMessage = {
+  message: string;
+};
