@@ -1,5 +1,25 @@
 # Coding Challenge for Frontend Developers
 
+<img src="src/images/app.png" alt="dashboard page" class="inline"/>
+
+## Quick start
+
+Open the application folder within a terminal and navigate to the root of the folder. Then run the following commands. These commands will install the required dependecies by npm and starts the frontend of the app. 
+```bash
+npm install
+npm start
+```
+
+on another terminal window or tab navigate to `server` folder and type the following commands to get the backend of the app up and running. 
+```bash
+npm install
+npm start
+```
+
+Application functionality: 
+<img src="src/images/app.gif" alt="app functionality" class="inline"/>
+
+
 ## ASSIGNMENT DESCRIPTION
 
 Please use the React framework to solve this assignment or alternatively pure javascript if you don't know React.
