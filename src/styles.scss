@@ -8,6 +8,7 @@
   --color-grey: #717082;
   --color-white: #fff;
   --color-black: #000;
+  --color-hover: rgb(0, 0, 0, 0.1);
 }
 
 * {
@@ -131,13 +132,6 @@ h3 {
   padding: 12px 15px;
 }
 
-.schedule-btn:hover {
-  cursor: pointer;
-  background-color: var(--color-light-grey);
-  border-radius: 100%;
-  color: var(--color-purple);
-}
-
 .delete-icon {
   margin-left: -20px;
   margin-right: 10px;
@@ -146,4 +140,24 @@ h3 {
 .delete-icon:hover {
   color: var(--color-black);
   cursor: pointer;
+}
+
+.done-btn:hover {
+  cursor: pointer;
+  background-color: var(--color-light-grey);
+  border-radius: 100%;
+  color: var(--color-purple);
+}
+
+.selected {
+  background-color: var(--color-hover) !important;
+}
+
+.category-circle:hover {
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.category-circle.active {
+  font-size: 25px;
 }
