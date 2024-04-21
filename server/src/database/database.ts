@@ -82,10 +82,10 @@ const getAll = async (query: string) => {
   }
 };
 
-const remove = async (query: string, id: number) => {
+const remove = async (query: string, identityValue: any) => {
   try {
     const success = await new Promise((resolve, reject) => {
-      db.run(query, [id], (err) => {
+      db.run(query, [identityValue], (err) => {
         if (err) {
           console.error(err.message);
           reject(false);
@@ -143,6 +143,13 @@ export const insertOrUpdateCategory = async (label: string, color: string) => {
   }
 };
 
+export const removeCategory = async (label: string) => {
+  const deleteQuery = 'DELETE FROM Category WHERE label = ?';
+  const success = await remove(deleteQuery, label);
+  return success;
+};
+
+
 export const getTaskById = async (id: number) => {
   const query = 'SELECT * FROM Task WHERE id = ?';
   const record = await getOne(query, [id]);
@@ -180,3 +187,4 @@ export const removeTask = async (id: number) => {
   const success = await remove(deleteQuery, id);
   return success;
 };
+

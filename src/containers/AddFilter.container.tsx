@@ -1,3 +1,4 @@
+import { persistCategory } from 'api/helper';
 import React, { useState } from 'react';
 import { CategoryType, SetStateType } from 'types';
 import { AddFilterItem } from 'views/AddFilterItem.view';
@@ -15,6 +16,7 @@ export const AddFilterContainer: React.FC<{
       setCategories([...categories, { label: newFilter, color: 'pink' }]);
       setShowAddFilter(false);
       setNewFilter('');
+      persistCategory({ label: newFilter, color: 'pink' });
     } else if (str === 'Escape') {
       setShowAddFilter(false);
       setNewFilter('');

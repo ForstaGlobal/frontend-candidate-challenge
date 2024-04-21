@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllCategories, insertOrUpdateCategory } from '../database/database';
+import { getAllCategories, insertOrUpdateCategory, removeCategory } from '../database/database';
 
 export const router = express.Router();
 
@@ -17,5 +17,16 @@ router.post('/', async (req, res) => {
     res.status(201).send({ message: 'Record was saved successfully!' });
   } else {
     res.status(500).send({ message: 'Error saving the record.' });
+  }
+});
+
+router.delete('/', async (req, res) => {
+  const label = req.body.label;
+  
+  const success = await removeCategory(label);
+  if (success) {
+    res.status(201).send({ message: 'Record was removed successfully!' });
+  } else {
+    res.status(500).send({ message: 'Error removing the record.' });
   }
 });

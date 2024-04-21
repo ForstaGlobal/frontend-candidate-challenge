@@ -1,5 +1,5 @@
-import { insertOrUpdateTasks, removeTask } from 'api';
-import { ServerMessage, TaskType } from 'types';
+import { insertOrUpdateCategories, insertOrUpdateTasks, removeTask } from 'api';
+import { CategoryType, ServerMessage, TaskType } from 'types';
 
 export const persistTask = (task: TaskType) => {
   insertOrUpdateTasks(task)
@@ -11,6 +11,14 @@ export const persistTask = (task: TaskType) => {
 
 export const deleteTask = (id: number) => {
   removeTask(id)
+    .then((response: ServerMessage) => {
+      console.log('server response: ', response.message);
+    })
+    .catch((err) => console.error(err));
+};
+
+export const persistCategory = (category: CategoryType) => {
+  insertOrUpdateCategories(category)
     .then((response: ServerMessage) => {
       console.log('server response: ', response.message);
     })

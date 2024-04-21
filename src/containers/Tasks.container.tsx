@@ -2,36 +2,47 @@ import React from 'react';
 import Stack from '@mui/material/Stack';
 import { Task } from 'views/Task.view';
 import { SetStateType, SetStateTypeSingle, TaskType } from 'types';
-import { removeTask } from 'api';
+import { deleteTask, persistTask } from 'api/helper';
 
-export const TasksContainer: React.FC<{
+type TaskContainerPropTypes = {
   getTaskColor: (taskCategory: string) => string;
   tasks: TaskType[];
   setTasks: SetStateType<TaskType>;
   showDoneTasks: boolean;
   filter: string | null;
   setFilter: SetStateTypeSingle<string | null>;
-}> = ({ getTaskColor, tasks, setTasks, showDoneTasks, filter, setFilter }) => {
+};
+
+export const TasksContainer: React.FC<TaskContainerPropTypes> = ({
+  getTaskColor,
+  tasks,
+  setTasks,
+  showDoneTasks,
+  filter,
+  setFilter,
+}) => {
+  const onDelete = (id: number) => {
+    const remainingTasks = tasks.filter((task) => task.id !== id);
+    setTasks(remainingTasks);
+    deleteTask(id);
+  };
+
   const onChange = (id: number, str: string) => {
     const clonedTasks = [...tasks];
     for (const task of clonedTasks) {
       if (task.id === id) {
         task.text = str;
+        persistTask(task);
       }
     }
     setTasks(clonedTasks);
-  };
-
-  const onDelete = (id: number) => {
-    const remainingTasks = tasks.filter((task) => task.id !== id);
-    setTasks(remainingTasks);
-    removeTask(id);
   };
 
   const onDone = (id: number) => {
     const clonedTasks = tasks.map((task) => {
       if (task.id === id) {
         task.done = !task.done;
+        persistTask(task);
       }
       return task;
     });
