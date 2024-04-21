@@ -1,10 +1,11 @@
-import { createContext, useMemo, useState } from 'react';
+import { createContext, useEffect, useMemo, useState } from 'react';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import { SidePanelContainer } from 'containers/SidePanel.container';
 import { MainContentContainer } from 'containers/MainContent.container';
 import { AppContextType, CategoryType, TaskType } from 'types';
 import './styles.scss';
+import { getCategories, getTasks } from 'api';
 
 const defaultCategories = [
   { label: 'Personal', color: 'red' },
@@ -46,6 +47,18 @@ export default function App() {
   const [tasks, setTasks] = useState<TaskType[]>(defaultTasks);
   const [showDoneTasks, setShowDoneTasks] = useState<boolean>(false);
   const [filter, setFilter] = useState<string | null>(null);
+
+  useEffect(() => {
+    getCategories()
+      .then((categories) => setCategories(categories))
+      .catch(() => console.log('Failed to fetch the categories from the server.'))
+      .finally(() => setCategories([]));
+
+    getTasks()
+      .then((tasks) => setTasks(tasks))
+      .catch(() => console.log('Failed to fetch the tasks from the server.'))
+      .finally(() => setTasks([]));
+  }, []);
 
   const appContextValue = useMemo(
     () => ({

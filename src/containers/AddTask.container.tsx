@@ -10,7 +10,7 @@ export const AddTaskContainer: React.FC<{
   setTasks: SetStateType<TaskType>;
 }> = ({ categories, tasks, setTasks }) => {
   const [value, setValue] = useState<string>('');
-  const [selectedCategory, setSelectedCategory] = useState<string>(categories[0].label);
+  const [selectedCategory, setSelectedCategory] = useState<string>(categories[0]?.label);
 
   const onChange = (str: string) => {
     setValue(str);
