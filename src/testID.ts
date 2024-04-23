@@ -9,4 +9,5 @@ export const TestID = {
   SidebarListIcon: 'Sidebar-list-icon',
   MainContentTopBannerFocusedTask: 'Main-content-top-banner-focused-task',
   FilterItemButton: 'FilterItemButton',
+  AddTaskTextField: 'Add-task-text-field',
 };

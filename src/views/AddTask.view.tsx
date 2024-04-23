@@ -2,6 +2,7 @@ import React from 'react';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import ScheduleIcon from '@mui/icons-material/Schedule';
+import { TestID } from 'testID';
 
 export const AddTask: React.FC<
   React.PropsWithChildren<{
@@ -22,6 +23,7 @@ export const AddTask: React.FC<
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyUp={(e) => onKeyUp(e.key)}
+        data-testid={TestID.AddTaskTextField}
       />
 
       <ScheduleIcon className="purple" />
