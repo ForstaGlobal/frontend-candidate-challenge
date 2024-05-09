@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../app/store';
 import { v4 as uuidv4 } from 'uuid';
 
 export interface ITodoItem {
@@ -14,7 +13,7 @@ export interface todoState {
 }
 
 const initialState: todoState = {
-  todos: [{text: "Buy milk", done: false, id: uuidv4()}],
+  todos: [],
   status: 'idle',
 };
 
@@ -36,7 +35,7 @@ export const counterSlice = createSlice({
     deleteTodo: (state, action: PayloadAction<string>) => {
       return {
         ...state,
-        todos: state.todos.filter(todo => todo.id === action.payload),
+        todos: state.todos.filter(todo => todo.id !== action.payload),
       }
     },
     editTodo: (state, action: PayloadAction<ITodoItem>) => {
@@ -66,10 +65,5 @@ export const counterSlice = createSlice({
 });
 
 export const { addTodo, deleteTodo, editTodo, toggleTodo } = counterSlice.actions;
-
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-export const selectCount = (state: RootState) => state.todo.todos;
 
 export default counterSlice.reducer;
