@@ -35,6 +35,7 @@ export const TodoItem = ({ id, done, text }: ITodoItem) => {
               value={todoText}
               onChange={(e) => setTodoText(e.target.value)}
               onBlur={() => saveButtonRef.current?.click()}
+              data-testid="edit-todo-input"
             />
             <button ref={saveButtonRef} type="submit">
               Save
@@ -46,6 +47,7 @@ export const TodoItem = ({ id, done, text }: ITodoItem) => {
               type="checkbox"
               checked={done}
               onChange={() => dispatch(toggleTodo(id))}
+              data-testid={`toggle-todo-checkbox-${id}`}
             />
             <span data-testid={`todo${id}`}>{text}</span>
           </>

@@ -56,10 +56,15 @@ ul.todoList {
   align-items: center;
 }
 
-.todoListApp .addTodo {
+.todoListApp .addTodo form,
+.todoListApp .editTodo form {
   width: 100%;
   display: flex;
   align-items: center;
+}
+
+.todoListApp .editTodo {
+  width: 100%;
 }
 
 p.noContentText {

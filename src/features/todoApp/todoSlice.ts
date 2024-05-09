@@ -7,14 +7,12 @@ export interface ITodoItem {
   done: boolean;
 }
 
-export interface todoState {
+export interface TodoState {
   todos: ITodoItem[];
-  status: 'idle' | 'loading' | 'failed';
 }
 
-const initialState: todoState = {
+const initialState: TodoState = {
   todos: [],
-  status: 'idle',
 };
 
 export const counterSlice = createSlice({
