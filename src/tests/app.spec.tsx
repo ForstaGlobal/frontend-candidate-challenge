@@ -1,17 +1,18 @@
 import React from 'react';
 
 import App from '../App';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+import { renderWithProviders } from '../utils/test-utils';
 
 describe('TodoApp', () => {
   it('renders app', () => {
-    const app = render(<App />);
+    const app = renderWithProviders(<App />);
     expect(app).not.toBeUndefined();
   });
 
   it('renders initial items', () => {
-    render(<App />);
+    renderWithProviders(<App />);
 
     expect(screen.getByText('Buy milk')).toBeDefined();
     screen.getByTestId('todo0');
