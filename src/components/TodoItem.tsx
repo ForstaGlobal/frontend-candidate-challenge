@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import { useAppDispatch } from '../app/hooks';
 import {
   ITodoItem,
@@ -10,9 +10,11 @@ import {
 export const TodoItem = ({ id, done, text }: ITodoItem) => {
   const [isEditing, setIsEditing] = useState(false);
   const [todoText, setTodoText] = useState(text);
+  const saveButtonRef = useRef<HTMLButtonElement>(null);
 
   const dispatch = useAppDispatch();
-  const handleInputBlur = () => {
+  const handleEditTodo = (e: FormEvent) => {
+    e.preventDefault();
     setIsEditing(false);
     dispatch(
       editTodo({
@@ -25,14 +27,19 @@ export const TodoItem = ({ id, done, text }: ITodoItem) => {
 
   return (
     <div className="todoItem">
-      <div>
+      <div className={isEditing ? 'editTodo' : ''}>
         {isEditing ? (
-          <input
-            className="todoTextInput"
-            value={todoText}
-            onChange={(e) => setTodoText(e.target.value)}
-            onBlur={handleInputBlur}
-          />
+          <form onSubmit={handleEditTodo}>
+            <input
+              className="todoTextInput"
+              value={todoText}
+              onChange={(e) => setTodoText(e.target.value)}
+              onBlur={() => saveButtonRef.current?.click()}
+            />
+            <button ref={saveButtonRef} type="submit">
+              Save
+            </button>
+          </form>
         ) : (
           <>
             <input
@@ -44,10 +51,12 @@ export const TodoItem = ({ id, done, text }: ITodoItem) => {
           </>
         )}
       </div>
-      <div>
-        <button onClick={() => setIsEditing(!isEditing)}>Edit</button>
-        <button onClick={() => dispatch(deleteTodo(id))}>Delete</button>
-      </div>
+      {isEditing ? null : (
+        <div>
+          <button onClick={() => setIsEditing(!isEditing)}>Edit</button>
+          <button onClick={() => dispatch(deleteTodo(id))}>Delete</button>
+        </div>
+      )}
     </div>
   );
 };
