@@ -13,9 +13,9 @@ export default function App() {
   ]);
 
   return (
-    <div className="todoListApp">
+    <div className="main-container">
       <div className="forsta-logo" />
-      <h2>To-Do List App</h2>
+      <h2>TODO APP</h2>
       <AddItem todos={todos} setTodos={setTodos} />
       <TodoList todos={todos} setTodos={setTodos} />
     </div>

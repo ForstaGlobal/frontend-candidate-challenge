@@ -1,0 +1,14 @@
+@import "../../_variables";
+
+.add-container {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+
+  &__btn {
+    padding: 5px 15px;
+    background-color: $purple-main;
+    color: $gray;
+    border-radius: 6px;
+  }
+}
