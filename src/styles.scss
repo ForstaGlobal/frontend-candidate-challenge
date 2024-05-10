@@ -9,11 +9,17 @@ body {
   height: 74px;
   margin: 0;
 }
-.todoListApp .addTodo input {
+
+.todoAppContainer {
+  width: 350px;
+}
+.todoListApp .addTodo input,
+.todoListApp .todoList .todoItem input.todoTextInput {
   padding: 5px;
   font-size: 16px;
   border: 1px solid #d9d9d9;
-  width: 165px;
+  flex: 1;
+  box-sizing: border-box;
 }
 .todoListApp button {
   padding: 5px;
@@ -30,7 +36,7 @@ body {
 .todoListApp .todoList {
   list-style: none;
   padding-left: 0;
-  width: 250px;
+  width: 100%;
 } 
 .todoListApp .todoList li {
   color: #333;
@@ -39,7 +45,38 @@ body {
   margin-bottom: 10px;
   border-radius: 2px;
   list-style: none;
+  animation: fade-in 0.7s;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100;
+  }
 }
 ul.todoList {
   padding: 0;
+}
+
+.todoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todoListApp .addTodo form,
+.todoListApp .editTodo form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.todoListApp .editTodo {
+  width: 100%;
+}
+
+p.noContentText {
+  text-align: center;
+  width: 100%;
 }

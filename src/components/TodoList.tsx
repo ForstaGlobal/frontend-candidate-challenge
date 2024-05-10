@@ -1,14 +1,15 @@
-import React from "react";
+import React from 'react';
+import { useAppSelector } from '../app/hooks';
+import { TodoItem } from './TodoItem';
 
-type TodoListProps = {
-  todos: any[];
-};
-export const TodoList = ({ todos }: TodoListProps) => {
+export const TodoList = () => {
+  const todos = useAppSelector((state) => state.todo.todos);
+
   return (
     <ul className="todoList">
-      {todos.map((item, i) => (
-        <li key={i}>
-          <span data-testid={`todo${i}`}>{item.text}</span>
+      {todos.map(({ text, done, id }) => (
+        <li key={id}>
+          <TodoItem text={text} done={done} id={id} />
         </li>
       ))}
     </ul>
