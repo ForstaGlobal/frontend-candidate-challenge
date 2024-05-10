@@ -45,6 +45,15 @@ body {
   margin-bottom: 10px;
   border-radius: 2px;
   list-style: none;
+  animation: fade-in 0.7s;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 100;
+  }
 }
 ul.todoList {
   padding: 0;
