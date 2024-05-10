@@ -104,6 +104,14 @@ describe('TodoApp', () => {
         expect(screen.getByText(/buy milk/i)).toBeInTheDocument();
       });
     });
+    it(`should not add a new todo when text input is empty`, async () => {
+      renderWithProviders(<App />);
+      const addButton = screen.getByRole('button', { name: /add/i });
+      const newTodoInput = screen.getByTestId('new-todo-input');
+      fireEvent.change(newTodoInput, { target: { value: '' } });
+      fireEvent.click(addButton);
+      expect(screen.getByText(/No todos in the list/i)).toBeInTheDocument();
+    });
     it('should be able to edit a todo', async () => {
       const newTodoText = 'Buy banana';
       renderWithProviders(<App />, {
@@ -122,6 +130,26 @@ describe('TodoApp', () => {
       fireEvent.click(saveButton);
       await waitFor(() => {
         expect(screen.getByText(/buy banana/i)).toBeInTheDocument();
+      });
+    });
+    it('should not change the original todo text when the modified text is empty', async () => {
+      const newTodoText = '';
+      renderWithProviders(<App />, {
+        preloadedState: {
+          todo: initialState,
+        },
+      });
+
+      const editButton = screen.getByRole('button', { name: /edit/i });
+      fireEvent.click(editButton);
+      const saveButton = screen.getByRole('button', { name: /save/i });
+      expect(saveButton).toBeInTheDocument();
+
+      const editTodoInput = screen.getByTestId('edit-todo-input');
+      fireEvent.change(editTodoInput, { target: { value: newTodoText } });
+      fireEvent.click(saveButton);
+      await waitFor(() => {
+        expect(screen.getByText(/buy milk/i)).toBeInTheDocument();
       });
     });
     it('should delete a todo', async () => {

@@ -35,6 +35,10 @@ describe('counter reducer', () => {
     expect(actual.todos[0].text).toEqual(newTodoText);
     expect(actual.todos[0].done).toBeFalsy();
   });
+  it('should handle case when new todo text is empty', () => {
+    const actual = todoReducer(initialState, addTodo(''));
+    expect(actual.todos.length).toEqual(0);
+  });
   it('should handle add todo at the beginning of the todos', () => {
     const actual = todoReducer(stateWithTodos, addTodo(newTodoText));
     expect(actual.todos.length).toEqual(2);
@@ -56,6 +60,18 @@ describe('counter reducer', () => {
     const actual = todoReducer(stateWithTodos, editTodo(editedTodo));
     expect(actual.todos.length).toEqual(1);
     expect(actual.todos[0].text).toEqual(newTodoText);
+    expect(actual.todos[0].done).toBeFalsy();
+  });
+
+  it('should handle cases when modified text is empty', () => {
+    const editedTodo = {
+      id: todoId,
+      text: '',
+      done: false,
+    };
+    const actual = todoReducer(stateWithTodos, editTodo(editedTodo));
+    expect(actual.todos.length).toEqual(1);
+    expect(actual.todos[0].text).toEqual('todo');
     expect(actual.todos[0].done).toBeFalsy();
   });
 

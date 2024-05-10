@@ -20,15 +20,19 @@ export const counterSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, action: PayloadAction<string>) => {
-      const newTodo = {
-        id: uuidv4(),
-        text: action.payload,
-        done: false,
-      };
-      return {
-        ...state,
-        todos: [newTodo, ...state.todos],
-      };
+      if (action.payload) {
+        const newTodo = {
+          id: uuidv4(),
+          text: action.payload,
+          done: false,
+        };
+        return {
+          ...state,
+          todos: [newTodo, ...state.todos],
+        };
+      } else {
+        return state;
+      }
     },
     deleteTodo: (state, action: PayloadAction<string>) => {
       return {
@@ -38,13 +42,17 @@ export const counterSlice = createSlice({
     },
     editTodo: (state, action: PayloadAction<ITodoItem>) => {
       const { id, text } = action.payload;
-      const newTodos = state.todos.map((todo) =>
-        todo.id === id ? { ...todo, text: text } : todo
-      );
-      return {
-        ...state,
-        todos: newTodos,
-      };
+      if (text) {
+        const newTodos = state.todos.map((todo) =>
+          todo.id === id ? { ...todo, text: text } : todo
+        );
+        return {
+          ...state,
+          todos: newTodos,
+        };
+      } else {
+        return state;
+      }
     },
     toggleTodo: (state, action: PayloadAction<string>) => {
       const newTodos = state.todos.map((todo) =>
