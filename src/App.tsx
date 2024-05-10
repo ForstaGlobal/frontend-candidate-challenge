@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-import { TodoList } from "./components/TodoList/TodoList";
+import TodoList from "./components/TodoList";
 
 import "./styles.scss";
 import { Todo } from "./types";
-import { AddItem } from "./components/AddItem/AddItem";
+import AddItem from "./components/AddItem";
 
 export default function App() {
   const [todos, setTodos] = useState<Todo[]>([
@@ -15,7 +15,8 @@ export default function App() {
   return (
     <div className="todoListApp">
       <div className="forsta-logo" />
-      <AddItem />
+      <h2>To-Do List App</h2>
+      <AddItem todos={todos} setTodos={setTodos} />
       <TodoList todos={todos} setTodos={setTodos} />
     </div>
   );
