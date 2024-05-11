@@ -9,10 +9,7 @@ type TaskProps = {
 };
 
 export default function Task({ todo, onToggleComplete }: TaskProps) {
-  const [isChecked, setChecked] = useState<boolean>(todo.isDone);
-
   const toggleComplete = (value: boolean) => {
-    setChecked(value);
     onToggleComplete(value);
   };
 
@@ -22,7 +19,7 @@ export default function Task({ todo, onToggleComplete }: TaskProps) {
         type="checkbox"
         name="isChecked"
         id="isChecked"
-        checked={isChecked}
+        checked={todo.isDone}
         onChange={(e) => toggleComplete(e.target.checked)}
       />
       <span className={todo.isDone ? "mark-done" : ""}>{todo.task}</span>
