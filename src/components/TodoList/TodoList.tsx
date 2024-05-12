@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Todo } from "../../types";
 import TodoItem from "../TodoItem";
 import "./style.scss";
@@ -8,6 +8,14 @@ type TodoListProps = {
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 };
 export const TodoList = ({ todos, setTodos }: TodoListProps) => {
+  const totalCount = useMemo(() => {
+    return todos.length;
+  }, [todos.length]);
+
+  const completedTasksCount = useMemo(() => {
+    return todos.filter((todo) => todo.isDone).length;
+  }, [todos]);
+
   const handleSelect = (id: number) => {
     const todosCopy = [...todos];
     const i = todosCopy.findIndex((item) => item.id === id);
@@ -34,16 +42,24 @@ export const TodoList = ({ todos, setTodos }: TodoListProps) => {
   };
 
   return (
-    <ul className="list-container">
-      {todos.map((todo) => (
-        <TodoItem
-          todo={todo}
-          key={todo.id}
-          handleSelect={handleSelect}
-          handleDelete={handleDelete}
-          handleEdit={handleEdit}
-        />
-      ))}
-    </ul>
+    <div className="list-container">
+      <div className="list-container__count">
+        <p>Total {totalCount}</p>
+        <p>
+          Completed {completedTasksCount} of {totalCount}
+        </p>
+      </div>
+      <ul>
+        {todos.map((todo) => (
+          <TodoItem
+            todo={todo}
+            key={todo.id}
+            handleSelect={handleSelect}
+            handleDelete={handleDelete}
+            handleEdit={handleEdit}
+          />
+        ))}
+      </ul>
+    </div>
   );
 };
