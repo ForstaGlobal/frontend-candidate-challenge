@@ -22,6 +22,17 @@ export const TodoList = ({ todos, setTodos }: TodoListProps) => {
     setTodos(todosCopy);
   };
 
+  const handleEdit = (id: number, value: string) => {
+    const todosCopy = todos.map((item) => {
+      if (item.id === id) {
+        return { ...item, text: value };
+      } else {
+        return item;
+      }
+    });
+    setTodos(todosCopy);
+  };
+
   return (
     <ul className="list-container">
       {todos.map((todo) => (
@@ -30,6 +41,7 @@ export const TodoList = ({ todos, setTodos }: TodoListProps) => {
           key={todo.id}
           handleSelect={handleSelect}
           handleDelete={handleDelete}
+          handleEdit={handleEdit}
         />
       ))}
     </ul>
