@@ -7,9 +7,14 @@ import "./style.scss";
 type TodoItemProps = {
   todo: Todo;
   handleSelect: (id: number) => void;
+  handleDelete: (id: number) => void;
 };
 
-export const TodoItem = ({ todo, handleSelect }: TodoItemProps) => {
+export const TodoItem = ({
+  todo,
+  handleSelect,
+  handleDelete,
+}: TodoItemProps) => {
   const { id, text, isDone } = todo;
 
   return (
@@ -39,7 +44,13 @@ export const TodoItem = ({ todo, handleSelect }: TodoItemProps) => {
           <span className="item-container__btn__submit">
             <IoMdCheckmark size={"1.3em"} />
           </span>
-          <span className="item-container__btn__delete">
+          <span
+            data-testid={`todo-delete-${id}`}
+            className="item-container__btn__delete"
+            onClick={(e) => {
+              handleDelete(id);
+            }}
+          >
             <GoTrash size={"1em"} />
           </span>
         </div>

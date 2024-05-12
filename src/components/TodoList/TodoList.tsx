@@ -15,10 +15,22 @@ export const TodoList = ({ todos, setTodos }: TodoListProps) => {
     setTodos(todosCopy);
   };
 
+  const handleDelete = (id: number) => {
+    const todosCopy = todos.filter((item) => {
+      return item.id !== id;
+    });
+    setTodos(todosCopy);
+  };
+
   return (
     <ul className="list-container">
       {todos.map((todo) => (
-        <TodoItem todo={todo} key={todo.id} handleSelect={handleSelect} />
+        <TodoItem
+          todo={todo}
+          key={todo.id}
+          handleSelect={handleSelect}
+          handleDelete={handleDelete}
+        />
       ))}
     </ul>
   );
