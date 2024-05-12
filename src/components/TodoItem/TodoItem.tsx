@@ -6,17 +6,31 @@ import "./style.scss";
 
 type TodoItemProps = {
   todo: Todo;
+  handleSelect: (id: number) => void;
 };
 
-export const TodoItem = ({ todo }: TodoItemProps) => {
-  const { id, text } = todo;
+export const TodoItem = ({ todo, handleSelect }: TodoItemProps) => {
+  const { id, text, isDone } = todo;
 
   return (
     <li>
-      <span data-testid={`todo${id}`} className="item-container">
+      <div className="item-container">
         <div className="item-container__input">
-          <input type="checkbox" className="item-container__input__checkbox" />
-          {text}
+          <input
+            data-testid={`todo-input-${id}`}
+            type="checkbox"
+            className="item-container__input__checkbox"
+            checked={isDone}
+            onChange={() => {
+              handleSelect(id);
+            }}
+          />
+          <span
+            data-testid={`todo-text-${id}`}
+            className={isDone ? "checked" : ""}
+          >
+            {text}
+          </span>
         </div>
         <div className="item-container__btn">
           <span className="item-container__btn__edit">
@@ -29,7 +43,7 @@ export const TodoItem = ({ todo }: TodoItemProps) => {
             <GoTrash size={"1em"} />
           </span>
         </div>
-      </span>
+      </div>
     </li>
   );
 };

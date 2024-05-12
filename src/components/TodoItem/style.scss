@@ -17,6 +17,10 @@
     gap: 10px;
     color: $font-primary-color;
 
+    .checked {
+      text-decoration: line-through;
+    }
+
     &__checkbox {
       appearance: none;
       -webkit-appearance: none;
