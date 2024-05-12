@@ -1,13 +1,6 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import { TodoList } from "./TodoList";
-// for total test
-// pass todo with 3 objects
-// getByText("Total 3")
 
-// for completed test
-// pass todo with 3 objects with 2 of them as done
-// getByText("Completed 2 of 3")
 describe("TodoListCount", () => {
   const todos = [
     {
