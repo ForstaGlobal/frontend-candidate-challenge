@@ -1,0 +1,51 @@
+@import "../../variables";
+
+.item-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: $gray;
+
+  &__input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    color: $font-primary-color;
+
+    &__checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      cursor: pointer;
+      width: 1em;
+      height: 1em;
+      border: 2px solid $purple-main;
+      background-color: $gray;
+      border-radius: 50%;
+    }
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: $purple-main;
+
+    &__edit,
+    &__submit,
+    &__delete {
+      > svg {
+        stroke-width: 0.5;
+      }
+      :hover {
+        color: $font-primary-color;
+        cursor: pointer;
+      }
+    }
+  }
+}

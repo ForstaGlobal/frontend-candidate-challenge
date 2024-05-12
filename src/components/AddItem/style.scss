@@ -10,5 +10,9 @@
     background-color: $purple-main;
     color: $gray;
     border-radius: 6px;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
