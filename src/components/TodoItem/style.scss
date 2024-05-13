@@ -2,6 +2,8 @@
 
 .item-container {
   width: 100%;
+  height: 55px;
+  gap: 10px;
   display: flex;
   justify-content: space-between;
   border: 1px solid black;
@@ -12,7 +14,7 @@
 
   &__input {
     display: flex;
-    justify-content: space-between;
+    width: 100%;
     align-items: center;
     gap: 10px;
     color: $font-primary-color;
@@ -34,6 +36,11 @@
 
       &:checked {
         background-color: $purple-main;
+      }
+
+      &:focus,
+      &:active {
+        outline: 2px solid $font-primary-color;
       }
     }
   }

@@ -2,17 +2,23 @@
 
 .add-container {
   width: 100%;
+  height: 55px;
   display: flex;
   gap: 10px;
 
   &__btn {
-    padding: 5px 15px;
+    padding: 5px 25px;
+    font-size: 16px;
     background-color: $purple-main;
     color: $gray;
     border-radius: 6px;
 
+    &:active,
+    &:focus,
     &:hover {
       cursor: pointer;
+      box-shadow: 4px 4px 12px -4px rgba(4, 36, 60, 1);
+      outline: none;
     }
   }
 }

@@ -9,7 +9,8 @@ type AddItemProps = {
 
 export const AddItem = ({ todos, setTodos }: AddItemProps) => {
   const [value, setValue] = useState("");
-  const handleAdd = () => {
+  const handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (value.trim() !== "") {
       const id: number = Math.ceil(Math.random() * 10000000);
       const todosCopy = [...todos];
@@ -24,7 +25,7 @@ export const AddItem = ({ todos, setTodos }: AddItemProps) => {
   };
 
   return (
-    <div className="add-container">
+    <form className="add-container" onSubmit={handleSubmit}>
       <input
         className="input"
         data-testid={`input`}
@@ -35,12 +36,12 @@ export const AddItem = ({ todos, setTodos }: AddItemProps) => {
         }}
       />
       <button
+        type="submit"
         className="add-container__btn"
         data-testid={`addbtn`}
-        onClick={handleAdd}
       >
         Add
       </button>
-    </div>
+    </form>
   );
 };

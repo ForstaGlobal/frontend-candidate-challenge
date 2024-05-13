@@ -25,8 +25,10 @@ export const TodoItem = ({
   };
 
   const handleSubmit = () => {
-    handleEdit(id, value);
-    setIsEdit(false);
+    if (value.trim() !== "") {
+      handleEdit(id, value);
+      setIsEdit(false);
+    }
   };
 
   return (
@@ -42,22 +44,26 @@ export const TodoItem = ({
               handleSelect(id);
             }}
           />
-          <span
-            data-testid={`todo-text-${id}`}
-            className={isDone ? "checked" : ""}
-          >
-            {isEdit ? (
-              <input
-                data-testid={`todo-edit-${id}`}
-                value={value}
-                onChange={(e) => {
-                  setValue(e.target.value);
-                }}
-              />
-            ) : (
-              text
-            )}
-          </span>
+          {isEdit ? (
+            <input
+              data-testid={`todo-edit-${id}`}
+              className="input input--transparent"
+              value={value}
+              onChange={(e) => {
+                setValue(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                e.key === "Enter" && handleSubmit();
+              }}
+            />
+          ) : (
+            <span
+              data-testid={`todo-text-${id}`}
+              className={isDone ? "checked" : ""}
+            >
+              {text}
+            </span>
+          )}
         </div>
         <div className="item-container__btn">
           {isEdit ? (
