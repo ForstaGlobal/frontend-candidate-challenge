@@ -44,9 +44,15 @@ export const TodoList = ({ todos, setTodos }: TodoListProps) => {
   return (
     <div className="list-container">
       <div className="list-container__count">
-        <p>Total {totalCount}</p>
         <p>
-          Completed {completedTasksCount} of {totalCount}
+          <span>Total</span>
+          <span className="pill">{totalCount}</span>
+        </p>
+        <p>
+          <span>Completed</span>
+          <span className="pill">
+            {completedTasksCount} of {totalCount}
+          </span>
         </p>
       </div>
       <ul>

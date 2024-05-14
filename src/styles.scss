@@ -62,3 +62,12 @@ input.input {
     padding: 0px;
   }
 }
+
+.pill {
+  background-color: $purple-main;
+  border-radius: 16px;
+  padding: 2px 10px;
+  font-size: 13.5px;
+  color: $gray;
+  font-weight: 500;
+}
