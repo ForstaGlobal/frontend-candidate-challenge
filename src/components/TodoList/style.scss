@@ -1,0 +1,23 @@
+@import "../../variables";
+
+.list-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__count {
+    display: flex;
+    justify-content: space-between;
+    color: $purple-secondary;
+    font-size: 14px;
+    font-weight: bold;
+
+    > p {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
+  }
+}

@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 
-import { TodoList } from "./components/TodoList";
+import TodoList from "./components/TodoList";
 
 import "./styles.scss";
+import { Todo } from "./types";
+import AddItem from "./components/AddItem";
 
 export default function App() {
-  const [todos] = useState([
-    { text: "Buy milk", done: true },
-    { text: "Buy bread", done: false },
+  const [todos, setTodos] = useState<Todo[]>([
+    { id: 1, text: "Buy milk", isDone: true },
+    { id: 2, text: "Buy bread", isDone: false },
   ]);
 
   return (
-    <div className="todoListApp">
+    <div className="main-container">
       <div className="forsta-logo" />
-      <TodoList todos={todos} />
+      <h2>TODO APP</h2>
+      <AddItem todos={todos} setTodos={setTodos} />
+      <TodoList todos={todos} setTodos={setTodos} />
     </div>
   );
 }
