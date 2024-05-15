@@ -22,11 +22,11 @@ describe("TodoListCount", () => {
 
   it("Should show correct total count", () => {
     render(<TodoList todos={todos} setTodos={() => {}} />);
-    expect(screen.getByText("Total 3")).toBeDefined();
+    expect(screen.getByTestId("total-count")).toHaveTextContent("3");
   });
 
   it("Should show correct completed tasks count", () => {
     render(<TodoList todos={todos} setTodos={() => {}} />);
-    expect(screen.getByText("Completed 2 of 3")).toBeDefined();
+    expect(screen.getByTestId("completed-count")).toHaveTextContent("2 of 3");
   });
 });

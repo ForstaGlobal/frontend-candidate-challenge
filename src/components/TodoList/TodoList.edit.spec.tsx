@@ -1,7 +1,5 @@
-import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { TodoList } from "./TodoList";
-import { text } from "stream/consumers";
 
 describe("TodoItemEdit =>", () => {
   const todos = [

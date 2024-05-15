@@ -46,11 +46,13 @@ export const TodoList = ({ todos, setTodos }: TodoListProps) => {
       <div className="list-container__count">
         <p>
           <span>Total</span>
-          <span className="pill">{totalCount}</span>
+          <span className="pill" data-testid="total-count">
+            {totalCount}
+          </span>
         </p>
         <p>
           <span>Completed</span>
-          <span className="pill">
+          <span className="pill" data-testid="completed-count">
             {completedTasksCount} of {totalCount}
           </span>
         </p>
