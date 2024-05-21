@@ -1,33 +1,57 @@
-# Coding Challenge for Frontend Developers
+# Todo App
 
-## ASSIGNMENT DESCRIPTION
+This is a simple todo list application built with React, TypeScript, Zustand for state management, and Material-UI for the UI components,mock api . This project is also configured with Prettier, ESLint, and Husky for code quality and consistency.
 
-Please use the React framework to solve this assignment or alternatively pure javascript if you don't know React.
+## Table of Contents
 
-You can add/remove/upgrade any project dependency and change/remove any part of the project as you deem appropriate.
+- [Todo App](#todo-app)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Development](#development)
+    - [Code Formatting and Linting](#code-formatting-and-linting)
+    - [Git Hooks](#git-hooks)
 
-#### SPECIFICATION
+## Installation
 
-- Create a todo list app where the user can create/edit/delete tasks.
-- The user should also be able to toggle tasks as "done" vs. "not done".
-- When a task is deleted, it should be removed from the list.
-- New tasks should be added to the top of the list.
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/soniah770/frontend-candidate-challenge.git
+    cd frontend-candidate-challenge
+    ```
 
-#### OTHER REQUIREMENTS
+2. Install dependencies:
+    ```sh
+    npm install
+    ```
 
-- All functionality should be tested. For the testing you should use [React testing library](https://testing-library.com/).
-- We value clean, readable, concise code.
-- The project is set up to use TypeScript. Please make sure your code has good types. If you don't know TypeScript, you are not required to write types.
+## Usage
 
-## HOW TO SUBMIT YOUR CODE
+1. Start the development server:
+    ```sh
+    npm start
+    ```
 
-1. Fork this repo.
-2. Push your code changes to your fork.
-3. Create a pull request targeting this repo.
+2. Open your browser and go to `http://localhost:3000`.
 
-If you have any doubts about the fork + pull request workflow you can refer to [this guide](https://reflectoring.io/github-fork-and-pull/).
+## Development
 
-## DEADLINE
-You can take all the time you need (but please not more than 2 weeks).
+### Code Formatting and Linting
 
-Submit your PR when you are proud of your code :-)
+This project uses Prettier and ESLint to maintain code quality and consistency.
+
+- Format your code:
+    ```sh
+    npx prettier . --write
+    ```
+
+- Lint your code:
+    ```sh
+    npx eslint . --fix
+    ```
+
+### Git Hooks
+
+Git hooks are configured using Husky and lint-staged to ensure code quality before committing.
+
+

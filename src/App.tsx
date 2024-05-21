@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { TodoList } from "./components/TodoList";
 
-import "./styles.scss";
+import "./styles/styles.scss";
 
 export default function App() {
   const [todos] = useState([
