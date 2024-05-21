@@ -1,57 +1,23 @@
-# Todo App
+# Implementing UI and State Management and Mock Api
 
-This is a simple todo list application built with React, TypeScript, Zustand for state management, and Material-UI for the UI components,mock api . This project is also configured with Prettier, ESLint, and Husky for code quality and consistency.
+## Overview
 
-## Table of Contents
+This branch includes the implementation of the UI and state management for the ToDo application. The main components and features added in this branch are:
 
-- [Todo App](#todo-app)
-  - [Table of Contents](#table-of-contents)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Development](#development)
-    - [Code Formatting and Linting](#code-formatting-and-linting)
-    - [Git Hooks](#git-hooks)
+- `AddTask` Component: Allows users to add new tasks.
+- `TaskItem` Component: Displays individual tasks with options to edit, delete, and mark as completed.
+- `TodoList` Component: Renders the list of tasks with filtering options.
+- `ToggleButtons` Component: Provides filter buttons for showing all, active, or completed tasks.
+- State Management: Utilizes `zustand` for state management.
+- Mock API: Uses `jsonplaceholder` to fetch initial data.
 
 ## Installation
 
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/soniah770/frontend-candidate-challenge.git
-    cd frontend-candidate-challenge
-    ```
+To set up the project, follow these steps:
 
-2. Install dependencies:
-    ```sh
-    npm install
-    ```
+1. Clone the repository and checkout the `ui-and-state-management` branch:
 
-## Usage
-
-1. Start the development server:
-    ```sh
-    npm start
-    ```
-
-2. Open your browser and go to `http://localhost:3000`.
-
-## Development
-
-### Code Formatting and Linting
-
-This project uses Prettier and ESLint to maintain code quality and consistency.
-
-- Format your code:
-    ```sh
-    npx prettier . --write
-    ```
-
-- Lint your code:
-    ```sh
-    npx eslint . --fix
-    ```
-
-### Git Hooks
-
-Git hooks are configured using Husky and lint-staged to ensure code quality before committing.
-
-
+   ```sh
+   git clone https://github.com/soniah770/frontend-candidate-challenge.git
+   cd frontend-candidate-challenge
+   git checkout ui-and-state-management
