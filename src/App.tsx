@@ -1,15 +1,13 @@
-import { useState } from "react";
 import "./styles.scss";
+import { TodosProvider } from "./components/TodoList/TodosContext";
 
 export default function App() {
-  const [todos] = useState([
-    { text: "Buy milk", done: true },
-    { text: "Buy bread", done: false },
-  ]);
-
   return (
     <div className="todoListApp">
       <div className="forsta-logo" />
+      <TodosProvider>
+
+      </TodosProvider>
     </div>
   );
 }
