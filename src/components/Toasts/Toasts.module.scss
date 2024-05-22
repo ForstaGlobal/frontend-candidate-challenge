@@ -1,0 +1,52 @@
+@use "../../elementStates";
+
+.container {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  z-index: 1000;
+
+  .toast {
+    background-color: #333;
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 0 10px rgba(#333, 0.1);
+    color: #fff;
+    display: flex;
+    margin-bottom: 10px;
+    padding: var(--padding-medium);
+
+    textarea {
+      color: white;
+      cursor: default;
+    }
+  
+    button {
+      @include elementStates.button(#333, white);
+    }
+  
+    &.dangerous {
+      background-color: #811111;
+    
+      button {
+        @include elementStates.button(#811111, white);
+      }
+    }
+    
+    &.success {
+      background-color: #167e16;
+    
+      button {
+        @include elementStates.button(#167e16, white);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .container {
+    bottom: 10px;
+    left: 10px;
+    right: unset;
+    top: unset;
+  }
+}

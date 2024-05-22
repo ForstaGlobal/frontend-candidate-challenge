@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTodosContext } from "../TodoList/TodosContext";
 
 import { simulate, ServerSimulationType } from "../../utils/serverSimulation";
+import { ToastType, useToastContext } from "../Toasts/ToastContext";
 
 import ServerSimulationController from "../ServerSimulationController/ServerSimulationController";
 import { Button } from "../UI/Button/Button";
@@ -9,11 +10,12 @@ import { Loader } from "../Loader/Loader";
 
 import styles from "./AddNewTodo.module.scss";
 
-export default function AddNewTodo() {
+export const AddNewTodo = () => {
   const [newTodo, setNewTodo] = useState("");
   const [loading, setLoading] = useState(false);
   const [simulationType, setSimulationType] = useState(ServerSimulationType.Normal);
  
+  const { addToast } = useToastContext();
   const { addNewTodoOnTop } = useTodosContext();
 
   const resetTodoState = () => {
@@ -27,8 +29,9 @@ export default function AddNewTodo() {
 
     try {
       await simulate(simulationType, () => addNewTodoOnTop(newTodo));
+      addToast("New todo is successfully added", ToastType.Succuess);
     } catch (error: any) {
-      console.log("error");
+      addToast(error?.message ?? "Unknown server error", ToastType.Dangerous);
     }
 
     resetTodoState();
