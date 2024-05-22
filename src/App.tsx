@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-
-import { TodoList } from "./components/TodoList";
-
+import { useState } from "react";
 import "./styles.scss";
 
 export default function App() {
@@ -13,7 +10,6 @@ export default function App() {
   return (
     <div className="todoListApp">
       <div className="forsta-logo" />
-      <TodoList todos={todos} />
     </div>
   );
 }
