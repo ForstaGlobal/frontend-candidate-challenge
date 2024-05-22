@@ -30,7 +30,7 @@ const AddTask: React.FC = () => {
           }}
           endAdornment={
             <InputAdornment position="end">
-              <IconButton aria-label="Add todo" edge="end" onClick={handleTodoSubmit}>
+              <IconButton aria-label="Add todo" edge="end" onClick={handleTodoSubmit} sx={{ background: 'linear-gradient(0.125turn, #ff7f50, #ff00ff)'}}>
                 <AddCircleRoundedIcon />
               </IconButton>
             </InputAdornment>
