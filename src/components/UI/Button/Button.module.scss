@@ -1,0 +1,25 @@
+@use "../../../elementStates";
+
+.base {
+  border-radius: var(--border-radius-medium);
+  border: unset;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s ease-in-out;
+
+  &.small {
+    padding: var(--padding-small);
+  }
+
+  &.medium {
+    padding: var(--padding-medium);
+  }
+
+  &.filled {
+    @include elementStates.button(#333, white, #333);
+  }
+
+  &.transparent {
+    @include elementStates.button(white,  #333);
+  }
+}

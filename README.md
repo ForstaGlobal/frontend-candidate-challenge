@@ -1,33 +1,54 @@
-# Coding Challenge for Frontend Developers
+# React Todo App
 
-## ASSIGNMENT DESCRIPTION
+React Todo app with the posibility to display/create/update/complete/delete a Todo item. 
 
-Please use the React framework to solve this assignment or alternatively pure javascript if you don't know React.
+It includes Toast manager functionality to display state of the operations.
 
-You can add/remove/upgrade any project dependency and change/remove any part of the project as you deem appropriate.
+To visualize server behavior, it offers delay/error server simulation mode to check the error state and work with asynchronious code.
 
-#### SPECIFICATION
+## Usage
 
-- Create a todo list app where the user can create/edit/delete tasks.
-- The user should also be able to toggle tasks as "done" vs. "not done".
-- When a task is deleted, it should be removed from the list.
-- New tasks should be added to the top of the list.
+**Install dependencies:**
+```bash
+npm install
+```
 
-#### OTHER REQUIREMENTS
+**Run development mode:**
+```bash
+npm start
+```
 
-- All functionality should be tested. For the testing you should use [React testing library](https://testing-library.com/).
-- We value clean, readable, concise code.
-- The project is set up to use TypeScript. Please make sure your code has good types. If you don't know TypeScript, you are not required to write types.
+**Run tests:**
+```bash
+npm test
+```
 
-## HOW TO SUBMIT YOUR CODE
 
-1. Fork this repo.
-2. Push your code changes to your fork.
-3. Create a pull request targeting this repo.
+## Decisions
 
-If you have any doubts about the fork + pull request workflow you can refer to [this guide](https://reflectoring.io/github-fork-and-pull/).
+- __useContext__: To limit the scope of the application, I used ContextProviders to manage states of the Todo list, instead of using Local-/SessionStorage, database and/or Redux. 
 
-## DEADLINE
-You can take all the time you need (but please not more than 2 weeks).
+- __Shared UI components__: Reusable parts of the code with predefined styles and behaviour. They are designed to extend the functionality of native HTML elements with functions like onRender, onError, autoScaling etc.
 
-Submit your PR when you are proud of your code :-)
+- __Debounce__: To limit requests to a potential server, updates to Items implement debounce with a short delay which allows the user to finish writing before saving.
+
+- __Tosts__: Implemented toasts are an addition to improve the user experience and provide visualization of result states.
+
+- __Server simulation__: Implemented simulation shows my ability to handle asynchronious code and handle server errors.
+
+- __clsx__: Well known (tiny) library to conditionally apply classNames, which is very useful for CSS Modules. 
+
+## Improvements
+
+- __create-react-app__: Known to have vulnerabilities in dependencies. Should be replaced by Vite or another building tool.
+
+- __Authorization/Authentication__: Implementing user login would protect data.
+
+- __Persistence__: Save changes permanently in a database. Easily implemented with current structure.
+
+- __Undo functionality__: A good combination with a Toast manager system that would improve user experience.
+
+- __clsx__: Could be replaced by an internal function to reduce dependency.
+
+- __Recycle Bin__: Good practice in a Todo app since it can prevent losing important data.
+

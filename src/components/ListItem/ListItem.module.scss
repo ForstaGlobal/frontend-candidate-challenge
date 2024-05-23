@@ -1,0 +1,75 @@
+@use "../../animations";
+
+.wrapper {
+  align-items: center;
+  background-color: white;
+  border-radius: var(--border-radius-medium);
+  box-shadow: 0 0 1px 1px #D4D4D4;
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  justify-content: space-between;
+  line-height: 20px;
+  margin: 0 0 8px;
+  padding: var(--padding-medium);
+  position: relative;
+  transition: all 0.4s ease-in-out;
+  width: 100%;
+
+  .checkbox, .textarea {
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  &:hover {
+    @include animations.pulse(var(-color-primary), 0.5deg)
+  }
+}
+
+.completed {
+  .textarea {
+    text-decoration: wavy line-through rgba( #ff00ff, 0.6);
+    text-decoration-thickness: 0.3rem;
+  }
+}
+
+.editing {
+  background-color:  #ff00ff;
+  color: white;
+
+  .textarea, .deleteButton {
+    color: white;
+    text-decoration: none;
+    text-decoration: unset;
+  }
+
+  .deleteButton {
+    color: white;
+
+    &:hover {
+      background-color: rgba(white, 0.3);
+      color: white;
+    }
+  }
+}
+
+.deleting {
+  height: 0;
+  margin-top: -8px;
+  overflow: hidden;
+  padding: 0;
+  width: 0;
+  
+  button {
+    display: none;
+  }
+
+  .checkbox, .textarea {
+    opacity: 0;
+  }
+}
+
+.checkbox {
+  accent-color: rgba( #ff00ff, 0.4);
+  cursor: pointer;
+  width: 12px;
+}

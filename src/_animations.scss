@@ -1,0 +1,15 @@
+@mixin pulse($color, $rotateDegree) {
+  $animation-name: unquote('pulse-' + unique-id());
+
+  @keyframes #{$animation-name} {
+    0%   { box-shadow: 0 0 0 0 $color; transform: rotate(0.2); }
+    25%  { transform: rotate($rotateDegree); }
+    50%  { box-shadow: 0 0 2px 3px rgba($color, 0.5); }
+    75%  { transform: rotate(-$rotateDegree); }
+    100% { transform: rotate(0); }
+  }
+
+  animation: #{$animation-name} 0.5s 2;
+  box-shadow: 0 0 1px 2px rgba($color, 0.3);
+}
+
