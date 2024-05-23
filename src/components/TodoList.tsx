@@ -1,16 +1,48 @@
-import React from "react";
+import { useTodos } from "../context/TodoListProvider";
+import useTodoState from "../hooks/useTodoState";
+import EditBox from "./EditBox";
+import TodoItem from "./TodoItem";
 
-type TodoListProps = {
-  todos: any[];
-};
-export const TodoList = ({ todos }: TodoListProps) => {
+export const TodoList = () => {
+  const { todoList, deleteTodo, toggleTodo } = useTodos();
+  const {
+    onEdit,
+    editingTodo,
+    todo,
+    handleOnChange,
+    handleOnEditSubmit,
+    onCancelEdit,
+    errorMessage,
+  } = useTodoState();
+
+  const editBoxProps = {
+    todo,
+    handleOnChange,
+    handleOnEditSubmit,
+    onCancelEdit,
+    errorMessage,
+  };
+
   return (
     <ul className="todoList">
-      {todos.map((item, i) => (
-        <li key={i}>
-          <span data-testid={`todo${i}`}>{item.text}</span>
-        </li>
-      ))}
+      {todoList.map((todo) => {
+        const todoItemProps = {
+          todo,
+          onEdit,
+          deleteTodo,
+          toggleTodo,
+        };
+
+        return (
+          <li key={todo.id}>
+            {editingTodo?.id === todo.id ? (
+              <EditBox {...editBoxProps} />
+            ) : (
+              <TodoItem {...todoItemProps} />
+            )}
+          </li>
+        );
+      })}
     </ul>
   );
 };

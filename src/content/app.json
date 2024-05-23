@@ -1,0 +1,19 @@
+{
+    "error": {
+        "submission_error": "can not submit an empty form"
+    },
+    "todo_list_content": {
+        "edit": "edit",
+        "remove": "remove",
+        "check": "check",
+        "uncheck": "uncheck"
+    },
+    "text_box_content": {
+        "add": "add",
+        "input_placeholder": "type in ..."
+    },
+    "edit_text_box_content": {
+        "confirm": "confirm",
+        "cancel": "cancel"
+    }
+}
