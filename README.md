@@ -27,5 +27,5 @@ To set up the project, follow these steps:
 
 1. Clone the repository:
    ```sh
-   git clone <https://github.com/soniah770/frontend-candidate-challenge/tree/tests>
+   git clone <https://github.com/soniah770/frontend-candidate-challenge.git>
    cd todo-app
