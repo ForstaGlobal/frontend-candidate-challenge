@@ -1,21 +1,22 @@
 import React from 'react';
-import { Container, Typography,Box } from '@mui/material';
+import { Container, Typography, Box } from '@mui/material';
 import AddTask from './AddTask';
 import TodoList from './TodoList';
 import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded';
+import useTodoStore from '../store/useTodoStore';
+
 const ToDoContainer: React.FC = () => {
+  const addTodoItem = useTodoStore((state) => state.addTodoItem);
+
   return (
-   
-    <Container maxWidth="sm" className="todo-container" sx={{ background: "#fff" ,  borderRadius: "1rem", marginTop: "3vh",
-    padding: "4rem",  minWidth: "60vw",
-  }} >
-    <Box sx={{display:'flex',justifyItems:'center'}}>
-    <CheckCircleOutlineRoundedIcon sx={{ color: "linear-gradient(0.125turn, #e66465, #ff00ff)",marginRight:'1rem',fontSize:'40px'}}/>
-      <Typography     sx={{ fontSize: "1.5rem", fontWeight: 500, marginBottom: "1rem" ,color:'#ff00ff'}}>
- ToDo App      </Typography>
- </Box>
- 
-      <AddTask />
+    <Container maxWidth="sm" className="todo-container" sx={{ background: "#fff", borderRadius: "1rem", marginTop: "3vh", padding: "4rem", minWidth: "60vw" }}>
+      <Box sx={{ display: 'flex', justifyItems: 'center' }}>
+        <CheckCircleOutlineRoundedIcon sx={{ color: "linear-gradient(0.125turn, #e66465, #ff00ff)", marginRight: '1rem', fontSize: '40px' }} />
+        <Typography sx={{ fontSize: "1.5rem", fontWeight: 500, marginBottom: "1rem", color: '#ff00ff' }}>
+          ToDo App
+        </Typography>
+      </Box>
+      <AddTask addTodoItem={addTodoItem} />
       <TodoList />
     </Container>
   );

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Box, FormControl, IconButton, InputAdornment, OutlinedInput } from '@mui/material';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
-import useTodoStore from '../store/useTodoStore';
 
-const AddTask: React.FC = () => {
-  const [title, setTitle] = useState("");
-  const addTodoItem = useTodoStore((state) => state.addTodoItem);
+interface AddTaskProps {
+  addTodoItem: (title: string) => void;
+}
+
+const AddTask: React.FC<AddTaskProps> = ({ addTodoItem }) => {
+  const [title, setTitle] = useState('');
 
   const handleTodoSubmit = () => {
     if (title.trim()) {

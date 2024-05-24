@@ -1,23 +1,31 @@
-# Implementing UI and State Management and Mock Api
+# Todo App
 
-## Overview
+This application allows users to add, edit, delete, and filter tasks.this branch is updated for styling app with Sass(updating style file),and updating app test,several tests and snapshot. with report.
 
-This branch includes the implementation of the UI and state management for the ToDo application. The main components and features added in this branch are:
+## Table of Contents
 
-- `AddTask` Component: Allows users to add new tasks.
-- `TaskItem` Component: Displays individual tasks with options to edit, delete, and mark as completed.
-- `TodoList` Component: Renders the list of tasks with filtering options.
-- `ToggleButtons` Component: Provides filter buttons for showing all, active, or completed tasks.
-- State Management: Utilizes `zustand` for state management.
-- Mock API: Uses `jsonplaceholder` to fetch initial data.
+- [Todo App](#todo-app)
+  - [Table of Contents](#table-of-contents)
+  - [Technologies Used](#technologies-used)
+  - [Project Setup](#project-setup)
 
-## Installation
+## Technologies Used
+
+The project utilizes the following technologies:
+
+- **React**
+- **TypeScript**
+- **Zustand** 
+- **Mockapi**
+- **Material-UI (MUI)**
+- **Sass**
+- **Jest**
+- **React Testing Library**
+## Project Setup
 
 To set up the project, follow these steps:
 
-1. Clone the repository and checkout the `ui-and-state-management` branch:
-
+1. Clone the repository:
    ```sh
-   git clone https://github.com/soniah770/frontend-candidate-challenge.git
-   cd frontend-candidate-challenge
-   git checkout ui-and-state-management
+   git clone <https://github.com/soniah770/frontend-candidate-challenge/tree/tests>
+   cd todo-app
