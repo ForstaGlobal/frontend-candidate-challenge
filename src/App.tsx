@@ -20,7 +20,7 @@ const App: React.FC = () => {
   return (
     <div className={`App ${colorTheme}`}>
       <div className="header">
-        <div className="forsta-logo" style={{  paddingTop:'3rem', left: '10px'}} >
+        <div className="forsta-logo"></div>
         <div className="theme-options">
           <div
             id="theme-white"
@@ -59,7 +59,6 @@ const App: React.FC = () => {
           <ToDoContainer />
         </div>
       </div>
-    </div>
     </div>
   );
 };
