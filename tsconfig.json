@@ -13,9 +13,16 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "incremental": true,
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@utils/*": ["src/utils/*"],
+      "@styles/*": ["src/styles/*"]
+    }
   },
-  "include": ["src", ".storybook"]
-
-  
+  "include": ["src"],
+  "exclude": ["node_modules", "build"]
 }

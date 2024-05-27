@@ -13,3 +13,10 @@ export interface TodoState {
   clearTodo: () => void;
   setTodo: (todos: TodoItem[]) => void;
 }
+
+export interface ApiTodoItem {
+  id: number;
+  title: string;
+  completed: boolean;
+}
+
