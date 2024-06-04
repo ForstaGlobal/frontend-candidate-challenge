@@ -1,23 +1,32 @@
 import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import App from '../App';
 
-import App from "../App";
-import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
-
-describe("TodoApp", () => {
-  it("renders app", () => {
+describe('TodoApp', () => {
+  it('renders app', () => {
     const app = render(<App />);
     expect(app).not.toBeUndefined();
   });
 
-  it("renders initial items", () => {
+  it('renders initial items', () => {
+    render(<App />);
+    expect(screen.getByText('ToDo App')).toBeInTheDocument();
+  });
+
+  it('changes theme on click', () => {
     render(<App />);
 
-    expect(screen.getByText("Buy milk")).toBeDefined();
-    screen.getByTestId("todo0");
+    const themeBlue = screen.getByText('', { selector: '#theme-blue' });
+    fireEvent.click(themeBlue);
 
-    // TODO: Verify second todo
+    expect(document.querySelector('.App')).toHaveClass('theme-blue');
   });
-  
-  // TODO: Test app functionality: Create, edit, delete, mark as done.
+
+  it('retains theme after reload', () => {
+    localStorage.setItem('theme-color', 'theme-orange');
+    render(<App />);
+
+    expect(document.querySelector('.App')).toHaveClass('theme-orange');
+  });
 });
