@@ -1,6 +1,7 @@
 import React from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { useThemeStore } from '../store/useThemeStore';
 
 interface ToggleButtonsProps {
   setFilter: (value: string) => void;
@@ -8,6 +9,7 @@ interface ToggleButtonsProps {
 
 const ToggleButtons = ({ setFilter }: ToggleButtonsProps) => {
   const [value, setValue] = React.useState<string>('all');
+  const isDarkMode = useThemeStore((state) => state.isDarkMode);
 
   const handleFilter = (event: React.MouseEvent<HTMLElement>, newValue: string) => {
     if (newValue !== null) {
@@ -29,7 +31,7 @@ const ToggleButtons = ({ setFilter }: ToggleButtonsProps) => {
           background: 'transparent',
           borderWidth: '3px',
           boxShadow: 'none',
-          color: '#113247',
+          color: isDarkMode ? '#ffffff' : '#113247',
         },
         '& .Mui-selected': {
           background: 'linear-gradient(0.125turn, #ff7f50, #ff00ff)',
