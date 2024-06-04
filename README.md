@@ -1,33 +1,168 @@
-# Coding Challenge for Frontend Developers
+# Todo App with TypeScript, React, Zustand, MUI, SWR(added to have better data fetching), and Jest
 
-## ASSIGNMENT DESCRIPTION
+This repository contains a Todo application built with modern web development technologies including TypeScript, React, Zustand, MUI (Material-UI), SWR, and Jest. This README provides a comprehensive guide to setting up, running, and understanding the project.
 
-Please use the React framework to solve this assignment or alternatively pure javascript if you don't know React.
+| Tool        | Purpose                                           |
+|-------------|---------------------------------------------------|
+| React       | A JavaScript library for building user interfaces |
+| Zustand     | Minimalist state management                       |
+| TypeScript  | Static typing for JavaScript                      |
+| MUI         | Comprehensive UI component library                |
+| SWR         | Data fetching and caching                         |
+| Jest        | JavaScript testing framework                      |
 
-You can add/remove/upgrade any project dependency and change/remove any part of the project as you deem appropriate.
+## Features
 
-#### SPECIFICATION
+:white_check_mark: Simple and intuitive state management with Zustand
 
-- Create a todo list app where the user can create/edit/delete tasks.
-- The user should also be able to toggle tasks as "done" vs. "not done".
-- When a task is deleted, it should be removed from the list.
-- New tasks should be added to the top of the list.
+:white_check_mark: Modern UI components with MUI
 
-#### OTHER REQUIREMENTS
+:white_check_mark: Type-safe development with TypeScript
 
-- All functionality should be tested. For the testing you should use [React testing library](https://testing-library.com/).
-- We value clean, readable, concise code.
-- The project is set up to use TypeScript. Please make sure your code has good types. If you don't know TypeScript, you are not required to write types.
+:white_check_mark: Data fetching with SWR
 
-## HOW TO SUBMIT YOUR CODE
+:white_check_mark: Local storage integration for persistence
 
-1. Fork this repo.
-2. Push your code changes to your fork.
-3. Create a pull request targeting this repo.
+:white_check_mark: Comprehensive testing setup with Jest and React Testing Library
 
-If you have any doubts about the fork + pull request workflow you can refer to [this guide](https://reflectoring.io/github-fork-and-pull/).
+## Required Versions
 
-## DEADLINE
-You can take all the time you need (but please not more than 2 weeks).
+| Tool       | Version    |
+|------------|------------|
+| NodeJS     | >=16       |
+| TypeScript | >=4.9.4    |
 
-Submit your PR when you are proud of your code :-)
+## Getting Started
+
+### Clone the repository
+
+```bash
+git clone https://github.com/soniah770/frontend-candidate-challenge.git
+cd frontend-candidate-challenge
+```
+
+### Installing Dependencies
+
+```bash
+npm install
+```
+
+### Running Locally
+
+To run the project locally, simply execute:
+
+```bash
+npm start
+```
+
+### Docker Setup
+
+Building the Docker Image
+To build the Docker image for the application, run the following command in the root directory of the project:
+
+```bash
+docker build -t todo-app .
+```
+
+Running the Docker Container
+To run the application in a Docker container, use the following command:
+
+```bash
+docker run -p 3000:3000 todo-app
+```
+
+This will start the application, and it will be accessible at <http://localhost:3000>
+
+## Scripts
+
+| Command       | Description                                      |
+|---------------|--------------------------------------------------|
+| `dev`         | Starts the development server                    |
+| `build`       | Builds the application for production            |
+| `lint`        | Lints the TypeScript files using ESLint          |
+| `lint:fix`    | Fixes linting issues in TypeScript files         |
+| `format`      | Formats code using Prettier                      |
+| `test`        | Runs tests using Jest                            |
+| `prepare`     | Sets up Husky for git hooks in a production environment |
+
+## Project Structure
+
+The project is organized into the following directories:
+
+```plaintext
+.github
+.husky
+.vscode
+build
+coverage
+node_modules
+public
+src
+  ├── components
+  ├── store
+  ├── styles
+  ├── tests
+  ├── types
+  ├── App.tsx
+  ├── index.tsx
+  ├── react-app-env.d.ts
+  ├── setupTests.ts
+.eslintrc.js
+.gitignore
+.prettierignore
+.prettierrc
+jest.config.ts
+package-lock.json
+package.json
+README.md
+```
+
+### Description of Directories and Files
+
+- **.github**: GitHub-specific configuration files and workflows.
+- **.husky**: Husky configuration for Git hooks.
+- **.vscode**: Visual Studio Code specific settings and extensions.
+- **build**: Build output directory.
+- **coverage**: Test coverage reports.
+- **node_modules**: Directory for installed npm packages.
+- **public**: Static assets and the main HTML file.
+- **src**: Main source code of the application.
+  - **components**: Reusable React components.
+  - **store**: Zustand stores for state management.
+  - **styles**: SASS files for styling the application.
+  - **tests**: Unit and integration tests.
+  - **types**: TypeScript type definitions.
+  - **App.tsx**: Main App component.
+  - **index.tsx**: Entry point of the application.
+  - **react-app-env.d.ts**: TypeScript environment definitions.
+  - **setupTests.ts**: Setup file for Jest tests.
+- **.eslintrc.js**: ESLint configuration.
+- **.gitignore**: Git ignore file.
+- **.prettierignore**: Prettier ignore file.
+- **.prettierrc**: Prettier configuration.
+- **jest.config.ts**: Jest configuration.
+- **package-lock.json**: Lockfile for npm dependencies.
+- **package.json**: Project configuration and dependencies.
+- **README.md**: Project documentation.
+
+## Technology Selection and Justification
+
+### Zustand for State Management
+
+Zustand was chosen for its simplicity and performance benefits over other state management solutions such as Redux and Context API. It provides a straightforward API that integrates seamlessly with React and avoids the boilerplate code required by Redux.
+
+### MUI for UI Components
+
+MUI (Material-UI) was selected for its comprehensive set of pre-styled components that follow Material Design guidelines, ensuring a consistent and professional look across the application.
+
+### SASS for Styling
+
+SASS was used alongside MUI to handle more styling requirements and maintain consistency across the project.
+
+### Fetching Data Using SWR
+
+SWR (stale-while-revalidate) was used for data fetching to leverage its efficient caching and revalidation capabilities, providing a smoother data fetching experience. The JSONPlaceholder API was used to fetch initial tasks, providing a realistic scenario for handling asynchronous data fetching in React.
+
+### Local Storage Integration
+
+Local storage was integrated to persist theme settings across sessions, enhancing the user experience by retaining user preferences.

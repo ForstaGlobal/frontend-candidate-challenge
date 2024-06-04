@@ -1,19 +1,30 @@
-import React, { useState } from "react";
+import React from 'react';
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import ToDoContainer from './components/ToDoContainer';
+import Header from './components/Header';
+import { useThemeStore } from './store/useThemeStore';
+import './styles/styles.scss'
+const App = () => {
+  const isDarkMode = useThemeStore((state) => state.isDarkMode);
 
-import { TodoList } from "./components/TodoList";
-
-import "./styles.scss";
-
-export default function App() {
-  const [todos] = useState([
-    { text: "Buy milk", done: true },
-    { text: "Buy bread", done: false },
-  ]);
+  const theme = createTheme({
+    palette: {
+      mode: isDarkMode ? 'dark' : 'light',
+    },
+  });
 
   return (
-    <div className="todoListApp">
-      <div className="forsta-logo" />
-      <TodoList todos={todos} />
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+     
+  <Header/>
+  
+  <div className='todoListApp'>
+
+      <ToDoContainer />
+      </div>
+    </ThemeProvider>
   );
-}
+};
+
+export default App;
