@@ -2,11 +2,11 @@ import React from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-interface IProps {
+interface ToggleButtonsProps {
   setFilter: (value: string) => void;
 }
 
-const ToggleButtons: React.FC<IProps> = ({ setFilter }) => {
+const ToggleButtons = ({ setFilter }: ToggleButtonsProps) => {
   const [value, setValue] = React.useState<string>('all');
 
   const handleFilter = (event: React.MouseEvent<HTMLElement>, newValue: string) => {

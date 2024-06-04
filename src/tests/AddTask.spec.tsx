@@ -1,8 +1,6 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import AddTask from '../components/AddTask';
-import { act } from 'react-dom/test-utils';
 
 describe('AddTask Component', () => {
   it('should render AddTask component', () => {
@@ -16,9 +14,11 @@ describe('AddTask Component', () => {
     const mockAddTodoItem = jest.fn();
     render(<AddTask addTodoItem={mockAddTodoItem} />);
     const addButton = screen.getByLabelText('Add todo');
+    
     await act(async () => {
       userEvent.click(addButton);
     });
+    
     expect(mockAddTodoItem).not.toHaveBeenCalled();
   });
 
@@ -26,10 +26,12 @@ describe('AddTask Component', () => {
     const mockAddTodoItem = jest.fn();
     render(<AddTask addTodoItem={mockAddTodoItem} />);
     const inputElement = screen.getByPlaceholderText('Add a new task');
+    
     await act(async () => {
       userEvent.type(inputElement, '    ');
       userEvent.click(screen.getByLabelText('Add todo'));
     });
+    
     expect(mockAddTodoItem).not.toHaveBeenCalled();
   });
 
@@ -37,11 +39,12 @@ describe('AddTask Component', () => {
     const mockAddTodoItem = jest.fn();
     render(<AddTask addTodoItem={mockAddTodoItem} />);
     const inputElement = screen.getByPlaceholderText('Add a new task');
+    
     await act(async () => {
       userEvent.type(inputElement, 'New Task');
       userEvent.click(screen.getByLabelText('Add todo'));
     });
+    
     expect(mockAddTodoItem).toHaveBeenCalledWith('New Task');
   });
 });
-

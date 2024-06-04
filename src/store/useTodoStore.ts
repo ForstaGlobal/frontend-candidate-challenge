@@ -1,4 +1,3 @@
-// src/store/useTodoStore.ts
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { TodoItem, TodoState } from '../types';

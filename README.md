@@ -2,7 +2,6 @@
 
 This repository contains a Todo application built with modern web development technologies including TypeScript, React, Zustand, MUI (Material-UI), SWR, and Jest. This README provides a comprehensive guide to setting up, running, and understanding the project.
 
-
 | Tool        | Purpose                                           |
 |-------------|---------------------------------------------------|
 | React       | A JavaScript library for building user interfaces |
@@ -55,6 +54,24 @@ To run the project locally, simply execute:
 ```bash
 npm start
 ```
+
+### Docker Setup
+
+Building the Docker Image
+To build the Docker image for the application, run the following command in the root directory of the project:
+
+```bash
+docker build -t todo-app .
+```
+
+Running the Docker Container
+To run the application in a Docker container, use the following command:
+
+```bash
+docker run -p 3000:3000 todo-app
+```
+
+This will start the application, and it will be accessible at <http://localhost:3000>
 
 ## Scripts
 
@@ -140,7 +157,7 @@ MUI (Material-UI) was selected for its comprehensive set of pre-styled component
 
 ### SASS for Styling
 
-SASS was used alongside MUI to handle more styling requirements and maintain consistency across the project. 
+SASS was used alongside MUI to handle more styling requirements and maintain consistency across the project.
 
 ### Fetching Data Using SWR
 
